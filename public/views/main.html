@@ -1,0 +1,20 @@
+<div class="carousel">
+    <div class="center-block crop">
+        <img src="img/15248-multicolored-summer-cocktails-1920x1200-photography-wallpaper.jpg" class="center-block">
+    </div>
+    <div class="banner-text">
+        <span>Learn Mixology – in your own home</span>
+    </div>
+</div>
+<div class="margin-top-30">
+
+    <div class="col-md-4" ng-repeat="step in mainCtrl.welcomePageStepThumbnails">
+        <img ng-src="img/footer/step_{{$index + 1}}.jpg" alt="..." class="center-block thumbnail">
+
+        <div class="text-center">
+            <h1>Step {{$index + 1}}</h1>
+
+            <h2 class="lead">{{step}}</h2>
+        </div>
+    </div>
+</div>

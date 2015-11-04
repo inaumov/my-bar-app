@@ -1,2 +1,2 @@
 # MyBar-client
-Amazing front-end client for restful 'MyBar' application
+Amazing REST client for 'MyBar' application

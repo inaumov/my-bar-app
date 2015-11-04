@@ -1,0 +1,115 @@
+/* main navigation menu */
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-header > a {
+    height: 105px;
+    padding-top: 42px;
+}
+
+.navbar-brand {
+    height: inherit;
+}
+
+.navbar .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#system-menu .navbar-nav > li > a {
+    padding: 42px 0;
+    width: 105px;
+    text-align: center;
+    letter-spacing: 1px;
+    border: 1px solid #F4F4F4;
+}
+
+#system-menu .navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
+/* home page content */
+
+.crop {
+    width: 1140px;
+    height: 540px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 1140px;
+    height: auto;
+    margin-top: -40px;
+    margin-bottom: -260px;
+}
+
+.carousel .banner-text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: .8;
+}
+
+.carousel .banner-text span {
+    background: none repeat scroll 0 0 #EEEEEE;
+    padding: 10px 10px 10px 10px;
+    color: black;
+    font-size: 165%;
+    margin: 0 0 5px 0;
+    text-align: right;
+    float: right;
+    clear: both;
+    font-weight: 300;
+}
+
+/* sticky footer */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 140px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 120px;
+    color: #EEEEEE;
+    background-color: #000000;
+}
+
+/* pages */
+
+#cocktails > div,
+#cocktails > div > div,
+#cocktail > div,
+#cocktail > div > div,
+#shelf > div > div,
+#shelf > div > form .form-group {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#shelf > div > div .btn,
+#shelf > div .form-inline .form-group {
+    margin-bottom: 30px;
+}
+
+#cocktails img.no-available,
+#cocktail img.no-available {
+    border: 5px solid dimgrey;
+}
+
+#shelf .table > tbody > tr > td {
+    vertical-align: middle;
+}

@@ -1,0 +1,27 @@
+{
+    "name": "MyBar-client",
+    "version": "0.0.1-develop",
+    "description": "Amazing REST client for 'MyBar' application",
+    "main": "public/index.html, public/js/app.js, public/css/main.css",
+    "moduleType": [],
+    "keywords": [
+        "HTML5"
+    ],
+    "authors": [
+        "inaumov - Igor Naumov <naumov@live.com>"
+    ],
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.4.7",
+        "angular-route": "~1.4.7",
+        "bootstrap": "~3.3.5"
+    }
+}
