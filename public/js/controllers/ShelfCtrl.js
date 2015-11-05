@@ -5,10 +5,34 @@ function ShelfController(MyBarService) {
     var vm = this;
     vm.formPanel = false;
     vm.editMode = false;
-    vm.itemsInShelf = MyBarService.getItemsInShelf();
-    vm.ingredients = MyBarService.getIngredients();
+    vm.itemsInShelf = [];
+    vm.ingredients = [];
 
-    vm.createEmptyProduct = function() {
+    activate();
+
+    function activate() {
+        loadItemsInShelf().then(function () {
+            loadIngredients().then(function () {
+                console.log('Activated Shelf List View');
+            });
+        });
+    }
+
+    function loadItemsInShelf() {
+        return MyBarService.getItemsInShelf().then(function (data) {
+            vm.itemsInShelf = data;
+            return vm.itemsInShelf;
+        });
+    }
+
+    function loadIngredients() {
+        return MyBarService.getIngredients().then(function (data) {
+            vm.ingredients = data;
+            return vm.ingredients;
+        });
+    }
+
+    vm.createEmptyProduct = function () {
         vm.product = {
             ingredient: {
             },

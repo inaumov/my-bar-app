@@ -3,13 +3,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
-var menuSchema = new Schema({
+var ingredientSchema = new Schema({
     id: Number,
-    name: String
+    kind: String,
+    type: String
 });
 
 // define our model
-var Menu = mongoose.model('Menu', menuSchema);
+var Ingredient = mongoose.model('Ingredient', ingredientSchema);
 
 // make this available in Node applications
-module.exports = Menu;
+module.exports = Ingredient;

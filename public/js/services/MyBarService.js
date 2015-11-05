@@ -5,32 +5,21 @@ function MyBarService($http) {
     var service = {
 
         getMenuItems: function () {
-
             return $http.get('/api/menu')
-                .then(getMenuItemsComplete)
-                .catch(getMenuItemsFailed);
-
-            function getMenuItemsComplete(response) {
-                if (typeof response.data === 'object') {
-                    return response.data;
-                } else {
-                    // invalid response
-                    console.log('XHR Failed for getMenuItems.' + response.data);
-                }
-            }
-
-            function getMenuItemsFailed(error) {
-                // something went wrong
-                console.log('XHR Failed for getMenuItems.' + error.data);
-            }
+                .then(getRequestCallComplete)
+                .catch(getRequestCallFailed);
         },
 
         getCocktails: function (menuId) {
-            return $http.get('/api/cocktails', menuId);
+            return $http.get('/api/menu/' + menuId + '/cocktails')
+                .then(getRequestCallComplete)
+                .catch(getRequestCallFailed);
         },
 
         getCocktailById: function (id) {
-            return $http.get('/api/cocktails', id);
+            return $http.get('/api/cocktails/' + id)
+                .then(getRequestCallComplete)
+                .catch(getRequestCallFailed);
         },
 
         createCocktail: function (data) {
@@ -42,11 +31,15 @@ function MyBarService($http) {
         },
 
         getIngredients: function () {
-            return $http.get('/api/ingredients');
+            return $http.get('/api/ingredients')
+                .then(getRequestCallComplete)
+                .catch(getRequestCallFailed);
         },
 
         getItemsInShelf: function () {
-            return $http.get('/api/shelf');
+            return $http.get('/api/shelf')
+                .then(getRequestCallComplete)
+                .catch(getRequestCallFailed);
         },
 
         addToShelf: function (data) {
@@ -60,5 +53,19 @@ function MyBarService($http) {
     };
 
     return service;
+
+    function getRequestCallComplete(response) {
+        if (typeof response.data === 'object') {
+            return response.data;
+        } else {
+            // invalid response
+            console.log('XHR Failed for [].' + response.data);
+        }
+    }
+
+    function getRequestCallFailed(error) {
+        // something went wrong
+        console.log('XHR Failed for [].' + error.data);
+    }
 
 }

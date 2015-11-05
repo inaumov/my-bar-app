@@ -10,12 +10,12 @@ function MainController($rootScope, MyBarService) {
     activate();
 
     function activate() {
-        return getMenuItems().then(function () {
+        loadMenuItems().then(function () {
             console.log('Activated Main View');
         });
     }
 
-    function getMenuItems() {
+    function loadMenuItems() {
         return MyBarService.getMenuItems().then(function (data) {
             vm.menuItems = data;
             return vm.menuItems;

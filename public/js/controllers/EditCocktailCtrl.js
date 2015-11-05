@@ -4,16 +4,19 @@ function EditCocktailController($routeParams, MyBarService) {
 
     var vm = this;
     vm.drinkTypes = [];
+    vm.ingredients = [];
+    vm.cocktail = {};
 
     activate();
 
     function activate() {
-        return getDrinkTypes().then(function () {
-            console.log('Activated Edit Cocktail View');
-        });
+        loadDrinkTypes();
+        loadIngredients();
+        loadCocktail();
+        console.log('Activated Edit Cocktail View');
     }
 
-    function getDrinkTypes() {
+    function loadDrinkTypes() {
         return MyBarService.getMenuItems().then(function (data) {
             vm.drinkTypes = data.map(function (item) {
                 return item.name;
@@ -22,18 +25,22 @@ function EditCocktailController($routeParams, MyBarService) {
         });
     }
 
-    MyBarService.getMenuItems().then(function (data) {
-        vm.drinkTypes = data.map(function (item) {
-            return item.name;
+    function loadIngredients() {
+        return MyBarService.getIngredients().then(function (data) {
+            vm.ingredients = data;
+            return vm.ingredients;
         });
-    });
+    }
 
-    vm.ingredients = MyBarService.getIngredients();
-
-    if ($routeParams.id) {
-        vm.cocktail = MyBarService.getCocktailById($routeParams.id);
-    } else {
-        vm.cocktail = {}
+    function loadCocktail() {
+        if ($routeParams.id === 'new') {
+            vm.cocktail = {};
+            return vm.cocktail;
+        }
+        MyBarService.getCocktailById($routeParams.id).then(function (data) {
+            vm.cocktail = data;
+            return vm.cocktail;
+        });
     }
 
     vm.save = function () {
