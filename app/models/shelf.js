@@ -16,7 +16,7 @@ var shelfSchema = new Schema({
     volume: Number,
     price: Number,
     active: String,
-    pictureUrl: String
+    imageUrl: String
 });
 
 // define our model

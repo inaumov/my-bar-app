@@ -5,10 +5,11 @@ var Schema = mongoose.Schema;
 // create a schema
 var cocktailSchema = new Schema({
     id: Number,
+    menuId: Number,
     name: String,
     price: Number,
     state: String,
-    coverUrl: String
+    imageUrl: String
 });
 
 // define our model

@@ -54,11 +54,11 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/menu/:id/cocktails', function (req, res) {
+    app.get('/api/menu/:menuId/cocktails', function (req, res) {
 
         // use mongoose to get all cocktails for specific menu in the database
-        var id = req.params.id; // TODO impl
-        Cocktail.find(function (err, cocktails) {
+        var id = req.params.menuId;
+        Cocktail.find({menuId: id}, function (err, cocktails) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute
@@ -74,7 +74,7 @@ module.exports = function (app) {
 
         // use mongoose to get cocktail by id in the database
         var id = req.params.id;
-        Cocktail.findById(id, function (err, cocktail) {
+        Cocktail.findOne({id: id}, function (err, cocktail) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute

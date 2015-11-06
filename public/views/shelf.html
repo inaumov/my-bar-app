@@ -75,7 +75,7 @@
         <tbody>
         <tr ng-class="item.active == 'YES' ? 'active' : ''"
             ng-repeat="item in shelfCtrl.getItemsInShelf | orderBy:'ingredient.kind':false | orderBy:['active']">
-            <td class="col-sm-2"><img class="img-responsive" ng-src="{{item.pictureUrl || 'img/blank.gif'}}" ng-class="{true: '', false: 'no-available'}[!!item.pictureUrl]"/></td>
+            <td class="col-sm-2"><img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}" ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/></td>
             <td class="col-sm-2">{{item.ingredient.kind}}</td>
             <td class="col-sm-2">{{item.brandName}}</td>
             <td class="col-sm-2">{{item.volume}}</td>

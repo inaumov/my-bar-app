@@ -18,6 +18,7 @@ function MainController($rootScope, MyBarService) {
     function loadMenuItems() {
         return MyBarService.getMenuItems().then(function (data) {
             vm.menuItems = data;
+            $rootScope.menuItems = vm.menuItems;
             return vm.menuItems;
         });
     }

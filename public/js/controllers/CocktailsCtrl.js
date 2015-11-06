@@ -27,7 +27,7 @@ function CocktailsController($rootScope, $routeParams, MyBarService) {
     };
 
     function getCurrentMenuName() {
-        var menuItems = MyBarService.getMenuItems();
+        var menuItems = $rootScope.menuItems;
         for (var item in menuItems) {
             var el = menuItems[item];
             if (el.id == $routeParams.id) {

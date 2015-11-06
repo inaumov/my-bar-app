@@ -6,6 +6,7 @@ function EditCocktailController($routeParams, MyBarService) {
     vm.drinkTypes = [];
     vm.ingredients = [];
     vm.cocktail = {};
+    vm.isNew = $routeParams.id === 'new';
 
     activate();
 
@@ -18,9 +19,7 @@ function EditCocktailController($routeParams, MyBarService) {
 
     function loadDrinkTypes() {
         return MyBarService.getMenuItems().then(function (data) {
-            vm.drinkTypes = data.map(function (item) {
-                return item.name;
-            });
+            vm.drinkTypes = data;
             return vm.drinkTypes;
         });
     }
@@ -33,7 +32,7 @@ function EditCocktailController($routeParams, MyBarService) {
     }
 
     function loadCocktail() {
-        if ($routeParams.id === 'new') {
+        if (vm.isNew) {
             vm.cocktail = {};
             return vm.cocktail;
         }

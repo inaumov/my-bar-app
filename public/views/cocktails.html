@@ -1,12 +1,12 @@
 <div ng-include="'views/templates/menu-bar.html'"></div>
-<h2>My {{currentMenuName}}</h2>
+<h2>My {{currentMenuName | lowercase}} collection</h2>
 <div id="cocktails" ng-controller="CocktailsController as cocktailsCtrl">
     <div class="col-lg-12 margin-top-30" ng-repeat="item in cocktailsCtrl.cocktails"
          ng-if="item.state != 'NOT_AVAILABLE'">
 
         <div id="cover" class="col-lg-4">
-            <img class="img-responsive" ng-src="{{item.coverUrl || 'img/blank.gif'}}"
-                 ng-class="{true: '', false: 'no-available'}[!!item.coverUrl]"/>
+            <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
+                 ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/>
         </div>
 
         <div class="col-lg-7 col-lg-push-1" style="">
@@ -26,6 +26,6 @@
                 <button ng-click="cocktailsCtrl.delete(item)" class="btn">Delete</button>
             </div>
         </div>
-
     </div>
+    <div ng-hide="cocktailsCtrl.cocktails.length">No items in this list yet</div>
 </div>
