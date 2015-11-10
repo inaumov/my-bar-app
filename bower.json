@@ -1,6 +1,6 @@
 {
     "name": "MyBar-client",
-    "version": "0.0.1-develop",
+    "version": "0.0.2-develop",
     "description": "Amazing REST client for 'MyBar' application",
     "main": "public/index.html, public/js/app.js, public/css/main.css",
     "moduleType": [],
@@ -22,6 +22,7 @@
     "dependencies": {
         "angular": "~1.4.7",
         "angular-route": "~1.4.7",
-        "bootstrap": "~3.3.5"
+        "bootstrap": "~3.3.5",
+        "ng-dialog": "~0.5.5"
     }
 }
