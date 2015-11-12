@@ -37,9 +37,14 @@
 
                     <div class="form-group">
                         <label for="ingredients">Selected Ingredients:</label>
-                        <div id="ingredients" ng-repeat="kind in cocktailCtrl.cocktail.ingredients">
-                            {{kind}}
-                        </div>
+                        <ul id="ingredients" class="list-group"
+                            ng-repeat="ingredient in cocktailCtrl.cocktail.ingredients">
+                            <li class="list-group-item">
+                                <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
+                                {{ingredient.kind}}<span class="badge">{{ingredient.volume}} ml</span>
+                                </input>
+                            </li>
+                        </ul>
                     </div>
                     <button class="btn" ng-click="cocktailCtrl.showIngredients()">
                         <span ng-show="cocktailCtrl.cocktail.ingredients.length == 0">Add ingredients</span>

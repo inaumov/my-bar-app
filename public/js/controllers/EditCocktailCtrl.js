@@ -46,25 +46,35 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
     vm.showIngredients = function () {
         ngDialog.open({
             template: 'views/templates/select-ingredients.html',
-            controller: function Ctrl(data) {
+            controller: function IngredientsListController(data) {
                 this.data = data;
                 // toggle selection for a given kind
                 this.toggleSelection = function toggleSelection(kind) {
-                    var idx = vm.cocktail.ingredients.indexOf(kind);
+                    var idx;
+                    vm.cocktail.ingredients.some(function (entry, i) {
+                        if (entry.kind == kind) {
+                            idx = i;
+                            return true;
+                        }
+                    });
                     // is currently selected
                     if (idx > -1) {
                         vm.cocktail.ingredients.splice(idx, 1);
                     }
                     // is newly selected
                     else {
-                        vm.cocktail.ingredients.push(kind);
+                        vm.cocktail.ingredients.push({kind: kind, volume: 0});
                     }
                 };
                 this.isChecked = function (kind) {
-                    return vm.cocktail.ingredients.indexOf(kind) > -1;
+                    return vm.cocktail.ingredients.some(function (entry) {
+                        if (entry.kind == kind) {
+                            return true;
+                        }
+                    });
                 }
             },
-            controllerAs: 'ingredientsCtrl',
+            controllerAs: 'ingredientsListCtrl',
             resolve: {
                 data: function () {
                     return vm.ingredients;
