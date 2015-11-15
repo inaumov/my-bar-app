@@ -1,9 +1,9 @@
 <div class="ngdialog-content">
     <div ng-repeat="item in ingredientsListCtrl.data">
         <div class="action-checkbox">
-            <input id="{{item.kind}}" type="checkbox" value="{{item.kind}}"
-                   ng-checked="ingredientsListCtrl.isChecked(item.kind)"
-                   ng-click="ingredientsListCtrl.toggleSelection(item.kind)"/>
+            <input id="{{item.kind}}" type="checkbox" value="{{item.id}}"
+                   ng-checked="ingredientsListCtrl.isChecked(item.id)"
+                   ng-click="ingredientsListCtrl.toggleSelection(item.id)"/>
             <label for="{{item.kind}}"></label>
             {{item.kind}}
         </div>

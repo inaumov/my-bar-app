@@ -22,10 +22,6 @@ function CocktailsController($rootScope, $routeParams, MyBarService) {
         });
     }
 
-    vm.delete = function (item) {
-        MyBarService.deleteCocktail(item.id);
-    };
-
     function getCurrentMenuName() {
         var menuItems = $rootScope.menuItems;
         for (var item in menuItems) {

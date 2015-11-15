@@ -30,17 +30,33 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
         });
     }
 
-    function loadCocktail() {
-        if (vm.isNew) {
-            vm.cocktail = {
-                ingredients: []
-            };
-            return vm.cocktail;
+    function wrapIngredient(ingredient) {
+        ingredient.getKind = function () {
+            for (var j = 0; j < vm.ingredients.length; j++) {
+                var ingredient = vm.ingredients[j];
+                if (ingredient.id === this.id) {
+                    return ingredient.kind;
+                }
+            }
         }
-        MyBarService.getCocktailById($routeParams.id).then(function (data) {
-            vm.cocktail = data;
-            return vm.cocktail;
-        });
+    }
+
+    function loadCocktail() {
+
+        vm.isNew ? create() : get();
+
+        function create() {
+            vm.cocktail = {ingredients: []};
+        }
+
+        function get() {
+            MyBarService.getCocktailById($routeParams.id).then(function (data) {
+                vm.cocktail = data;
+                for (var i = 0; i < vm.cocktail.ingredients.length; i++) {
+                    wrapIngredient(vm.cocktail.ingredients[i]);
+                }
+            })
+        }
     }
 
     vm.showIngredients = function () {
@@ -49,10 +65,10 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
             controller: function IngredientsListController(data) {
                 this.data = data;
                 // toggle selection for a given kind
-                this.toggleSelection = function toggleSelection(kind) {
+                this.toggleSelection = function toggleSelection(id) {
                     var idx;
                     vm.cocktail.ingredients.some(function (entry, i) {
-                        if (entry.kind == kind) {
+                        if (entry.id == id) {
                             idx = i;
                             return true;
                         }
@@ -63,12 +79,14 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
                     }
                     // is newly selected
                     else {
-                        vm.cocktail.ingredients.push({kind: kind, volume: 0});
+                        var ingredient = {id: id, volume: 0, units: 'ML' };
+                        wrapIngredient(ingredient);
+                        vm.cocktail.ingredients.push(ingredient);
                     }
                 };
-                this.isChecked = function (kind) {
+                this.isChecked = function (id) {
                     return vm.cocktail.ingredients.some(function (entry) {
-                        if (entry.kind == kind) {
+                        if (entry.id == id) {
                             return true;
                         }
                     });
@@ -85,6 +103,10 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
 
     vm.save = function () {
         MyBarService.createCocktail(vm.cocktail);
-    }
+    };
+
+    vm.delete = function (item) {
+        MyBarService.deleteCocktail(item.id);
+    };
 
 }
