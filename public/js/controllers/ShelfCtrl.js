@@ -22,37 +22,47 @@ function ShelfController(ingredients, MyBarService) {
         });
     }
 
-    vm.createEmptyProduct = function () {
-        vm.product = {
-            ingredient: {
-            },
+    vm.getIngredientKind = function (id) {
+        for (var i = 0; i < vm.ingredients.length; i++) {
+            var ingredient = vm.ingredients[i];
+            if (ingredient.id === id) {
+                return ingredient.kind;
+            }
+        }
+    };
+
+    vm.newBottle = function () {
+        vm.bottle = {
+            ingredient: {},
             brandName: '',
             volume: '',
             price: '',
-            active: '',
-            pictureUrl: ''
+            inShelf: 'YES',
+            imageUrl: ''
         }
     };
 
     vm.save = function () {
-        if (vm.editMode) {
-            vm.product = {};
-            vm.editMode = false;
-            vm.formPanel = false;
-        }
-
         for (var i = 0; i < vm.ingredients.length; i++) {
-            if (vm.product.ingredient.kind === vm.ingredients[i].kind) {
-                vm.product.ingredient = vm.ingredients[i];
+            if (vm.bottle.ingredient.kind === vm.ingredients[i].kind) {
+                vm.bottle.ingredient.id = vm.ingredients[i].id;
             }
         }
-        MyBarService.addToShelf(vm.product);
-        vm.itemsInShelf.push(vm.product);
+        // TODO consider resolving promise and handle errors
+        MyBarService.addToShelf(vm.bottle);
+        if (vm.editMode) {
+            vm.editMode = false;
+            var idx = vm.itemsInShelf.map(function (x) {
+                return x.id;
+            }).indexOf(vm.bottle.id);
+            vm.itemsInShelf.splice(idx, 1);
+        }
+        vm.itemsInShelf.push(vm.bottle);
         vm.formPanel = false;
     };
 
     vm.edit = function (item) {
-        vm.product = item;
+        vm.bottle = item;
         vm.editMode = true;
         vm.formPanel = true;
     };

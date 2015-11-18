@@ -1,5 +1,5 @@
 var Menu = require('./models/menu');
-var Shelf = require('./models/shelf');
+var Bottle = require('./models/bottle');
 var Ingredient = require('./models/ingredient');
 var Cocktail = require('./models/cocktail');
 
@@ -42,7 +42,7 @@ module.exports = function (app) {
 
     app.get('/api/shelf', function (req, res) {
         // use mongoose to get all bottles in the database
-        Shelf.find(function (err, bottles) {
+        Bottle.find(function (err, bottles) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute

@@ -4,7 +4,7 @@
     <div ng-switch on="shelfCtrl.formPanel">
         <!--plus button panel-->
         <div class="col-sm-2 col-sm-push-10 text-right" ng-switch-when='false'>
-            <button class="btn" ng-click="shelfCtrl.formPanel = true; shelfCtrl.createEmptyProduct()">
+            <button class="btn" ng-click="shelfCtrl.formPanel = true; shelfCtrl.newBottle()">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </div>
@@ -12,7 +12,7 @@
         <form name="AddBeverageForm" id="ingredientForm" class="form-inline" role="form" ng-switch-when='true'>
             <div class="form-group col-sm-2 text-left">
                 <input type="text" class="form-control" id="img-path"
-                       ng-model="shelfCtrl.product.pictureUrl"
+                       ng-model="shelfCtrl.bottle.imageUrl"
                        placeholder="Photo url" size="10"/>
             </div>
 
@@ -21,12 +21,12 @@
                     <option value="{{ingredient.kind}}" ng-repeat="ingredient in shelfCtrl.ingredients"/>
                 </datalist>
                 <input type="text" class="form-control" list="ingredients"
-                       ng-model="shelfCtrl.product.ingredient.kind"
+                       ng-model="shelfCtrl.bottle.ingredient.kind"
                        placeholder="Beverage" size="10">
             </div>
             <div class="form-group col-sm-2 text-left">
                 <input type="text" id="brand" class="form-control"
-                       ng-model="shelfCtrl.product.brandName" ng-pattern="/^\s*\w*\s*$/"
+                       ng-model="shelfCtrl.bottle.brandName" ng-pattern="/^\s*\w*\s*$/"
                        required ng-trim="true"
                        placeholder="Brand name" size="10">
             </div>
@@ -37,17 +37,17 @@
                     <option value="1.0"/>
                 </datalist>
                 <input type="text" list="volumes" class="form-control"
-                       ng-model="shelfCtrl.product.volume" required ng-trim="false"
+                       ng-model="shelfCtrl.bottle.volume" required ng-trim="false"
                        placeholder="Volume" size="7">
             </div>
             <div class="form-group col-sm-2 text-left">
                 <input type="text" class="form-control" id="price"
-                       ng-model="shelfCtrl.product.price" required ng-trim="false"
+                       ng-model="shelfCtrl.bottle.price" required ng-trim="false"
                        placeholder="Price (UAH)" size="7">
             </div>
             <div class="form-group col-sm-1">
                 <input type="checkbox" class="checkbox"
-                       ng-model="shelfCtrl.product.active" ng-true-value="'YES'" ng-false-value="'NO'">
+                       ng-model="shelfCtrl.bottle.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
             </div>
             <div class="form-group col-sm-1 text-right">
                 <button class="btn" ng-click="shelfCtrl.save()">
@@ -60,7 +60,7 @@
         </form>
     </div>
 
-    <table class="table table-condensed margin-top-30" ng-if="shelfCtrl.getItemsInShelf.length">
+    <table class="table table-condensed margin-top-30" ng-if="shelfCtrl.itemsInShelf.length">
         <thead>
         <tr>
             <th class="col-sm-2"><span class="glyphicon glyphicon-picture"></span></th>
@@ -73,16 +73,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-class="item.active == 'YES' ? 'active' : ''"
-            ng-repeat="item in shelfCtrl.getItemsInShelf | orderBy:'ingredient.kind':false | orderBy:['active']">
+        <tr ng-class="item.inShelf == 'YES' ? 'active' : ''"
+            ng-repeat="item in shelfCtrl.itemsInShelf | orderBy:['inShelf']">
             <td class="col-sm-2"><img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}" ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/></td>
-            <td class="col-sm-2">{{item.ingredient.kind}}</td>
+            <td class="col-sm-2">{{shelfCtrl.getIngredientKind(item.ingredient.id)}}</td>
             <td class="col-sm-2">{{item.brandName}}</td>
             <td class="col-sm-2">{{item.volume}}</td>
             <td class="col-sm-2">{{item.price}}</td>
             <td class="col-sm-1">
-                <input type="checkbox" class="checkbox" ng-checked="item.active == 'YES'"
-                       ng-model="item.active" ng-true-value="'YES'" ng-false-value="'NO'">
+                <input type="checkbox" class="checkbox" ng-checked="item.inShelf == 'YES'"
+                       ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
             </td>
             <td class="col-sm-1 text-right">
                 <button class="btn" type="button" ng-click="shelfCtrl.edit(item)">

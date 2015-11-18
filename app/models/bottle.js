@@ -3,24 +3,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
-var shelfSchema = new Schema({
+var bottleSchema = new Schema({
     id: Number,
-    name: String,
     ingredient: {
-        id: Number,
-        name: String,
-        beverageType: String,
-        kind: String
+        id: Number
     },
     brandName: String,
     volume: Number,
     price: Number,
-    active: String,
+    inShelf: String,
     imageUrl: String
 });
 
 // define our model
-var Shelf = mongoose.model('Shelf', shelfSchema);
+var Bottle = mongoose.model('Bottle', bottleSchema);
 
 // make this available in Node applications
-module.exports = Shelf;
+module.exports = Bottle;
