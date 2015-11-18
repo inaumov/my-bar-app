@@ -1,34 +1,24 @@
 angular.module('ShelfCtrl', []).controller('ShelfController', ShelfController);
 
-function ShelfController(MyBarService) {
+function ShelfController(ingredients, MyBarService) {
 
     var vm = this;
     vm.formPanel = false;
     vm.editMode = false;
     vm.itemsInShelf = [];
-    vm.ingredients = [];
+    vm.ingredients = ingredients;
 
     activate();
 
     function activate() {
-        loadItemsInShelf().then(function () {
-            loadIngredients().then(function () {
-                console.log('Activated Shelf List View');
-            });
-        });
+        loadItemsInShelf();
+        console.log('Activated Shelf List View');
     }
 
     function loadItemsInShelf() {
         return MyBarService.getItemsInShelf().then(function (data) {
             vm.itemsInShelf = data;
             return vm.itemsInShelf;
-        });
-    }
-
-    function loadIngredients() {
-        return MyBarService.getIngredients().then(function (data) {
-            vm.ingredients = data;
-            return vm.ingredients;
         });
     }
 

@@ -1,4 +1,4 @@
-<div id="cocktail" ng-controller="EditCocktailController as cocktailCtrl">
+<div id="cocktail">
     <h2>{{cocktailCtrl.cocktail.name}}</h2>
 
     <div class="col-lg-12 margin-top-30" ng-if="cocktailCtrl.isNew || !!cocktailCtrl.cocktail">
@@ -28,10 +28,9 @@
 
                     <div class="form-group">
                         <label for="type">Select drink type (select one): {{cocktailCtrl.cocktail.menuId}}</label>
-                        <select class="form-control" id="type" ng-model="cocktailCtrl.cocktail.menuId">
-                            <option ng-repeat="type in cocktailCtrl.drinkTypes" value="{{type.id}}">
-                                {{type.name}}
-                            </option>
+                        <select class="form-control" id="type"
+                                ng-options="type.id as type.name for type in cocktailCtrl.drinkTypes"
+                                ng-model="cocktailCtrl.cocktail.menuId">
                         </select>
                     </div>
 

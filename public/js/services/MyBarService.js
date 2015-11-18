@@ -31,7 +31,9 @@ function MyBarService($http) {
         },
 
         getIngredients: function () {
-            return $http.get('/api/ingredients')
+            return $http.get('/api/ingredients', {
+                cache: true
+            })
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },

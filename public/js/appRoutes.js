@@ -14,19 +14,37 @@ function Config($routeProvider) {
 
         .when('/menu/:id/cocktails', {
             templateUrl: 'views/cocktails.html',
-            controller: 'CocktailsController'
+            controller: 'CocktailsController',
+            controllerAs: 'cocktailsCtrl',
+            resolve: {
+                ingredients: function (MyBarService) {
+                    return MyBarService.getIngredients();
+                }
+            }
         })
 
         // route for the edit cocktail page
         .when('/cocktails/:id', {
             templateUrl: 'views/edit-cocktail.html',
-            controller: 'EditCocktailController'
+            controller: 'EditCocktailController',
+            controllerAs: 'cocktailCtrl',
+            resolve: {
+                ingredients: function (MyBarService) {
+                    return MyBarService.getIngredients();
+                }
+            }
         })
 
         // route for the shelf page
         .when('/shelf', {
             templateUrl: 'views/shelf.html',
-            controller: 'ShelfController'
+            controller: 'ShelfController',
+            controllerAs: 'shelfCtrl',
+            resolve: {
+                ingredients: function (MyBarService) {
+                    return MyBarService.getIngredients();
+                }
+            }
         })
 
         .otherwise({

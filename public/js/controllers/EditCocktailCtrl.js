@@ -1,17 +1,16 @@
 angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController', EditCocktailController);
 
-function EditCocktailController($routeParams, MyBarService, ngDialog) {
+function EditCocktailController($routeParams, ingredients, MyBarService, ngDialog) {
 
     var vm = this;
     vm.drinkTypes = [];
-    vm.ingredients = [];
+    vm.ingredients = ingredients;
     vm.isNew = $routeParams.id === 'new';
 
     activate();
 
     function activate() {
         loadDrinkTypes();
-        loadIngredients();
         loadCocktail();
         console.log('Activated Edit Cocktail View');
     }
@@ -20,13 +19,6 @@ function EditCocktailController($routeParams, MyBarService, ngDialog) {
         return MyBarService.getMenuItems().then(function (data) {
             vm.drinkTypes = data;
             return vm.drinkTypes;
-        });
-    }
-
-    function loadIngredients() {
-        return MyBarService.getIngredients().then(function (data) {
-            vm.ingredients = data;
-            return vm.ingredients;
         });
     }
 
