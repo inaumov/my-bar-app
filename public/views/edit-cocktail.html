@@ -38,10 +38,13 @@
                         <label for="ingredients">Selected Ingredients:</label>
                         <ul id="ingredients" class="list-group"
                             ng-repeat="ingredient in cocktailCtrl.cocktail.ingredients">
-                            <li class="list-group-item">
+                            <li class="list-group-item" ng-if="ingredient.units">
                                 <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
                                 {{ingredient.getKind()}}<span class="badge">{{ingredient.volume}} {{ingredient.units}}</span>
                                 </input>
+                            </li>
+                            <li class="list-group-item" ng-if="!ingredient.units">
+                                <span>{{ingredient.getKind()}}</span>
                             </li>
                         </ul>
                     </div>

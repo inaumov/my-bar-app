@@ -3,7 +3,7 @@
         <div class="action-checkbox">
             <input id="{{item.kind}}" type="checkbox" value="{{item.id}}"
                    ng-checked="ingredientsListCtrl.isChecked(item.id)"
-                   ng-click="ingredientsListCtrl.toggleSelection(item.id)"/>
+                   ng-click="ingredientsListCtrl.toggleSelection(item.id, item.type)"/>
             <label for="{{item.kind}}"></label>
             {{item.kind}}
         </div>

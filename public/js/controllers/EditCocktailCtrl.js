@@ -57,7 +57,7 @@ function EditCocktailController($routeParams, ingredients, MyBarService, ngDialo
             controller: function IngredientsListController(data) {
                 this.data = data;
                 // toggle selection for a given kind
-                this.toggleSelection = function toggleSelection(id) {
+                this.toggleSelection = function toggleSelection(id, type) {
                     var idx;
                     vm.cocktail.ingredients.some(function (entry, i) {
                         if (entry.id == id) {
@@ -71,7 +71,12 @@ function EditCocktailController($routeParams, ingredients, MyBarService, ngDialo
                     }
                     // is newly selected
                     else {
-                        var ingredient = {id: id, volume: 0, units: 'ML' };
+                        var ingredient = {
+                            id: id,
+                            volume: 0,
+                            // TODO check other types if needed
+                            units: type !== 'other' ? 'ML' : undefined
+                        };
                         wrapIngredient(ingredient);
                         vm.cocktail.ingredients.push(ingredient);
                     }
