@@ -7,7 +7,14 @@ var cocktailSchema = new Schema({
     id: Number,
     menuId: Number,
     name: String,
-    price: Number,
+    ingredients: [
+        {
+            id: Number,
+            volume: Number,
+            units: String,
+            missing: Boolean
+        }
+    ],
     state: String,
     imageUrl: String
 });
