@@ -40,19 +40,9 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/shelf', function (req, res) {
-        // use mongoose to get all bottles in the database
-        Bottle.find(function (err, bottles) {
-
-            // if there is an error retrieving, send the error.
-            // nothing after res.send(err) will execute
-            if (err) {
-                res.send(err);
-            }
-
-            res.json(bottles); // return all bottles in JSON format
-        });
-    });
+    app.route('/api/shelf/bottles').post(Bottle.create).get(Bottle.read);
+    app.route('/api/shelf/bottles/:bottleId').put(Bottle.update).delete(Bottle.delete);
+    app.param('bottleId', Bottle.bottleByID);
 
     app.get('/api/menu/:menuId/cocktails', function (req, res) {
 

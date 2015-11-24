@@ -16,7 +16,7 @@ function ShelfController(ingredients, MyBarService) {
     }
 
     function loadItemsInShelf() {
-        return MyBarService.getItemsInShelf().then(function (data) {
+        return MyBarService.getBottleList().then(function (data) {
             vm.itemsInShelf = data;
             return vm.itemsInShelf;
         });
@@ -49,7 +49,7 @@ function ShelfController(ingredients, MyBarService) {
             }
         }
         // TODO consider resolving promise and handle errors
-        MyBarService.addToShelf(vm.bottle);
+        MyBarService.saveBottle(vm.bottle);
         if (vm.editMode) {
             vm.editMode = false;
             var idx = vm.itemsInShelf.map(function (x) {
@@ -68,7 +68,7 @@ function ShelfController(ingredients, MyBarService) {
     };
 
     vm.delete = function (item) {
-        MyBarService.deleteFromShelf(item);
+        MyBarService.deleteBottle(item.id);
         var index = vm.itemsInShelf.indexOf(item);
         if (index > -1) {
             vm.itemsInShelf.splice(index, 1);

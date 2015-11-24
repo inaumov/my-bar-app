@@ -38,18 +38,21 @@ function MyBarService($http) {
                 .catch(getRequestCallFailed);
         },
 
-        getItemsInShelf: function () {
-            return $http.get('/api/shelf')
+        getBottleList: function () {
+            return $http.get('/api/shelf/bottles')
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },
 
-        addToShelf: function (data) {
-            return $http.post('/api/shelf', data);
+        saveBottle: function (data) {
+            if (!data.id) {
+                return $http.post('/api/shelf/bottles', data);
+            }
+            return $http.put('/api/shelf/bottles/' + data.id, data);
         },
 
-        deleteFromShelf: function (id) {
-            return $http.delete('/api/shelf/' + id);
+        deleteBottle: function (id) {
+            return $http.delete('/api/shelf/bottles/' + id);
         }
 
     };
