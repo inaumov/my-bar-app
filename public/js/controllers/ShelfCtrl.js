@@ -62,6 +62,11 @@ function ShelfController(ingredients, MyBarService) {
     };
 
     vm.edit = function (item) {
+        for (var i = 0; i < vm.ingredients.length; i++) {
+            if (item.ingredient.id === vm.ingredients[i].id) {
+                item.ingredient.kind = vm.ingredients[i].kind;
+            }
+        }
         vm.bottle = item;
         vm.editMode = true;
         vm.formPanel = true;
