@@ -53,7 +53,7 @@
                         <span ng-hide="cocktailCtrl.cocktail.ingredients.length == 0">Select ingredients</span>
                     </button>
                     <button class="btn" ng-click="cocktailCtrl.save()">Save</button>
-                    <button class="btn" ng-click="cocktailCtrl.delete(item)">Delete</button>
+                    <button class="btn" ng-if="!cocktailCtrl.isNew" ng-click="cocktailCtrl.delete(item)">Delete</button>
                 </div>
             </form>
         </div>
