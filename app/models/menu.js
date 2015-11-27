@@ -1,6 +1,7 @@
 // grab the mongoose module
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var modelExtend = require('./ext/crudExt');
 
 // create a schema
 var menuSchema = new Schema({
@@ -12,4 +13,4 @@ var menuSchema = new Schema({
 var Menu = mongoose.model('Menu', menuSchema);
 
 // make this available in Node applications
-module.exports = Menu;
+modelExtend(module.exports, Menu);
