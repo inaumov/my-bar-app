@@ -16,6 +16,7 @@ var cocktailSchema = new Schema({
             missing: Boolean
         }
     ],
+    description: String,
     state: String,
     imageUrl: String
 });

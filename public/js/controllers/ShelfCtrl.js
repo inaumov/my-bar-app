@@ -49,13 +49,15 @@ function ShelfController(ingredients, MyBarService) {
             }
         }
         // TODO consider resolving promise and handle errors
-        MyBarService.saveBottle(vm.bottle);
         if (vm.editMode) {
+            MyBarService.updateBottle(vm.bottle);
             vm.editMode = false;
             var idx = vm.itemsInShelf.map(function (x) {
                 return x.id;
             }).indexOf(vm.bottle.id);
             vm.itemsInShelf.splice(idx, 1);
+        } else {
+            MyBarService.createBottle(vm.bottle);
         }
         vm.itemsInShelf.push(vm.bottle);
         vm.formPanel = false;

@@ -26,6 +26,10 @@ function MyBarService($http) {
             return $http.post('/api/cocktails', data);
         },
 
+        updateCocktail: function (data) {
+            return $http.put('/api/cocktails/' + data.id, data);
+        },
+
         deleteCocktail: function (id) {
             return $http.delete('/api/cocktails/' + id);
         },
@@ -44,10 +48,11 @@ function MyBarService($http) {
                 .catch(getRequestCallFailed);
         },
 
-        saveBottle: function (data) {
-            if (!data.id) {
-                return $http.post('/api/shelf/bottles', data);
-            }
+        createBottle: function (data) {
+            return $http.post('/api/shelf/bottles', data);
+        },
+
+        updateBottle: function (data) {
             return $http.put('/api/shelf/bottles/' + data.id, data);
         },
 

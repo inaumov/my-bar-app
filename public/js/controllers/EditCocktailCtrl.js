@@ -99,11 +99,15 @@ function EditCocktailController($routeParams, ingredients, MyBarService, ngDialo
     };
 
     vm.save = function () {
-        MyBarService.createCocktail(vm.cocktail);
+        if (vm.isNew) {
+            MyBarService.createCocktail(vm.cocktail);
+        } else {
+            MyBarService.updateCocktail(vm.cocktail);
+        }
     };
 
-    vm.delete = function (item) {
-        MyBarService.deleteCocktail(item.id);
+    vm.delete = function () {
+        MyBarService.deleteCocktail(vm.cocktail.id);
     };
 
 }
