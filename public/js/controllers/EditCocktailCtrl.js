@@ -1,6 +1,6 @@
 angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController', EditCocktailController);
 
-function EditCocktailController($routeParams, ingredients, MyBarService, ngDialog) {
+function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog) {
 
     var vm = this;
     vm.drinkTypes = [];
@@ -100,9 +100,22 @@ function EditCocktailController($routeParams, ingredients, MyBarService, ngDialo
 
     vm.save = function () {
         if (vm.isNew) {
-            MyBarService.createCocktail(vm.cocktail);
+            MyBarService.createCocktail(vm.cocktail)
+                .success(onSuccess)
+                .error(onError);
         } else {
-            MyBarService.updateCocktail(vm.cocktail);
+            MyBarService.updateCocktail(vm.cocktail)
+                .success(onSuccess)
+                .error(onError);
+        }
+
+        function onSuccess() {
+            console.log('The item was saved!'); // TODO: use angular ui notification instead
+            $location.path('/menu/$menuId/cocktails/'.replace('$menuId', vm.cocktail.menuId));
+        }
+
+        function onError(error) {
+            console.log('Unable to save the employee data: ' + error); // TODO: use angular ui notification instead
         }
     };
 

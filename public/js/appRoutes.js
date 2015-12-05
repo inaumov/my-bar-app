@@ -1,6 +1,6 @@
-angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', Config]);
+angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', '$locationProvider', Config]);
 
-function Config($routeProvider) {
+function Config($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
@@ -50,4 +50,7 @@ function Config($routeProvider) {
         .otherwise({
             redirectTo: ''
         });
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(false); //TODO: to fix fully
 }
