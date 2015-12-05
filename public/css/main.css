@@ -13,11 +13,6 @@
     height: inherit;
 }
 
-.navbar .container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-}
-
 #system-menu .navbar-nav > li > a {
     padding: 42px 0;
     width: 105px;
