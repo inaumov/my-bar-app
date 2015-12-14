@@ -4,7 +4,8 @@ function Config($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            controllerAs: "mainCtrl"
         })
 
         // route for the menu list page

@@ -31,3 +31,9 @@ node_modules
 
 #bower
 public/bower_components
+
+#distribution build folder
+build
+
+#public images related to web static content, it's temp content for now
+public/img
