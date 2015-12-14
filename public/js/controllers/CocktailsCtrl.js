@@ -12,7 +12,7 @@ function CocktailsController($rootScope, $routeParams, ingredients, MyBarService
 
     function activate() {
         loadCocktails();
-        console.log('Activated Cocktails List View');
+        console.log('Activated CocktailsCtrl');
     }
 
     function loadCocktails() {

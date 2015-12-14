@@ -6,9 +6,9 @@
         <span>Learn Mixology – in your own home</span>
     </div>
 </div>
-<div class="margin-top-30">
+<div class="margin-top-30" ng-init="welcomePageStepThumbnails = ['Bring ingredients :)', 'Choose from menu', 'Wait your barman']">
 
-    <div class="col-md-4" ng-repeat="step in mainCtrl.welcomePageStepThumbnails">
+    <div class="col-md-4" ng-repeat="step in welcomePageStepThumbnails">
         <img ng-src="img/footer/step_{{$index + 1}}.jpg" alt="..." class="center-block thumbnail">
 
         <div class="text-center">

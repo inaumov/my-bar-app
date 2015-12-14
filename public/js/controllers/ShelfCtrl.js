@@ -12,7 +12,7 @@ function ShelfController(ingredients, MyBarService) {
 
     function activate() {
         loadItemsInShelf();
-        console.log('Activated Shelf List View');
+        console.log('Activated ShelfCtrl');
     }
 
     function loadItemsInShelf() {

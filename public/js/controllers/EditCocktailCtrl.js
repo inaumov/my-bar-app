@@ -12,7 +12,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     function activate() {
         loadDrinkTypes();
         loadCocktail();
-        console.log('Activated Edit Cocktail View');
+        console.log('Activated EditCocktailCtrl');
     }
 
     function loadDrinkTypes() {

@@ -5,7 +5,9 @@ function MyBarService($http) {
     var service = {
 
         getMenuItems: function () {
-            return $http.get('/api/menu')
+            return $http.get('/api/menu', {
+                cache: true
+            })
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },

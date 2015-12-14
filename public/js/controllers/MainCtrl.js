@@ -3,15 +3,13 @@ angular.module('MainCtrl', []).controller('MainController', MainController);
 function MainController($rootScope, MyBarService) {
 
     var vm = this;
-
-    vm.isMenu = false;
     vm.menuItems = [];
 
-    activate();
+    $rootScope.loadMenuItems = activate;
 
     function activate() {
         loadMenuItems().then(function () {
-            console.log('Activated Main View');
+            console.log('Activated MainCtrl');
         });
     }
 
@@ -22,7 +20,5 @@ function MainController($rootScope, MyBarService) {
             return vm.menuItems;
         });
     }
-
-    vm.welcomePageStepThumbnails = ['Bring ingredients :)', 'Choose from menu', 'Wait your barman'];
 
 }

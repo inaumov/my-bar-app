@@ -1,5 +1,5 @@
-<ul class="nav navbar-inverse nav-justified">
-    <li ng-repeat="menuItem in mainCtrl.menuItems">
+<ul class="nav navbar-inverse nav-justified" ng-init="loadMenuItems()">
+    <li ng-repeat="menuItem in menuItems">
         <a href="#menu/{{menuItem.id}}/cocktails">
             <span class="glyphicon glyphicon-glass"></span>
             {{menuItem.name}}

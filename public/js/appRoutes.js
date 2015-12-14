@@ -3,14 +3,14 @@ angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', '$locationPro
 function Config($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainController',
-            controllerAs: "mainCtrl"
+            templateUrl: 'views/main.html'
         })
 
         // route for the menu list page
         .when('/menu', {
-            templateUrl: 'views/menu.html'
+            templateUrl: 'views/menu.html',
+            controller: 'MainController',
+            controllerAs: "mainCtrl"
         })
 
         .when('/menu/:id/cocktails', {
