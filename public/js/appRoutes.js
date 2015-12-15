@@ -18,9 +18,9 @@ function Config($routeProvider, $locationProvider) {
             controller: 'CocktailsController',
             controllerAs: 'cocktailsCtrl',
             resolve: {
-                ingredients: function (MyBarService) {
+                ingredients: ['MyBarService', function (MyBarService) {
                     return MyBarService.getIngredients();
-                }
+                }]
             }
         })
 
@@ -30,9 +30,9 @@ function Config($routeProvider, $locationProvider) {
             controller: 'EditCocktailController',
             controllerAs: 'cocktailCtrl',
             resolve: {
-                ingredients: function (MyBarService) {
+                ingredients: ['MyBarService', function (MyBarService) {
                     return MyBarService.getIngredients();
-                }
+                }]
             }
         })
 
@@ -42,9 +42,9 @@ function Config($routeProvider, $locationProvider) {
             controller: 'ShelfController',
             controllerAs: 'shelfCtrl',
             resolve: {
-                ingredients: function (MyBarService) {
+                ingredients: ['MyBarService', function (MyBarService) {
                     return MyBarService.getIngredients();
-                }
+                }]
             }
         })
 

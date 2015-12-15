@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', MainController);
+angular.module('MainCtrl', []).controller('MainController', ['$rootScope', 'MyBarService', MainController]);
 
 function MainController($rootScope, MyBarService) {
 

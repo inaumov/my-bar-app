@@ -1,4 +1,4 @@
-angular.module('CocktailsCtrl', []).controller('CocktailsController', CocktailsController);
+angular.module('CocktailsCtrl', []).controller('CocktailsController', ['$rootScope', '$routeParams', 'ingredients', CocktailsController]);
 
 function CocktailsController($rootScope, $routeParams, ingredients, MyBarService) {
 

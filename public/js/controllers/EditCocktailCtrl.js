@@ -1,4 +1,5 @@
-angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController', EditCocktailController);
+angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController',
+    ['$routeParams', '$location', 'ingredients', 'MyBarService', 'ngDialog', EditCocktailController]);
 
 function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog) {
 

@@ -1,5 +1,4 @@
-angular.module('ShelfCtrl', []).controller('ShelfController', ShelfController);
-
+angular.module('ShelfCtrl', []).controller('ShelfController', ['ingredients', 'MyBarService', ShelfController]);
 function ShelfController(ingredients, MyBarService) {
 
     var vm = this;
