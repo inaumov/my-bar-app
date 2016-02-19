@@ -11,12 +11,12 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     activate();
 
     function activate() {
-        loadDrinkTypes();
+        loadMenuItems();
         loadCocktail();
         console.log('Activated EditCocktailCtrl');
     }
 
-    function loadDrinkTypes() {
+    function loadMenuItems() {
         return MyBarService.getMenuItems().then(function (data) {
             vm.drinkTypes = data;
             return vm.drinkTypes;

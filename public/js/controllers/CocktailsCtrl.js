@@ -1,16 +1,17 @@
-angular.module('CocktailsCtrl', []).controller('CocktailsController', ['$rootScope', '$routeParams', 'ingredients', CocktailsController]);
+angular.module('CocktailsCtrl', []).controller('CocktailsController', ['$routeParams', 'ingredients', 'MyBarService', CocktailsController]);
 
-function CocktailsController($rootScope, $routeParams, ingredients, MyBarService) {
-
-    $rootScope.currentMenuName = getCurrentMenuName();
+function CocktailsController($routeParams, ingredients, MyBarService) {
 
     var vm = this;
+    vm.menuItems = [];
+    vm.selectedMenuName = '';
     vm.cocktails = [];
     vm.ingredients = ingredients;
 
     activate();
 
     function activate() {
+        loadMenuItems();
         loadCocktails();
         console.log('Activated CocktailsCtrl');
     }
@@ -19,6 +20,14 @@ function CocktailsController($rootScope, $routeParams, ingredients, MyBarService
         return MyBarService.getCocktails($routeParams.id).then(function (data) {
             vm.cocktails = data;
             return vm.cocktails;
+        });
+    }
+
+    function loadMenuItems() {
+        return MyBarService.getMenuItems().then(function (data) {
+            vm.menuItems = data;
+            vm.selectedMenuName = findCurrentMenuName();
+            return vm.menuItems;
         });
     }
 
@@ -31,10 +40,9 @@ function CocktailsController($rootScope, $routeParams, ingredients, MyBarService
         }
     };
 
-    function getCurrentMenuName() {
-        var menuItems = $rootScope.menuItems;
-        for (var item in menuItems) {
-            var el = menuItems[item];
+    function findCurrentMenuName() {
+        for (var item in vm.menuItems) {
+            var el = vm.menuItems[item];
             if (el.id == $routeParams.id) {
                 return el.name;
             }
