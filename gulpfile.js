@@ -66,8 +66,13 @@ gulp.task('copy:assets', function () {
         .pipe(gulp.dest('./build/assets/vendor'));
 });
 
+gulp.task('copy:fonts', function () {
+    gulp.src('./public/bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg,woff2}')
+        .pipe(gulp.dest('./build/assets/fonts'));
+});
+
 // finalize index.html to include all modified dependencies
-gulp.task('index', ['copy:assets'], function () {
+gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
     // It's not necessary to read the files (will speed up things), we're only after their paths:
     return gulp.src('./public/index.html')
         .pipe(htmlreplace(
@@ -86,8 +91,7 @@ gulp.task('index', ['copy:assets'], function () {
             }
         ))
         .pipe(inject(
-            gulp.src(['./build/assets/**/*.css'], {read: false}
-            ),
+            gulp.src(['./build/assets/**/*.css'], {read: false}),
             // gulp-inject options
             {
                 relative: false,
