@@ -13,7 +13,7 @@ var gutil = require('gulp-util');
 var clean = require('gulp-clean');
 var htmlreplace = require('gulp-html-replace');
 var mainBowerFiles = require('main-bower-files');
-var angularFileSort = require('gulp-angular-filesort');
+var zip = require('gulp-zip');
 var inject = require('gulp-inject');
 var runSequence = require('run-sequence');
 
@@ -114,7 +114,13 @@ gulp.task('default', ['clean'], function () {
     //TODO add gulp-watch + jshint task
 });
 
+gulp.task('zip', function() {
+    return gulp.src('./build/**/*.*')
+        .pipe(zip('archive.zip'))
+        .pipe(gulp.dest('./dist'));
+});
+
 // release gulp task
 gulp.task('release', ['clean'], function () {
-    runSequence('copy:files', 'views', 'scripts', 'styles', 'index');
+    runSequence('copy:files', 'views', 'scripts', 'styles', 'index', 'zip');
 });

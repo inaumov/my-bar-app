@@ -27,7 +27,6 @@
   },
   "bundleDependencies": [
     "gulp",
-    "gulp-angular-filesort",
     "gulp-changed",
     "gulp-clean",
     "gulp-concat",
@@ -42,11 +41,11 @@
     "jshint",
     "jshint-stylish",
     "main-bower-files",
-    "run-sequence"
+    "run-sequence",
+    "gulp-zip"
   ],
   "optionalDependencies": {
     "gulp": "3.9.0",
-    "gulp-angular-filesort": "1.1.1",
     "gulp-changed": "1.3.0",
     "gulp-clean": "0.3.1",
     "gulp-concat": "2.6.0",
@@ -61,6 +60,7 @@
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
     "main-bower-files": "2.9.0",
-    "run-sequence": "1.1.5"
+    "run-sequence": "1.1.5",
+    "gulp-zip": "^3.2.0"
   }
 }

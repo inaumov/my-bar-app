@@ -34,6 +34,7 @@ public/bower_components
 
 #distribution build folder
 build
+dist
 
 #public images related to web static content, it's temp content for now
 public/img
