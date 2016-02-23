@@ -73,32 +73,38 @@ gulp.task('copy:fonts', function () {
 
 // finalize index.html to include all modified dependencies
 gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
+
+    var replaceOptions = {
+        'css': 'styles/main.min.css',
+        'js': 'scripts/script.min.js'
+    };
+
     // It's not necessary to read the files (will speed up things), we're only after their paths:
+    var readFiles = {
+        read: false
+    };
+
+    // gulp-inject options
+    var injectOptions = {
+        relative: false,
+        ignorePath: 'build',
+        addRootSlash: false
+    };
+
+    var injectStyles = ['./build/assets/**/*.css'];
+
+    var injectScripts = [
+        './build/assets/vendor/angular.min.js',
+        './build/assets/vendor/angular-route.min.js',
+        './build/assets/vendor/ngDialog.min.js',
+        '!./public/**/*.spec.js',
+        '!./public/**/*.mock.js'
+    ];
+
     return gulp.src('./public/index.html')
-        .pipe(htmlreplace(
-            {
-                'css': 'styles/main.min.css',
-                'js': 'scripts/script.min.js'
-            }
-        ))
-        .pipe(inject(
-            gulp.src(['./build/assets/**/*.js']).pipe(angularFileSort()),
-            // gulp-inject options
-            {
-                relative: false,
-                ignorePath: 'build',
-                addRootSlash: false
-            }
-        ))
-        .pipe(inject(
-            gulp.src(['./build/assets/**/*.css'], {read: false}),
-            // gulp-inject options
-            {
-                relative: false,
-                ignorePath: 'build',
-                addRootSlash: false
-            }
-        ))
+        .pipe(htmlreplace(replaceOptions))
+        .pipe(inject(gulp.src(injectScripts, readFiles), injectOptions))
+        .pipe(inject(gulp.src(injectStyles, readFiles), injectOptions))
         .pipe(minifyHTML())
         .pipe(gulp.dest('./build'));
 });
