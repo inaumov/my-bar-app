@@ -38,7 +38,7 @@
     "ng-dialog": {
       "main": [
         "css/ngDialog.min.css",
-        "css/ngDialog-theme-plain.min.css",
+        "css/ngDialog-theme-default.min.css",
         "js/ngDialog.min.js"
       ]
     },

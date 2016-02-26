@@ -54,9 +54,9 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
 
     vm.showIngredients = function () {
         ngDialog.open({
-            template: 'views/templates/select-ingredients.html',
-            controller: function IngredientsListController(data) {
-                this.data = data;
+            templateUrl: 'views/templates/select-ingredients.html',
+            controller: ['ingredients', function (ingredients) {
+                this.data = ingredients;
                 // toggle selection for a given kind
                 this.toggleSelection = function toggleSelection(id, type) {
                     var idx;
@@ -89,10 +89,10 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                         }
                     });
                 }
-            },
+            }],
             controllerAs: 'ingredientsListCtrl',
             resolve: {
-                data: function () {
+                ingredients: function () {
                     return vm.ingredients;
                 }
             }

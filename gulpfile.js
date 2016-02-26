@@ -16,6 +16,7 @@ var mainBowerFiles = require('main-bower-files');
 var zip = require('gulp-zip');
 var inject = require('gulp-inject');
 var runSequence = require('run-sequence');
+var gulpNgConfig = require('gulp-ng-config');
 
 // JS hint task
 gulp.task('jshint', function () {
@@ -71,6 +72,11 @@ gulp.task('copy:fonts', function () {
         .pipe(gulp.dest('./build/assets/fonts'));
 });
 
+gulp.task('copy:mocks', function () {
+    gulp.src('./mocks/**/*')
+        .pipe(gulp.dest('./build/mocks'));
+});
+
 // finalize index.html to include all modified dependencies
 gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
 
@@ -109,18 +115,39 @@ gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
         .pipe(gulp.dest('./build'));
 });
 
+gulp.task('config:demo', function () {
+    return gulp.src('./config.json')
+        .pipe(gulpNgConfig('myBar.config', {
+            environment: 'demo'
+        }))
+        .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('config:build', function () {
+    return gulp.src('./config.json')
+        .pipe(gulpNgConfig('myBar.config', {
+            environment: 'production'
+        }))
+        .pipe(gulp.dest('./public/js'));
+});
+
 // default gulp task
 gulp.task('default', ['clean'], function () {
     //TODO add gulp-watch + jshint task
 });
 
 gulp.task('zip', function() {
-    return gulp.src('./build/**/*.*')
+    return gulp.src('./build/**/*')
         .pipe(zip('archive.zip'))
         .pipe(gulp.dest('./dist'));
 });
 
+// demo gulp task
+gulp.task('dist:e2e', ['clean'], function () {
+    runSequence('config:build', 'copy:files', 'views', 'scripts', 'styles', 'index', 'zip');
+});
+
 // release gulp task
-gulp.task('release', ['clean'], function () {
-    runSequence('copy:files', 'views', 'scripts', 'styles', 'index', 'zip');
+gulp.task('dist:demo', ['clean'], function () {
+    runSequence('config:demo', 'copy:mocks', 'views', 'scripts', 'styles', 'index', 'copy:files', 'zip');
 });

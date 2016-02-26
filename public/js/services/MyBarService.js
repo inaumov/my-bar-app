@@ -1,11 +1,13 @@
-angular.module('MyBarService', []).factory('MyBarService', ['$http', MyBarService]);
+angular.module('MyBarService', ['myBar.config']).factory('MyBarService', ['$http', 'GENERAL_CONFIG', MyBarService]);
 
-function MyBarService($http) {
+function MyBarService($http, GENERAL_CONFIG) {
+
+    var BASE_URL = GENERAL_CONFIG.BASE_URL;
 
     var service = {
 
         getMenuItems: function () {
-            return $http.get('/api/menu', {
+            return $http.get(BASE_URL + '/menu', {
                 cache: true
             })
                 .then(getRequestCallComplete)
@@ -13,31 +15,31 @@ function MyBarService($http) {
         },
 
         getCocktails: function (menuId) {
-            return $http.get('/api/menu/' + menuId + '/cocktails')
+            return $http.get(BASE_URL + '/menu/' + menuId + '/cocktails')
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },
 
         getCocktailById: function (id) {
-            return $http.get('/api/cocktails/' + id)
+            return $http.get(BASE_URL + '/cocktails/' + id)
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },
 
         createCocktail: function (data) {
-            return $http.post('/api/cocktails', data);
+            return $http.post(BASE_URL + '/cocktails', data);
         },
 
         updateCocktail: function (data) {
-            return $http.put('/api/cocktails/' + data.id, data);
+            return $http.put(BASE_URL + '/cocktails/' + data.id, data);
         },
 
         deleteCocktail: function (id) {
-            return $http.delete('/api/cocktails/' + id);
+            return $http.delete(BASE_URL + '/cocktails/' + id);
         },
 
         getIngredients: function () {
-            return $http.get('/api/ingredients', {
+            return $http.get(BASE_URL + '/ingredients', {
                 cache: true
             })
                 .then(getRequestCallComplete)
@@ -45,21 +47,21 @@ function MyBarService($http) {
         },
 
         getBottleList: function () {
-            return $http.get('/api/shelf/bottles')
+            return $http.get(BASE_URL + '/shelf/bottles')
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },
 
         createBottle: function (data) {
-            return $http.post('/api/shelf/bottles', data);
+            return $http.post(BASE_URL + '/shelf/bottles', data);
         },
 
         updateBottle: function (data) {
-            return $http.put('/api/shelf/bottles/' + data.id, data);
+            return $http.put(BASE_URL + '/shelf/bottles/' + data.id, data);
         },
 
         deleteBottle: function (id) {
-            return $http.delete('/api/shelf/bottles/' + id);
+            return $http.delete(BASE_URL + '/shelf/bottles/' + id);
         }
 
     };
