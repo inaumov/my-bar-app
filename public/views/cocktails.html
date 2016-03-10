@@ -9,9 +9,12 @@
         </div>
 
         <div id="text" class="col-lg-7 col-lg-push-1">
-            <a href="#cocktails/{{item.id}}">
-                <h2>{{item.name}}</h2>
-            </a>
+            <div>
+                <span class="h2" style="color: #2b669a"><strong>{{item.name}}</strong></span>
+                <a href="#cocktails/{{item.id}}" class="pull-right" data-toggle="tooltip" title="Edit cocktail details">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </div>
             <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
             <ul ng-if="item.ingredients.length > 0">
                 <li ng-repeat="ingredient in item.ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">

@@ -1,14 +1,14 @@
 {
     "demo": {
         "GENERAL_CONFIG": {
-            "APP_NAME": "MyBar",
+            "APP_NAME": "My Bar",
             "APP_VERSION": "0.1.demo",
             "BASE_URL": "/mocks"
         }
     },
     "production": {
         "GENERAL_CONFIG": {
-            "APP_NAME": "MyBar",
+            "APP_NAME": "My Bar",
             "APP_VERSION": "0.1",
             "BASE_URL": "http://localhost:8089/mybar-web/api"
         }

@@ -1,0 +1,68 @@
+<form name="CocktailForm" role="form" novalidate>
+    <div>
+        <!--name-->
+        <div class="form-group" ng-class="{ 'has-error': CocktailForm.name.$touched && CocktailForm.name.$invalid }">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" ng-model="cocktailCtrl.cocktail.name" ng-required="true"/>
+            <div class="help-block" ng-messages="CocktailForm.name.$error" ng-if="CocktailForm.name.$touched">
+                <p ng-message="required">Cocktail name is required.</p>
+            </div>
+        </div>
+        <!--imageUrl-->
+        <div class="form-group"
+             ng-class="{ 'has-error': CocktailForm.imageUrl.$touched && CocktailForm.imageUrl.$invalid }">
+            <label for="img-path">Cocktail photo url:</label>
+            <input type="url" class="form-control" id="img-path" name="imageUrl" ng-model="cocktailCtrl.cocktail.imageUrl"/>
+            <div class="help-block" ng-messages="CocktailForm.imageUrl.$error" ng-if="CocktailForm.imageUrl.$touched">
+                <p ng-message="imageUrl">This needs to be a valid url</p>
+            </div>
+        </div>
+        <!--drinkType-->
+        <div class="form-group"
+             ng-class="{ 'has-error': CocktailForm.drinkType.$touched && CocktailForm.drinkType.$invalid }">
+            <label for="drinkType">Select drink type (select one):</label>
+            <select class="form-control" id="drinkType" name="drinkType"
+                    ng-options="type.id as type.name for type in cocktailCtrl.drinkTypes"
+                    ng-model="cocktailCtrl.cocktail.menuId" required>
+            </select>
+            <div class="help-block" ng-messages="CocktailForm.drinkType.$error" ng-if="CocktailForm.drinkType.$touched">
+                <p ng-message="required">Cocktail's type selection is required.</p>
+            </div>
+        </div>
+        <!--description-->
+        <div class="form-group">
+            <label for="cocktail-description">Description:</label>
+            <textarea class="form-control" rows="5" id="cocktail-description" ng-model="cocktailCtrl.cocktail.description"></textarea>
+        </div>
+        <!--ingredients selection-->
+        <div class="form-group">
+            <label for="ingredients">Selected Ingredients:</label>
+            <ul id="ingredients" class="list-group"
+                ng-repeat="ingredient in cocktailCtrl.cocktail.ingredients">
+                <li class="list-group-item" ng-if="ingredient.units">
+                    <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
+                    {{ingredient.getKind()}}<span class="badge">{{ingredient.volume}} {{ingredient.units}}</span>
+                    </input>
+                </li>
+                <li class="list-group-item" ng-if="!ingredient.units">
+                    <span>{{ingredient.getKind()}}</span>
+                </li>
+            </ul>
+        </div>
+        <!--action buttons-->
+        <button class="btn" ng-click="cocktailCtrl.showIngredients()">
+            <span ng-show="cocktailCtrl.cocktail.ingredients.length == 0">Add ingredients</span>
+            <span ng-hide="cocktailCtrl.cocktail.ingredients.length == 0">Select ingredients</span>
+        </button>
+        <button class="btn">
+            <span>Cancel</span>
+        </button>
+        <button class="btn" ng-click="cocktailCtrl.save()"
+                ng-disabled="CocktailForm.$invalid || CocktailForm.$pristine">
+            <span>Save</span>
+        </button>
+        <button class="btn" ng-if="!cocktailCtrl.isNew" ng-click="cocktailCtrl.delete()">
+            <span>Delete</span>
+        </button>
+    </div>
+</form>
