@@ -1,11 +1,10 @@
-angular.module('MainCtrl', []).controller('MainController', ['MyBarService', MainController]);
+angular.module('MainCtrl', []).controller('MainController', ['$rootScope', 'MyBarService', MainController]);
 
-function MainController(MyBarService) {
+function MainController($rootScope, MyBarService) {
 
-    var vm = this;
-    vm.menuItems = [];
+    $rootScope.menuItems = [];
 
-    vm.loadMenuItems = activate;
+    activate();
 
     function activate() {
         loadMenuItems().then(function () {
@@ -15,8 +14,8 @@ function MainController(MyBarService) {
 
     function loadMenuItems() {
         return MyBarService.getMenuItems().then(function (data) {
-            vm.menuItems = data;
-            return vm.menuItems;
+            $rootScope.menuItems = data;
+            return $rootScope.menuItems;
         });
     }
 

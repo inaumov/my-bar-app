@@ -1,0 +1,8 @@
+<ul class="nav navbar-inverse nav-justified" ng-init="myspaceItems = [ {id:'likes', name:'Likes', icon:'thumbs-up'},{id: 'cocktails', name:'My Cocktails', icon:'glass'},{id:'shelf', name: 'My Shelf', icon:'home'}]">
+    <li ng-repeat="myspaceItem in myspaceItems">
+        <a href="#my-space/{{myspaceItem.id}}">
+            <span class="glyphicon glyphicon-{{myspaceItem.icon}}"></span>
+            {{myspaceItem.name}}
+        </a>
+    </li>
+</ul>

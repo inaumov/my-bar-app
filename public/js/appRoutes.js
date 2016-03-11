@@ -7,10 +7,8 @@ function Config($routeProvider, $locationProvider) {
         })
 
         // route for the menu list page
-        .when('/menu', {
-            templateUrl: 'views/menu.html',
-            controller: 'MainController',
-            controllerAs: "mainCtrl"
+        .when('/cocktails', {
+            template: "<div ng-include=\"'views/templates/menu-bar.html'\"></div>"
         })
 
         .when('/menu/:id/cocktails', {
@@ -36,8 +34,21 @@ function Config($routeProvider, $locationProvider) {
             }
         })
 
+        // route for the my space page
+        .when('/my-space', {
+            template: "<div ng-include=\"'views/templates/myspace-bar.html'\"></div>"
+        })
+
+        .when('/my-space/cocktails', {
+            templateUrl: 'views/my-cocktails.html'
+        })
+
+        .when('/my-space/likes', {
+            templateUrl: 'views/likes.html'
+        })
+
         // route for the shelf page
-        .when('/shelf', {
+        .when('/my-space/shelf', {
             templateUrl: 'views/shelf.html',
             controller: 'ShelfController',
             controllerAs: 'shelfCtrl',
