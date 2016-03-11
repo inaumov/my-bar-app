@@ -50,18 +50,18 @@
             </ul>
         </div>
         <!--action buttons-->
-        <button class="btn" ng-click="cocktailCtrl.showIngredients()">
+        <button class="btn btn-default" ng-click="cocktailCtrl.showIngredients()">
             <span ng-show="cocktailCtrl.cocktail.ingredients.length == 0">Add ingredients</span>
             <span ng-hide="cocktailCtrl.cocktail.ingredients.length == 0">Select ingredients</span>
         </button>
-        <button class="btn">
+        <a href="#my-space/cocktails" class="btn btn-default">
             <span>Cancel</span>
-        </button>
-        <button class="btn" ng-click="cocktailCtrl.save()"
+        </a>
+        <button class="btn btn-success" ng-click="cocktailCtrl.save()"
                 ng-disabled="CocktailForm.$invalid || CocktailForm.$pristine">
             <span>Save</span>
         </button>
-        <button class="btn" ng-if="!cocktailCtrl.isNew" ng-click="cocktailCtrl.delete()">
+        <button class="btn btn-danger" ng-if="!cocktailCtrl.isNew" ng-click="cocktailCtrl.delete()">
             <span>Delete</span>
         </button>
     </div>
