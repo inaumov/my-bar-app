@@ -1,8 +1,9 @@
-angular.module('MainCtrl', []).controller('MainController', ['$rootScope', 'MyBarService', MainController]);
+angular.module('MainCtrl', []).controller('MainController', ['$rootScope', 'GENERAL_CONFIG', 'MyBarService', MainController]);
 
-function MainController($rootScope, MyBarService) {
+function MainController($rootScope, GENERAL_CONFIG, MyBarService) {
 
     $rootScope.menuItems = [];
+    $rootScope.appVersion = GENERAL_CONFIG.APP_VERSION;
 
     activate();
 
