@@ -7,7 +7,7 @@ function MyBarService($http, GENERAL_CONFIG) {
     var service = {
 
         getMenuItems: function () {
-            return $http.get(BASE_URL + '/menu', {
+            return $http.get(BASE_URL + '/cocktails/menu', {
                 cache: true
             })
                 .then(getRequestCallComplete)

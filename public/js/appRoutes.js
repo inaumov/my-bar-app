@@ -7,7 +7,7 @@ function Config($routeProvider, $locationProvider) {
         })
 
         // route for the menu list page
-        .when('/cocktails', {
+        .when('/menu', {
             template: "<div ng-include=\"'views/templates/menu-bar.html'\"></div>"
         })
 
@@ -22,8 +22,8 @@ function Config($routeProvider, $locationProvider) {
             }
         })
 
-        // route for the edit cocktail page
-        .when('/cocktails/:id', {
+        // route for the edit custom cocktail page
+        .when('/my/cocktails/:id/edit', {
             templateUrl: 'views/edit-cocktail.html',
             controller: 'EditCocktailController',
             controllerAs: 'cocktailCtrl',
@@ -35,20 +35,20 @@ function Config($routeProvider, $locationProvider) {
         })
 
         // route for the my space page
-        .when('/my-space', {
+        .when('/my', {
             template: "<div ng-include=\"'views/templates/myspace-bar.html'\"></div>"
         })
 
-        .when('/my-space/cocktails', {
+        .when('/my/cocktails', {
             templateUrl: 'views/my-cocktails.html'
         })
 
-        .when('/my-space/likes', {
+        .when('/my/likes', {
             templateUrl: 'views/likes.html'
         })
 
         // route for the shelf page
-        .when('/my-space/shelf', {
+        .when('/my/shelf/bottles', {
             templateUrl: 'views/shelf.html',
             controller: 'ShelfController',
             controllerAs: 'shelfCtrl',
@@ -64,5 +64,5 @@ function Config($routeProvider, $locationProvider) {
         });
 
     // use the HTML5 History API
-    $locationProvider.html5Mode(false); //TODO: to fix fully
+    $locationProvider.html5Mode(true);
 }

@@ -9,7 +9,7 @@ module.exports = function (app) {
     // handle things like api calls
     // authentication routes
 
-    app.route('/mocks/menu').get(Menu.read);
+    app.route('/mocks/cocktails/menu').get(Menu.read);
     app.route('/mocks/menu/:menuId/cocktails').get(Cocktail.readAllByMenuId);
 
     app.route('/mocks/cocktails').post(Cocktail.create).get(Cocktail.read);
