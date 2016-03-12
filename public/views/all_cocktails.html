@@ -1,42 +1,6 @@
 <div ng-include="'views/templates/nav/cocktails_menu.html'"></div>
 <h2>Classic: {{cocktailsCtrl.selectedMenuName | lowercase}}</h2>
 <div id="cocktails">
-    <div class="col-lg-12 margin-top-30" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
-
-        <div id="cover" class="col-lg-4" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
-            <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
-                 ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/>
-        </div>
-
-        <div id="text" class="col-lg-7 col-lg-push-1">
-            <div>
-                <span class="h2" style="color: #2b669a"><strong>{{item.name}}</strong></span>
-                <a ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" class="pull-right" data-toggle="tooltip" title="Edit cocktail details">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </div>
-            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
-            <ul ng-if="item.ingredients.length > 0">
-                <li ng-repeat="ingredient in item.ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-                        {{ingredient.volume}}
-                    </span>
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-                        {{ingredient.units}}
-                    </span>
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-                        <strong>{{cocktailsCtrl.getIngredientKind(ingredient.id)}}</strong>
-                    </span>
-                    <span class="text-warning pull-right" ng-if="ingredient.missing">
-                        <i>missing</i>
-                    </span>
-                </li>
-            </ul>
-            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Description:</h2>
-            <p class="text-justify" ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-                {{item.description}}
-            </p>
-        </div>
-    </div>
+    <div ng-include="'views/templates/cocktails_list.html'"></div>
     <div ng-hide="cocktailsCtrl.cocktails.length">No items in this list yet</div>
 </div>
