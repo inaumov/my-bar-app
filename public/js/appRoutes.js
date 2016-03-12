@@ -8,11 +8,11 @@ function Config($routeProvider, $locationProvider) {
 
         // route for the menu list page
         .when('/menu', {
-            template: "<div ng-include=\"'views/templates/menu-bar.html'\"></div>"
+            template: "<div ng-include=\"'views/templates/nav/cocktails_menu.html'\"></div>"
         })
 
         .when('/menu/:id/cocktails', {
-            templateUrl: 'views/cocktails.html',
+            templateUrl: 'views/all_cocktails.html',
             controller: 'CocktailsController',
             controllerAs: 'cocktailsCtrl',
             resolve: {
@@ -24,7 +24,7 @@ function Config($routeProvider, $locationProvider) {
 
         // route for the edit custom cocktail page
         .when('/my/cocktails/:id/edit', {
-            templateUrl: 'views/edit-cocktail.html',
+            templateUrl: 'views/edit_cocktail.html',
             controller: 'EditCocktailController',
             controllerAs: 'cocktailCtrl',
             resolve: {
@@ -36,11 +36,11 @@ function Config($routeProvider, $locationProvider) {
 
         // route for the my space page
         .when('/my', {
-            template: "<div ng-include=\"'views/templates/myspace-bar.html'\"></div>"
+            template: "<div ng-include=\"'views/templates/nav/my_space.html'\"></div>"
         })
 
         .when('/my/cocktails', {
-            templateUrl: 'views/my-cocktails.html'
+            templateUrl: 'views/my_cocktails.html'
         })
 
         .when('/my/likes', {

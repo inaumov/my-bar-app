@@ -1,4 +1,4 @@
-<div ng-include="'views/templates/menu-bar.html'"></div>
+<div ng-include="'views/templates/nav/cocktails_menu.html'"></div>
 <h2>Classic: {{cocktailsCtrl.selectedMenuName | lowercase}}</h2>
 <div id="cocktails">
     <div class="col-lg-12 margin-top-30" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
