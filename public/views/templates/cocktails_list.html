@@ -1,4 +1,4 @@
-<div class="col-lg-12" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
+<div class="col-lg-12 margin-bottom-30" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
 
     <div id="cover" class="col-lg-4" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
         <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
@@ -7,7 +7,11 @@
 
     <div id="text" class="col-lg-7 col-lg-push-1">
         <div>
-            <span class="h2" style="color: #2b669a"><strong>{{item.name}}</strong></span>
+            <span class="h2" style="color: #2b669a"
+                  ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']"><strong>{{item.name}}</strong></span>
+            <span ng-if="item.state == 'NOT_AVAILABLE'" class="text-warning text-muted">
+                <i> ..not available since not all ingredients are present</i>
+            </span>
             <a ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" class="pull-right" title="Edit cocktail details">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
