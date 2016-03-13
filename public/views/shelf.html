@@ -1,67 +1,18 @@
 <div ng-include="'views/templates/nav/my_space.html'"></div>
 <h2>My Shelf</h2>
-<div id="shelf" class="margin-top-30">
-
-    <div ng-switch on="shelfCtrl.formPanel">
-        <!--plus button panel-->
-        <div class="col-sm-2 col-sm-push-10 text-right" ng-switch-when='false'>
-            <button class="btn btn-link" ng-click="shelfCtrl.formPanel = true; shelfCtrl.newBottle()">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-        </div>
-        <!--new bottle form-->
-        <form name="AddBeverageForm" id="ingredientForm" class="form-inline" role="form" ng-switch-when='true'>
-            <div class="form-group col-sm-2 text-left">
-                <input type="text" class="form-control" id="img-path"
-                       ng-model="shelfCtrl.bottle.imageUrl"
-                       placeholder="Photo url" size="10"/>
-            </div>
-
-            <div class="form-group col-sm-2 text-left">
-                <datalist id="ingredients" name="ingredientSelect">
-                    <option value="{{ingredient.kind}}" ng-repeat="ingredient in shelfCtrl.ingredients"/>
-                </datalist>
-                <input type="text" class="form-control" list="ingredients"
-                       data-ng-model="shelfCtrl.bottle.ingredient.kind"
-                       placeholder="Beverage" size="10">
-            </div>
-            <div class="form-group col-sm-2 text-left">
-                <input type="text" id="brand" class="form-control"
-                       ng-model="shelfCtrl.bottle.brandName"
-                       required ng-trim="true"
-                       placeholder="Brand name" size="10">
-            </div>
-            <div class="form-group col-sm-2 text-left">
-                <datalist id="volumes" name="volumeSelect">
-                    <option value="0.5"/>
-                    <option value="0.7"/>
-                    <option value="1.0"/>
-                </datalist>
-                <input type="text" list="volumes" class="form-control"
-                       ng-model="shelfCtrl.bottle.volume" required ng-trim="false"
-                       placeholder="Volume" size="7">
-            </div>
-            <div class="form-group col-sm-2 text-left">
-                <input type="text" class="form-control" id="price"
-                       ng-model="shelfCtrl.bottle.price" required ng-trim="false"
-                       placeholder="Price (UAH)" size="7">
-            </div>
-            <div class="form-group col-sm-1">
-                <input type="checkbox" class="checkbox"
-                       ng-model="shelfCtrl.bottle.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
-            </div>
-            <div class="form-group col-sm-1 text-right">
-                <button class="btn btn-link" ng-click="shelfCtrl.save()">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </button>
-                <button class="btn btn-link" ng-click="shelfCtrl.formPanel = false">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
-            </div>
-        </form>
+<div id="new_bottle" ng-switch on="shelfCtrl.formPanel">
+    <!--plus button panel-->
+    <div ng-switch-when='false' class="text-right margin-top-30">
+        <button class="btn btn-link" ng-click="shelfCtrl.formPanel = true; shelfCtrl.newBottle()">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
     </div>
-
-    <table class="table table-condensed margin-top-30" ng-if="shelfCtrl.itemsInShelf.length">
+    <div ng-switch-when='true' class="margin-top-30">
+        <div ng-include="'views/templates/forms/bottle.html'"></div>
+    </div>
+</div>
+<div id="shelf" class="margin-top-30">
+    <table class="table table-condensed" ng-if="shelfCtrl.itemsInShelf.length">
         <thead>
         <tr>
             <th class="col-sm-2"><span class="glyphicon glyphicon-picture"></span></th>
@@ -96,4 +47,8 @@
         </tr>
         </tbody>
     </table>
+    <div ng-hide="shelfCtrl.itemsInShelf.length" class="text-center">
+        <span class="h3">You don't have any alcoholic beverages on your shelf yet.</span><br>
+        <span class="h4">Tap <span class="glyphicon glyphicon-plus"></span> to add a bottle, and it will show up here.</span>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="col-lg-12 margin-top-30" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
+<div class="col-lg-12" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
 
     <div id="cover" class="col-lg-4" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
         <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"

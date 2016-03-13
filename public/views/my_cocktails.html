@@ -1,14 +1,14 @@
 <div ng-include="'views/templates/nav/my_space.html'"></div>
 <h2>My Cocktails</h2>
 <!--plus button panel-->
-<div class="col-sm-2 col-sm-push-10 text-right">
-    <a href="my/cocktails/new/edit">
+<div class="text-right margin-top-30">
+    <a class="btn btn-link" href="my/cocktails/new/edit">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>
-<div id="my-cocktails">
+<div id="my-cocktails" class="margin-top-30">
     <div ng-include="'views/templates/cocktails_list.html'"></div>
-    <div class="text-center margin-top-30">
+    <div ng-hide="cocktailsCtrl.cocktails.length" class="text-center">
         <span class="h3">You don't have any personal cocktails yet.</span><br>
         <span class="h4">Tap <span class="glyphicon glyphicon-plus"></span> to create your personal cocktail,<br> and it will show up here.</span>
     </div>

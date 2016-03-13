@@ -40,7 +40,14 @@ function Config($routeProvider, $locationProvider) {
         })
 
         .when('/my/cocktails', {
-            templateUrl: 'views/my_cocktails.html'
+            templateUrl: 'views/my_cocktails.html',
+            controller: 'CocktailsController',
+            controllerAs: 'cocktailsCtrl',
+            resolve: {
+                ingredients: ['MyBarService', function (MyBarService) {
+                    return MyBarService.getIngredients();
+                }]
+            }
         })
 
         .when('/my/likes', {

@@ -1,6 +1,8 @@
 <div ng-include="'views/templates/nav/cocktails_menu.html'"></div>
 <h2>Classic: {{cocktailsCtrl.selectedMenuName | lowercase}}</h2>
-<div id="cocktails">
+<div id="cocktails" class="margin-top-30">
     <div ng-include="'views/templates/cocktails_list.html'"></div>
-    <div ng-hide="cocktailsCtrl.cocktails.length">No items in this list yet</div>
+    <div ng-hide="cocktailsCtrl.cocktails.length" class="text-center">
+        <span class="h3">No items in this list yet.</span>
+    </div>
 </div>

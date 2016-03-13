@@ -11,16 +11,20 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
     activate();
 
     function activate() {
-        loadMenuItems();
+        if ($routeParams.id) {
+            loadMenuItems();
+        }
         loadCocktails();
         console.log('Activated CocktailsCtrl');
     }
 
     function loadCocktails() {
-        return MyBarService.getCocktails($routeParams.id).then(function (data) {
+        var menuId = $routeParams.id;
+
+        return menuId != null ? MyBarService.getCocktails(menuId).then(function (data) {
             vm.cocktails = data;
             return vm.cocktails;
-        });
+        }) : [];
     }
 
     function loadMenuItems() {
