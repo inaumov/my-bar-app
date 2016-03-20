@@ -32,11 +32,12 @@ function ShelfController(ingredients, MyBarService) {
 
     vm.newBottle = function () {
         vm.bottle = {
+            id: null,
             ingredient: {},
             brandName: '',
             volume: '',
             price: '',
-            inShelf: 'YES',
+            inShelf: 'NO',
             imageUrl: ''
         }
     };
@@ -68,7 +69,7 @@ function ShelfController(ingredients, MyBarService) {
                 item.ingredient.kind = vm.ingredients[i].kind;
             }
         }
-        vm.bottle = item;
+        vm.bottle = angular.copy(item);
         vm.editMode = true;
         vm.formPanel = true;
     };

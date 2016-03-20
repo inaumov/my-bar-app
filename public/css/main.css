@@ -1,6 +1,6 @@
-/* main navigation menu */
+/* main navigation */
 
-.navbar {
+header .navbar {
     margin-bottom: 0;
 }
 
@@ -9,11 +9,7 @@
     padding-top: 42px;
 }
 
-.navbar-brand {
-    height: inherit;
-}
-
-#system-menu .navbar-nav > li > a {
+.navbar-nav > li > a {
     padding: 42px 0;
     width: 105px;
     text-align: center;
@@ -21,24 +17,7 @@
     border: 1px solid #F4F4F4;
 }
 
-#system-menu .navbar-nav.navbar-right:last-child {
-    margin-right: 0px;
-}
-
 /* home page content */
-
-.crop {
-    width: 1140px;
-    height: 540px;
-    overflow: hidden;
-}
-
-.crop img {
-    width: 1140px;
-    height: auto;
-    margin-top: -40px;
-    margin-bottom: -260px;
-}
 
 .carousel .banner-text {
     position: absolute;
@@ -68,7 +47,7 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 140px;
+    margin-bottom: 170px;
 }
 
 footer {
@@ -77,31 +56,21 @@ footer {
     right: 0;
     left: 0;
     width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 120px;
+    /* Set the height of the footer here */
+    height: auto;
     color: #EEEEEE;
     background-color: #000000;
 }
 
 /* pages */
 
-#cocktails > div,
-#cocktails > div > div,
-#cocktail > div,
-#cocktail > div > div,
-#new_bottle > div > div,
-#new_bottle #beverage-form .form-group {
-    padding-left: 0;
-    padding-right: 0;
+.cocktails-divider {
+    margin: 80px 0;
 }
 
-#new_bottle {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#cocktails img.no-available,
-#cocktail img.no-available {
+#all_cocktails img.no-available,
+#my_cocktails img.no-available,
+#new_cocktail img.no-available {
     border: 5px solid dimgrey;
 }
 

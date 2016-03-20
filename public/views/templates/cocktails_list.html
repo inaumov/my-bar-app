@@ -1,11 +1,11 @@
-<div class="col-lg-12 margin-bottom-30" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
-
+<div ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
+<div class="row">
     <div id="cover" class="col-lg-4" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
         <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
              ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/>
     </div>
 
-    <div id="text" class="col-lg-7 col-lg-push-1">
+    <div id="text" class="col-lg-7 col-lg-offset-1">
         <div>
             <span class="h2" style="color: #2b669a"
                   ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']"><strong>{{item.name}}</strong></span>
@@ -38,4 +38,6 @@
             {{item.description}}
         </p>
     </div>
+</div>
+<hr class="cocktails-divider">
 </div>

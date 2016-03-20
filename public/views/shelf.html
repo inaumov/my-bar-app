@@ -1,42 +1,48 @@
-<div ng-include="'views/templates/nav/my_space.html'"></div>
-<h2>My Shelf</h2>
-<div id="new_bottle" ng-switch on="shelfCtrl.formPanel">
+<div class="row" ng-include="'views/templates/nav/my_space.html'"></div>
+<h2 class="row">My Shelf</h2>
+<div class="row" id="new_bottle" ng-switch on="shelfCtrl.formPanel">
     <!--plus button panel-->
     <div ng-switch-when='false' class="text-right margin-top-30">
         <button class="btn btn-link" ng-click="shelfCtrl.formPanel = true; shelfCtrl.newBottle()">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>
-    <div ng-switch-when='true' class="margin-top-30">
-        <div ng-include="'views/templates/forms/bottle.html'"></div>
+    <div ng-switch-when='true' class="panel panel-default margin-top-30">
+        <div class="text-right">
+            <button class="btn btn-link" ng-click="shelfCtrl.formPanel = false">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+        <div class="panel-body" ng-include="'views/templates/forms/bottle.html'"></div>
     </div>
 </div>
-<div id="shelf" class="margin-top-30">
+<div class="row margin-top-30 table-responsive" id="shelf">
     <table class="table table-condensed" ng-if="shelfCtrl.itemsInShelf.length">
         <thead>
         <tr>
-            <th class="col-sm-2"><span class="glyphicon glyphicon-picture"></span></th>
-            <th class="col-sm-2">Beverage Kind</th>
-            <th class="col-sm-2">Brand name</th>
-            <th class="col-sm-2">Volume</th>
-            <th class="col-sm-2">Price</th>
-            <th class="col-sm-1">In Shelf</th>
-            <th class="col-sm-1"></th>
+            <th class="col-lg-2"><span class="glyphicon glyphicon-picture"></span></th>
+            <th class="col-lg-2 text-right">Beverage Kind</th>
+            <th class="col-lg-3 text-right">Brand name</th>
+            <th class="col-lg-1 text-right">Price</th>
+            <th class="col-lg-1 text-right">Volume</th>
+            <th class="col-lg-1 text-right">In Shelf</th>
+            <th class="col-lg-2"></th>
         </tr>
         </thead>
         <tbody>
         <tr ng-class="item.inShelf == 'YES' ? 'active' : ''"
             ng-repeat="item in shelfCtrl.itemsInShelf | orderBy:['inShelf']">
-            <td class="col-sm-2"><img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}" ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/></td>
-            <td class="col-sm-2">{{shelfCtrl.getIngredientKind(item.ingredient.id)}}</td>
-            <td class="col-sm-2">{{item.brandName}}</td>
-            <td class="col-sm-2">{{item.volume}}</td>
-            <td class="col-sm-2">{{item.price}}</td>
-            <td class="col-sm-1">
+            <td class="col-lg-2"><img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
+                                      ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/></td>
+            <td class="col-lg-2 text-right">{{shelfCtrl.getIngredientKind(item.ingredient.id)}}</td>
+            <td class="col-lg-3 text-right">{{item.brandName}}</td>
+            <td class="col-lg-1 text-right">{{item.price}}</td>
+            <td class="col-lg-1 text-right">{{item.volume}}</td>
+            <td align="right" class="col-lg-1">
                 <input type="checkbox" class="checkbox" ng-checked="item.inShelf == 'YES'"
                        ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
             </td>
-            <td class="col-sm-1 text-right">
+            <td class="col-lg-2 text-right">
                 <button class="btn btn-link" type="button" ng-click="shelfCtrl.edit(item)">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
@@ -49,6 +55,7 @@
     </table>
     <div ng-hide="shelfCtrl.itemsInShelf.length" class="text-center">
         <span class="h3">You don't have any alcoholic beverages on your shelf yet.</span><br>
-        <span class="h4">Tap <span class="glyphicon glyphicon-plus"></span> to add a bottle, and it will show up here.</span>
+        <span class="h4">Tap <span
+                class="glyphicon glyphicon-plus"></span> to add a bottle, and it will show up here.</span>
     </div>
 </div>

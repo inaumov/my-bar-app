@@ -8,7 +8,7 @@ function Config($routeProvider, $locationProvider) {
 
         // route for the menu list page
         .when('/menu', {
-            template: "<div ng-include=\"'views/templates/nav/cocktails_menu.html'\"></div>"
+            template: "<div class='row' ng-include=\"'views/templates/nav/cocktails_menu.html'\"></div>"
         })
 
         .when('/menu/:id/cocktails', {
@@ -36,7 +36,7 @@ function Config($routeProvider, $locationProvider) {
 
         // route for the my space page
         .when('/my', {
-            template: "<div ng-include=\"'views/templates/nav/my_space.html'\"></div>"
+            template: "<div class='row' ng-include=\"'views/templates/nav/my_space.html'\"></div>"
         })
 
         .when('/my/cocktails', {

@@ -1,20 +1,24 @@
-<div class="carousel">
-    <div class="center-block crop">
-        <img src="img/15248-multicolored-summer-cocktails-1920x1200-photography-wallpaper.jpg" class="center-block">
-    </div>
-    <div class="banner-text">
-        <span>Learn Mixology – in your own home</span>
+<div class="row">
+    <div class="carousel">
+        <img src="img/savoury_cocktail_london_barbican_neo_bar_1.jpg" class="img-responsive">
+
+        <div class="banner-text">
+            <span>Learn Mixology – in your own home</span>
+        </div>
     </div>
 </div>
-<div class="margin-top-30" ng-init="welcomePageStepThumbnails = ['Bring ingredients :)', 'Choose from menu', 'Wait your barman']">
+<div class="row margin-top-30">
+    <div class="col-lg-12"
+         ng-init="welcomePageStepThumbnails = ['Add ingredients', 'Check what you can', 'Make it :)']">
 
-    <div class="col-md-4" ng-repeat="step in welcomePageStepThumbnails">
-        <img ng-src="img/footer/step_{{$index + 1}}.jpg" alt="..." class="center-block thumbnail">
+        <div class="col-lg-4" ng-repeat="step in welcomePageStepThumbnails">
+            <img ng-src="img/footer/step_{{$index + 1}}.jpg" alt="..." class="center-block thumbnail">
 
-        <div class="text-center">
-            <h1>Step {{$index + 1}}</h1>
+            <div class="text-center">
+                <h1>Step {{$index + 1}}</h1>
 
-            <h2 class="lead">{{step}}</h2>
+                <h2 class="lead">{{step}}</h2>
+            </div>
         </div>
     </div>
 </div>

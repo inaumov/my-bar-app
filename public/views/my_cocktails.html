@@ -1,12 +1,12 @@
-<div ng-include="'views/templates/nav/my_space.html'"></div>
-<h2>My Cocktails</h2>
+<div class="row" ng-include="'views/templates/nav/my_space.html'"></div>
+<h2 class="row">My Cocktails</h2>
 <!--plus button panel-->
-<div class="text-right margin-top-30">
+<div class="row text-right margin-top-30">
     <a class="btn btn-link" href="my/cocktails/new/edit">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
 </div>
-<div id="my-cocktails" class="margin-top-30">
+<div class="row margin-top-30" id="my_cocktails">
     <div ng-include="'views/templates/cocktails_list.html'"></div>
     <div ng-hide="cocktailsCtrl.cocktails.length" class="text-center">
         <span class="h3">You don't have any personal cocktails yet.</span><br>

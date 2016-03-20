@@ -1,12 +1,12 @@
-<div ng-include="'views/templates/nav/my_space.html'"></div>
-<h2>{{cocktailCtrl.cocktail.name}}</h2>
-<div id="cocktail" class="margin-top-30">
-    <div class="col-lg-12" ng-if="cocktailCtrl.isNew || !!cocktailCtrl.cocktail">
-        <div id="cover" class="col-lg-4">
+<div class="row" ng-include="'views/templates/nav/my_space.html'"></div>
+<h2 class="row">{{cocktailCtrl.cocktail.name}}</h2>
+<div class="row margin-top-30" id="new_cocktail">
+    <div class="row" ng-if="cocktailCtrl.isNew || !!cocktailCtrl.cocktail">
+        <div class="col-lg-4" id="cover">
             <img class="img-responsive" ng-src="{{cocktailCtrl.cocktail.imageUrl || 'img/blank.gif'}}"
                  ng-class="{true: '', false: 'no-available'}[!!cocktailCtrl.cocktail.imageUrl]"/>
         </div>
-        <div class="col-lg-7 col-lg-push-1" ng-include="'views/templates/forms/cocktail.html'"></div>
+        <div class="col-lg-7 col-lg-offset-1" ng-include="'views/templates/forms/cocktail.html'"></div>
     </div>
     <div ng-hide="cocktailCtrl.cocktail" class="text-center">
         <span class="h3">No item found.</span></span><br>
