@@ -23,7 +23,8 @@ module.exports = function (app) {
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function (req, res) {
-        res.sendFile('index.html', { root: '../public' }); // load our public/index.html file
+        var path = require('path');
+        res.sendFile(path.join(__dirname, '../public', 'index.html')); // load our public/index.html file
     });
 
 };
