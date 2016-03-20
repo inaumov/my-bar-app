@@ -1,24 +1,28 @@
-<div ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
-<div class="row">
-    <div id="cover" class="col-lg-4" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
-        <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
-             ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/>
-    </div>
-
-    <div id="text" class="col-lg-7 col-lg-offset-1">
-        <div>
-            <span class="h2" style="color: #2b669a"
-                  ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']"><strong>{{item.name}}</strong></span>
-            <span ng-if="item.state == 'NOT_AVAILABLE'" class="text-warning text-muted">
+<div id="cocktails" ng-repeat="item in cocktailsCtrl.cocktails | orderBy: 'name'">
+    <div class="row margin-bottom-30">
+        <div class="col-lg-12" id="title">
+            <span class="h2"
+                  ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']"><strong>{{item.name}}</strong>
+            </span>
+            <span class="text-warning text-muted" ng-if="item.state == 'NOT_AVAILABLE'">
                 <i> ..not available since not all ingredients are present</i>
             </span>
-            <a ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" class="pull-right" title="Edit cocktail details">
+            <a class="pull-right" ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit"
+               title="Edit cocktail details">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
         </div>
-        <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
-        <ul ng-if="item.ingredients.length > 0">
-            <li ng-repeat="ingredient in item.ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
+    </div>
+    <div class="row">
+        <div class="col-lg-4 margin-bottom-30" id="cover" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
+            <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
+                 ng-class="{true: '', false: 'not-available'}[!!item.imageUrl]"/>
+        </div>
+
+        <div class="col-lg-7 col-lg-offset-1" id="details">
+            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
+            <ul ng-if="item.ingredients.length > 0">
+                <li ng-repeat="ingredient in item.ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
                     <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
                         {{ingredient.volume}}
                     </span>
@@ -31,13 +35,14 @@
                     <span class="text-warning pull-right" ng-if="ingredient.missing">
                         <i>missing</i>
                     </span>
-            </li>
-        </ul>
-        <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Description:</h2>
-        <p class="text-justify" ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-            {{item.description}}
-        </p>
+                </li>
+            </ul>
+            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Description:</h2>
+
+            <p class="text-justify" ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
+                {{item.description}}
+            </p>
+        </div>
     </div>
-</div>
-<hr class="cocktails-divider">
+    <hr class="cocktails-divider">
 </div>

@@ -68,9 +68,9 @@ footer {
     margin: 80px 0;
 }
 
-#all_cocktails img.no-available,
-#my_cocktails img.no-available,
-#new_cocktail img.no-available {
+#cocktails img.not-available,
+#cocktails img.not-available,
+#new_cocktail img.not-available {
     border: 5px solid dimgrey;
 }
 
@@ -78,21 +78,26 @@ footer {
     vertical-align: middle;
 }
 
-#cocktails #text > h2 {
+#cocktails #title > .h2 {
+    color: #2b669a
+}
+
+#cocktails #details > h2 {
+    margin-top: 0;
     padding-bottom: 8px;
     border-bottom: 1px solid #e6e6e6;
 }
 
-#cocktails #text ul {
+#cocktails #details ul {
     list-style-type: disc;
 }
 
-#cocktails #text ul li {
+#cocktails #details ul li {
     margin: 10px 0;
 }
 
-#cocktails #text ul li,
-#cocktails #text:last-child {
+#cocktails #details ul li,
+#cocktails #details:last-child {
     font-size: larger;
 }
 
