@@ -60,7 +60,7 @@
 
             <div class="col-lg-7">
                 <input type="number" class="form-control" id="bottle-volume" name="volume" list="volumes"
-                       ng-model="shelfCtrl.bottle.volume" step="0.05"/>
+                       ng-model="shelfCtrl.bottle.volume" min="0" step="0.05"/>
 
                 <div class="has-error" ng-show="AddBeverageForm.$dirty">
                     <span ng-show="AddBeverageForm.volume.$invalid">This field is invalid</span>
@@ -75,7 +75,7 @@
 
             <div class="col-lg-7">
                 <input type="number" class="form-control" id="bottle-price" name="price"
-                       ng-model="shelfCtrl.bottle.price" step="0.01"/>
+                       ng-model="shelfCtrl.bottle.price" min="0" step="0.01"/>
 
                 <div class="has-error" ng-show="AddBeverageForm.$dirty">
                     <span ng-show="AddBeverageForm.price.$invalid">This field is invalid</span>

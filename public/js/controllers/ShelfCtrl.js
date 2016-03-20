@@ -1,5 +1,5 @@
-angular.module('ShelfCtrl', []).controller('ShelfController', ['ingredients', 'MyBarService', ShelfController]);
-function ShelfController(ingredients, MyBarService) {
+angular.module('ShelfCtrl', []).controller('ShelfController', ['ingredients', 'MyBarService', '$timeout', '$location', '$anchorScroll', ShelfController]);
+function ShelfController(ingredients, MyBarService, $timeout, $location, $anchorScroll) {
 
     var vm = this;
     vm.formPanel = false;
@@ -80,6 +80,15 @@ function ShelfController(ingredients, MyBarService) {
         if (index > -1) {
             vm.itemsInShelf.splice(index, 1);
         }
+    };
+
+    vm.scrollTo = function (elementId) {
+        $timeout(function () {
+            $location.hash(elementId);
+            $anchorScroll();
+            // clear anchor
+            $location.hash(null);
+        }, 100);
     }
 
 }

@@ -1,6 +1,6 @@
 <div class="row" ng-include="'views/templates/nav/my_space.html'"></div>
 <h2 class="row">My Shelf</h2>
-<div class="row" id="new_bottle" ng-switch on="shelfCtrl.formPanel">
+<div class="row" id="new-bottle" ng-switch on="shelfCtrl.formPanel">
     <!--plus button panel-->
     <div ng-switch-when='false' class="text-right margin-top-30">
         <button class="btn btn-link" ng-click="shelfCtrl.formPanel = true; shelfCtrl.newBottle()">
@@ -43,7 +43,7 @@
                        ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
             </td>
             <td class="col-lg-2 text-right">
-                <button class="btn btn-link" type="button" ng-click="shelfCtrl.edit(item)">
+                <button class="btn btn-link" type="button" ng-click="shelfCtrl.scrollTo('new-bottle'); shelfCtrl.edit(item);">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
                 <button class="btn btn-link" type="button" ng-click="shelfCtrl.delete(item)">
