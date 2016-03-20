@@ -7,8 +7,7 @@
             <span class="text-warning text-muted" ng-if="item.state == 'NOT_AVAILABLE'">
                 <i> ..not available since not all ingredients are present</i>
             </span>
-            <a class="pull-right" ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit"
-               title="Edit cocktail details">
+            <a class="btn btn-link pull-right" ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" title="Edit cocktail details">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
         </div>
@@ -42,6 +41,11 @@
             <p class="text-justify" ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
                 {{item.description}}
             </p>
+            <div class="margin-top-30" ng-if="!item.isCustom">
+                <button class="btn btn-default" ng-click="like()" disabled>
+                    <span>Add to My Likes</span>
+                </button>
+            </div>
         </div>
     </div>
     <hr class="cocktails-divider">
