@@ -17,32 +17,38 @@
     </div>
 </div>
 <div class="row margin-top-30 table-responsive" id="shelf">
-    <table class="table table-condensed" ng-if="shelfCtrl.itemsInShelf.length">
+    <table class="table table-condensed" ng-if="shelfCtrl.itemsInShelf.length"
+            ng-init="w = [
+            'col-lg-1 col-md-1 col-sm-1 col-xs-1',
+            'col-lg-2 col-md-2 col-sm-2 col-xs-2',
+            'col-lg-3 col-md-3 col-sm-3 col-xs-3']">
         <thead>
         <tr>
-            <th class="col-lg-2"><span class="glyphicon glyphicon-picture"></span></th>
-            <th class="col-lg-2 text-right">Beverage Kind</th>
-            <th class="col-lg-3 text-right">Brand name</th>
-            <th class="col-lg-1 text-right">Price</th>
-            <th class="col-lg-1 text-right">Volume</th>
-            <th class="col-lg-1 text-right">In Shelf</th>
-            <th class="col-lg-2"></th>
+            <th ng-class="w[1]"><span class="glyphicon glyphicon-picture"></span></th>
+            <th ng-class="w[1]" class="text-right">Beverage Kind</th>
+            <th ng-class="w[2]" class="text-right">Brand name</th>
+            <th ng-class="w[0]" class="text-right">Price</th>
+            <th ng-class="w[0]" class="text-right">Volume</th>
+            <th ng-class="w[0]" class="text-right">In Shelf</th>
+            <th ng-class="w[1]"></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-class="item.inShelf == 'YES' ? 'active' : ''"
+        <tr class="text-right" ng-class="item.inShelf == 'YES' ? 'active' : ''"
             ng-repeat="item in shelfCtrl.itemsInShelf | orderBy:['inShelf']">
-            <td class="col-lg-2"><img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
-                                      ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/></td>
-            <td class="col-lg-2 text-right">{{shelfCtrl.getIngredientKind(item.ingredient.id)}}</td>
-            <td class="col-lg-3 text-right">{{item.brandName}}</td>
-            <td class="col-lg-1 text-right">{{item.price}}</td>
-            <td class="col-lg-1 text-right">{{item.volume}}</td>
-            <td align="right" class="col-lg-1">
-                <input type="checkbox" class="checkbox" ng-checked="item.inShelf == 'YES'"
+            <td>
+                <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
+                                      ng-class="{true: '', false: 'no-available'}[!!item.imageUrl]"/>
+            </td>
+            <td>{{shelfCtrl.getIngredientKind(item.ingredient.id)}}</td>
+            <td>{{item.brandName}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.volume}}</td>
+            <td>
+                <input type="checkbox" class="checkbox-inline" ng-checked="item.inShelf == 'YES'"
                        ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
             </td>
-            <td class="col-lg-2 text-right">
+            <td>
                 <button class="btn btn-link" type="button" ng-click="shelfCtrl.scrollTo('new-bottle'); shelfCtrl.edit(item);">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
