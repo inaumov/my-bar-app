@@ -42,8 +42,9 @@
                 {{item.description}}
             </p>
             <div class="margin-top-30" ng-if="!item.isCustom">
-                <button class="btn btn-default" ng-click="like()" disabled>
-                    <span>Add to My Likes</span>
+                <button class="btn btn-default" ng-click="item.liked = !item.liked">
+                    <span class="glyphicon" ng-class="!item.liked ? 'glyphicon-heart-empty' : 'glyphicon-heart'"></span>
+                    {{!item.liked ? 'Add' : 'Added'}} to My Likes
                 </button>
             </div>
         </div>
