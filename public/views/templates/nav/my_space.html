@@ -5,9 +5,11 @@
     {id:'shelf/bottles', name: 'My Shelf', icon:'home', title:'Beverages that I use to mix'}
     ]">
     <li ng-repeat="item in mySpaceNavItems">
-        <a href="my/{{item.id}}" title="{{item.title}}">
-            <span class="glyphicon glyphicon-{{item.icon}}"></span>
-            {{item.name}}
+        <a href="my/{{item.id}}" title="{{::item.title}}">
+            <span class="h4">
+                <span class="glyphicon glyphicon-{{::item.icon}}"></span>
+                {{::item.name}}
+            </span>
         </a>
     </li>
 </ul>

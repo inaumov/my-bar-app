@@ -1,8 +1,10 @@
 <ul class="nav navbar-inverse nav-justified">
     <li ng-repeat="menuItem in menuItems">
         <a href="menu/{{menuItem.id}}/cocktails">
-            <span class="glyphicon glyphicon-glass"></span>
-            {{menuItem.name}}
+            <span class="h4">
+                <span class="glyphicon glyphicon-glass"></span>
+                {{::menuItem.name}}
+            </span>
         </a>
     </li>
 </ul>
