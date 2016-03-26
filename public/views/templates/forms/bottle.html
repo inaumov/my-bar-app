@@ -1,54 +1,62 @@
 <!--new bottle form-->
-<form ng-submit="shelfCtrl.save()" name="AddBeverageForm" class="form-horizontal" role="form">
+<form name="BeverageForm" role="form" ng-submit="shelfCtrl.save()" novalidate>
     <input type="hidden" ng-model="shelfCtrl.bottle.id"/>
+    <!--imageUrl-->
+    <div class="form-group">
+        <label class="control-label" for="bottle-photo">Photo url</label>
 
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <label class="col-lg-3 control-label" for="bottle-photo">Photo url</label>
+        <div ng-class="{ 'has-error': BeverageForm.photoUrl.$touched && BeverageForm.photoUrl.$invalid }">
+            <input type="url" class="form-control" id="bottle-photo" name="photoUrl"
+                   placeholder="Enter url of photo with desired bottle"
+                   ng-model="shelfCtrl.bottle.imageUrl"/>
 
-            <div class="col-lg-7">
-                <input type="url" class="form-control" id="bottle-photo" name="photoUrl"
-                       ng-model="shelfCtrl.bottle.imageUrl"/>
-
-                <div class="has-error" ng-show="AddBeverageForm.$dirty">
-                    <span ng-show="AddBeverageForm.photoUrl.$invalid">This field is invalid</span>
-                </div>
+            <div class="help-block" ng-messages="BeverageForm.photoUrl.$error" ng-if="BeverageForm.photoUrl.$touched">
+                <p ng-message="valid">This needs to be a valid url.</p>
             </div>
         </div>
     </div>
+    <!--ingredient-->
+    <div class="form-group required">
+        <label class="control-label" for="bottle-ingredient">Ingredient</label>
 
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <label class="col-lg-3 control-label" for="bottle-ingredient">Ingredient</label>
+        <div ng-class="{ 'has-error': BeverageForm.ingredient.$touched && BeverageForm.ingredient.$invalid }">
+            <datalist id="ingredients">
+                <option value="{{ingredient.kind}}" ng-repeat="ingredient in shelfCtrl.ingredients"/>
+            </datalist>
+            <input type="text" class="form-control" id="bottle-ingredient" name="ingredient" list="ingredients"
+                   placeholder="-- Select corresponding ingredient beverage kind --"
+                   data-ng-model="shelfCtrl.bottle.ingredient.kind" required/>
 
-            <div class="col-lg-7">
-                <datalist id="ingredients">
-                    <option value="{{ingredient.kind}}" ng-repeat="ingredient in shelfCtrl.ingredients"/>
-                </datalist>
-                <input type="text" class="form-control" id="bottle-ingredient" name="ingredient" list="ingredients"
-                       data-ng-model="shelfCtrl.bottle.ingredient.kind" required/>
-
-                <div class="has-error" ng-show="AddBeverageForm.$dirty">
-                    <span ng-show="AddBeverageForm.ingredient.$error.required">This is a required field</span>
-                    <span ng-show="AddBeverageForm.ingredient.$invalid">This field is invalid</span>
-                </div>
+            <div class="help-block" ng-messages="BeverageForm.ingredient.$error" ng-if="BeverageForm.ingredient.$touched">
+                <p ng-message="required">This needs to be a valid ingredient from this list.</p>
             </div>
         </div>
     </div>
+    <!--brand name-->
+    <div class="form-group">
+        <label class="control-label" for="bottle-brand">Brand name</label>
 
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <label class="col-lg-3 control-label" for="bottle-brand">Brand name</label>
-
-            <div class="col-lg-7">
-                <input type="text" class="form-control" id="bottle-brand" name="brand"
-                       ng-model="shelfCtrl.bottle.brandName"/>
-            </div>
+        <div>
+            <input type="text" class="form-control" id="bottle-brand" name="brand"
+                   placeholder="Enter brand name"
+                   ng-model="shelfCtrl.bottle.brandName"/>
         </div>
     </div>
+    <!--price-->
+    <div class="form-group">
+        <label class="control-label" for="bottle-price">Price</label>
 
-    <div class="row">
-        <div class="form-group col-lg-12">
+        <div>
+            <input type="text" class="form-control" id="bottle-price" name="price"
+                   placeholder="Enter price per bottle"
+                   ng-model="shelfCtrl.bottle.price"/>
+        </div>
+    </div>
+    <!--volume selection-->
+    <div class="form-group">
+        <label class="control-label" for="bottle-volume">Volume</label>
+
+        <div>
             <datalist id="volumes">
                 <option value="0.35"/>
                 <option value="0.5"/>
@@ -56,58 +64,28 @@
                 <option value="0.75"/>
                 <option value="1.0"/>
             </datalist>
-            <label class="col-lg-3 control-label" for="bottle-volume">Select volume</label>
-
-            <div class="col-lg-7">
-                <input type="number" class="form-control" id="bottle-volume" name="volume" list="volumes"
-                       ng-model="shelfCtrl.bottle.volume" min="0" step="0.05"/>
-
-                <div class="has-error" ng-show="AddBeverageForm.$dirty">
-                    <span ng-show="AddBeverageForm.volume.$invalid">This field is invalid</span>
-                </div>
-            </div>
+            <input type="text" class="form-control" id="bottle-volume" name="volume" list="volumes"
+                   placeholder="-- Select or enter volume --"
+                   ng-model="shelfCtrl.bottle.volume"/>
         </div>
     </div>
-
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <label class="col-lg-3 control-label" for="bottle-price">Price</label>
-
-            <div class="col-lg-7">
-                <input type="number" class="form-control" id="bottle-price" name="price"
-                       ng-model="shelfCtrl.bottle.price" min="0" step="0.01"/>
-
-                <div class="has-error" ng-show="AddBeverageForm.$dirty">
-                    <span ng-show="AddBeverageForm.price.$invalid">This field is invalid</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <label class="col-lg-3 control-label" for="bottle-inShelf">Is it in shelf</label>
-
-            <div class="col-lg-7">
-                <input type="checkbox" class="checkbox" id="bottle-inShelf" name="inShelf"
+    <!--in shelf-->
+    <div class="form-group">
+        <div class="checkbox">
+            <label class="control-label" for="bottle-inShelf">
+                <input type="checkbox" id="bottle-inShelf" name="inShelf"
                        ng-model="shelfCtrl.bottle.inShelf" ng-true-value="'YES'" ng-false-value="'NO'"/>
-            </div>
+                I have it :-)
+            </label>
         </div>
     </div>
-
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <div class="col-lg-7 col-lg-push-3">
-
-                <input type="submit" class="btn btn-primary"
-                       value="{{!shelfCtrl.bottle.id ? 'Add' : 'Update'}}"
-                       ng-disabled="AddBeverageForm.$invalid">
-                <button type="button" class="btn btn-warning"
-                        ng-disabled="AddBeverageForm.$pristine"
-                        ng-click="shelfCtrl.newBottle(); AddBeverageForm.$setPristine()">
-                    Reset Form
-                </button>
-            </div>
-        </div>
+    <!--action buttons-->
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" ng-disabled="BeverageForm.$invalid"
+               value="{{!shelfCtrl.bottle.id ? 'Add' : 'Update'}}">
+        <button type="button" class="btn btn-warning" ng-disabled="BeverageForm.$pristine"
+                ng-click="shelfCtrl.newBottle(); BeverageForm.$setPristine()">
+            Reset
+        </button>
     </div>
 </form>
