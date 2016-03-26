@@ -34,13 +34,17 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
         }
     }
 
+    vm.newCocktail = create;
+
+    function create() {
+        vm.cocktail = {
+            ingredients: []
+        }
+    }
+
     function loadCocktail() {
 
         vm.isNew ? create() : get();
-
-        function create() {
-            vm.cocktail = {ingredients: []};
-        }
 
         function get() {
             MyBarService.getCocktailById($routeParams.id).then(function (data) {
