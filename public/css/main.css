@@ -116,3 +116,7 @@ footer {
     position: relative;
     margin-left: 8px;
 }
+
+table .img-responsive {
+    width: 100%;
+}
