@@ -24,7 +24,7 @@
                 <option value="{{ingredient.kind}}" ng-repeat="ingredient in shelfCtrl.ingredients"/>
             </datalist>
             <input type="text" class="form-control" id="bottle-ingredient" name="ingredient" list="ingredients"
-                   placeholder="-- Select corresponding ingredient beverage kind --"
+                   placeholder="-- Select or enter corresponding ingredient beverage kind --"
                    data-ng-model="shelfCtrl.bottle.ingredient.kind" required/>
 
             <div class="help-block" ng-messages="BeverageForm.ingredient.$error" ng-if="BeverageForm.ingredient.$touched">
@@ -80,12 +80,12 @@
         </div>
     </div>
     <!--action buttons-->
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" ng-disabled="BeverageForm.$invalid"
-               value="{{!shelfCtrl.bottle.id ? 'Add' : 'Update'}}">
+    <div class="form-group pull-right">
         <button type="button" class="btn btn-warning" ng-disabled="BeverageForm.$pristine"
                 ng-click="shelfCtrl.newBottle(); BeverageForm.$setPristine()">
-            Reset
+            <span>Reset</span>
         </button>
+        <input type="submit" class="btn btn-primary" ng-disabled="BeverageForm.$invalid"
+               value="{{!shelfCtrl.bottle.id ? 'Add' : 'Update'}}"/>
     </div>
 </form>
