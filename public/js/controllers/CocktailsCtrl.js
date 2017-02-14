@@ -11,7 +11,7 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
     activate();
 
     function activate() {
-        if ($routeParams.id) {
+        if ($routeParams.menuName) {
             loadMenuItems();
         }
         loadCocktails();
@@ -19,9 +19,9 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
     }
 
     function loadCocktails() {
-        var menuId = $routeParams.id;
+        var menuName = $routeParams.menuName;
 
-        return menuId != null ? MyBarService.getCocktails(menuId).then(function (data) {
+        return menuName != null ? MyBarService.getCocktails(menuName).then(function (data) {
             vm.cocktails = data;
             return vm.cocktails;
         }) : [];
@@ -35,11 +35,15 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
         });
     }
 
-    vm.getIngredientKind = function (id) {
-        for (var i = 0; i < vm.ingredients.length; i++) {
-            var ingredient = vm.ingredients[i];
-            if (ingredient.id === id) {
-                return ingredient.kind;
+    vm.getIngredientKind = function (groupName, id) {
+        for (var property in vm.ingredients) {
+            if (vm.ingredients.hasOwnProperty(groupName)) {
+                for (var i = 0; i < vm.ingredients[groupName].length; i++) {
+                    var ingredient = vm.ingredients[groupName][i];
+                    if (ingredient.id === id) {
+                        return ingredient.kind;
+                    }
+                }
             }
         }
     };
@@ -47,8 +51,8 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
     function findCurrentMenuName() {
         for (var item in vm.menuItems) {
             var el = vm.menuItems[item];
-            if (el.id == $routeParams.id) {
-                return el.name;
+            if (el.name == $routeParams.menuName) {
+                return el.translation;
             }
         }
     }

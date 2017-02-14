@@ -11,7 +11,7 @@ function Config($routeProvider, $locationProvider) {
             template: "<div class='row' ng-include=\"'views/templates/nav/cocktails_menu.html'\"></div>"
         })
 
-        .when('/menu/:id/cocktails', {
+        .when('/menu/:menuName/cocktails', {
             templateUrl: 'views/all_cocktails.html',
             controller: 'CocktailsController',
             controllerAs: 'cocktailsCtrl',
@@ -60,8 +60,8 @@ function Config($routeProvider, $locationProvider) {
             controller: 'ShelfController',
             controllerAs: 'shelfCtrl',
             resolve: {
-                ingredients: ['MyBarService', function (MyBarService) {
-                    return MyBarService.getIngredients();
+                beverages: ['MyBarService', function (MyBarService) {
+                    return MyBarService.getIngredients('beverages');
                 }]
             }
         })

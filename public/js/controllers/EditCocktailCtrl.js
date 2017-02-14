@@ -38,7 +38,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
 
     function create() {
         vm.cocktail = {
-            ingredients: []
+            ingredients: {}
         }
     }
 
@@ -62,9 +62,9 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
             controller: ['ingredients', function (ingredients) {
                 this.data = ingredients;
                 // toggle selection for a given kind
-                this.toggleSelection = function toggleSelection(id, type) {
+                this.toggleSelection = function toggleSelection(groupName, id) {
                     var idx;
-                    vm.cocktail.ingredients.some(function (entry, i) {
+                    vm.cocktail.ingredients[groupName].some(function (entry, i) {
                         if (entry.id == id) {
                             idx = i;
                             return true;
@@ -72,7 +72,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                     });
                     // is currently selected
                     if (idx > -1) {
-                        vm.cocktail.ingredients.splice(idx, 1);
+                        vm.cocktail.ingredients[groupName].splice(idx, 1);
                     }
                     // is newly selected
                     else {
@@ -80,21 +80,24 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                             id: id,
                             volume: 0,
                             // TODO check other types if needed
-                            units: type !== 'other' ? 'ML' : undefined
+                            units: groupName !== 'additives' ? 'ML' : undefined
                         };
                         wrapIngredient(ingredient);
-                        vm.cocktail.ingredients.push(ingredient);
+                        vm.cocktail.ingredients[groupName].push(ingredient);
                     }
                 };
-                this.isChecked = function (id) {
-                    return vm.cocktail.ingredients.some(function (entry) {
+                this.isChecked = function (groupName, id) {
+                    if (vm.cocktail.ingredients[groupName] == undefined) {
+                        vm.cocktail.ingredients[groupName] = [];
+                    }
+                    return vm.cocktail.ingredients[groupName].some(function (entry) {
                         if (entry.id == id) {
                             return true;
                         }
                     });
                 }
             }],
-            controllerAs: 'ingredientsListCtrl',
+            controllerAs: 'selectIngredientsCtrl',
             resolve: {
                 ingredients: function () {
                     return vm.ingredients;
@@ -116,11 +119,11 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
 
         function onSuccess() {
             console.log('The item was saved!'); // TODO: use angular ui notification instead
-            $location.path('/menu/$menuId/cocktails/'.replace('$menuId', vm.cocktail.menuId));
+            $location.path('/cocktails/$cocktailId'.replace('$cocktailId', vm.cocktail.id));
         }
 
         function onError(error) {
-            console.log('Unable to save the employee data: ' + error); // TODO: use angular ui notification instead
+            console.log('Unable to save the cocktail data: ' + error); // TODO: use angular ui notification instead
         }
     };
 

@@ -20,8 +20,9 @@
 
         <div class="col-lg-7 col-lg-offset-1" id="details">
             <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
-            <ul ng-if="item.ingredients.length > 0">
-                <li ng-repeat="ingredient in item.ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
+            <ul ng-repeat="(groupName, ingredients) in item.ingredients">
+                <!--{{groupName}}-->
+                <li ng-repeat="ingredient in ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
                     <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
                         {{ingredient.volume}}
                     </span>
@@ -29,7 +30,7 @@
                         {{ingredient.units}}
                     </span>
                     <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
-                        <strong>{{cocktailsCtrl.getIngredientKind(ingredient.id)}}</strong>
+                        <strong>{{cocktailsCtrl.getIngredientKind(groupName, ingredient.ingredientId)}}</strong>
                     </span>
                     <span class="text-warning pull-right" ng-if="ingredient.missing">
                         <i>missing</i>

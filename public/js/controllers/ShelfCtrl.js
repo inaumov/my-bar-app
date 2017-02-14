@@ -1,11 +1,11 @@
-angular.module('ShelfCtrl', []).controller('ShelfController', ['ingredients', 'MyBarService', '$timeout', '$location', '$anchorScroll', ShelfController]);
-function ShelfController(ingredients, MyBarService, $timeout, $location, $anchorScroll) {
+angular.module('ShelfCtrl', []).controller('ShelfController', ['beverages', 'MyBarService', '$timeout', '$location', '$anchorScroll', ShelfController]);
+function ShelfController(beverages, MyBarService, $timeout, $location, $anchorScroll) {
 
     var vm = this;
     vm.formPanel = false;
     vm.editMode = false;
     vm.itemsInShelf = [];
-    vm.ingredients = ingredients;
+    vm.beverages = beverages;
 
     activate();
 
@@ -22,8 +22,8 @@ function ShelfController(ingredients, MyBarService, $timeout, $location, $anchor
     }
 
     vm.getIngredientKind = function (id) {
-        for (var i = 0; i < vm.ingredients.length; i++) {
-            var ingredient = vm.ingredients[i];
+        for (var i = 0; i < vm.beverages.length; i++) {
+            var ingredient = vm.beverages[i];
             if (ingredient.id === id) {
                 return ingredient.kind;
             }
@@ -43,9 +43,9 @@ function ShelfController(ingredients, MyBarService, $timeout, $location, $anchor
     };
 
     vm.save = function () {
-        for (var i = 0; i < vm.ingredients.length; i++) {
-            if (vm.bottle.ingredient.kind === vm.ingredients[i].kind) {
-                vm.bottle.ingredient.id = vm.ingredients[i].id;
+        for (var i = 0; i < vm.beverages.length; i++) {
+            if (vm.bottle.ingredient.kind === vm.beverages[i].kind) {
+                vm.bottle.ingredient.id = vm.beverages[i].id;
             }
         }
         // TODO consider resolving promise and handle errors
@@ -64,9 +64,9 @@ function ShelfController(ingredients, MyBarService, $timeout, $location, $anchor
     };
 
     vm.edit = function (item) {
-        for (var i = 0; i < vm.ingredients.length; i++) {
-            if (item.ingredient.id === vm.ingredients[i].id) {
-                item.ingredient.kind = vm.ingredients[i].kind;
+        for (var i = 0; i < vm.beverages.length; i++) {
+            if (item.ingredient.id === vm.beverages[i].id) {
+                item.ingredient.kind = vm.beverages[i].kind;
             }
         }
         vm.bottle = angular.copy(item);

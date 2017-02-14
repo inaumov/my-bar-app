@@ -35,7 +35,7 @@
 
         <div ng-class="{ 'has-error': CocktailForm.drinkType.$touched && CocktailForm.drinkType.$invalid }">
             <select class="form-control" id="drinkType" name="drinkType"
-                    ng-options="type.id as type.name for type in cocktailCtrl.drinkTypes"
+                    ng-options="type.name as type.translation for type in cocktailCtrl.drinkTypes"
                     ng-model="cocktailCtrl.cocktail.menuId" required>
             </select>
 

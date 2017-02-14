@@ -14,8 +14,13 @@ function MyBarService($http, GENERAL_CONFIG) {
                 .catch(getRequestCallFailed);
         },
 
-        getCocktails: function (menuId) {
-            return $http.get(BASE_URL + '/menu/' + menuId + '/cocktails')
+        getCocktails: function (menuNameParam) {
+            return $http.get(BASE_URL + '/cocktails',
+                {
+                    params: {
+                        filter: menuNameParam
+                    }
+                })
                 .then(getRequestCallComplete)
                 .catch(getRequestCallFailed);
         },
@@ -31,15 +36,18 @@ function MyBarService($http, GENERAL_CONFIG) {
         },
 
         updateCocktail: function (data) {
-            return $http.put(BASE_URL + '/cocktails/' + data.id, data);
+            return $http.put(BASE_URL + '/cocktails', data);
         },
 
         deleteCocktail: function (id) {
             return $http.delete(BASE_URL + '/cocktails/' + id);
         },
 
-        getIngredients: function () {
+        getIngredients: function (groupNameParam) {
             return $http.get(BASE_URL + '/ingredients', {
+                params: {
+                    filter: groupNameParam
+                },
                 cache: true
             })
                 .then(getRequestCallComplete)
@@ -57,7 +65,7 @@ function MyBarService($http, GENERAL_CONFIG) {
         },
 
         updateBottle: function (data) {
-            return $http.put(BASE_URL + '/shelf/bottles/' + data.id, data);
+            return $http.put(BASE_URL + '/shelf/bottles', data);
         },
 
         deleteBottle: function (id) {
