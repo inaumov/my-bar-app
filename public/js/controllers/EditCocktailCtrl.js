@@ -25,10 +25,15 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
 
     function wrapIngredient(ingredient) {
         ingredient.getKind = function () {
-            for (var j = 0; j < vm.ingredients.length; j++) {
-                var ingredient = vm.ingredients[j];
-                if (ingredient.id === this.id) {
-                    return ingredient.kind;
+            var data = vm.ingredients;
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    for (var j = 0; j < data[key].length; j++) {
+                        var ingredient = data[key][j];
+                        if (ingredient.id === this.id) {
+                            return ingredient.kind;
+                        }
+                    }
                 }
             }
         }

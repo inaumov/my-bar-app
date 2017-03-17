@@ -1,5 +1,5 @@
 <!--new cocktail form-->
-<form name="CocktailForm" role="form" ng-submit="cocktailCtrl.save()" novalidate>
+<form name="CocktailForm" role="form" ng-submit="cocktailCtrl.ddsave()" novalidate>
     <input type="hidden" ng-model="cocktailCtrl.cocktail.id"/>
     <!--name-->
     <div class="form-group required">
@@ -55,15 +55,14 @@
     <!--ingredients selection-->
     <div class="form-group" ng-if="cocktailCtrl.cocktail.ingredients.length != 0">
         <label class="control-label" for="ingredients">Selected Ingredients</label>
-        <ul id="ingredients" class="list-group"
-            ng-repeat="ingredient in cocktailCtrl.cocktail.ingredients">
-            <li class="list-group-item" ng-if="ingredient.units">
-                <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
-                {{ingredient.getKind()}}<span class="badge">{{ingredient.volume}} {{ingredient.units}}</span>
-                </input>
-            </li>
-            <li class="list-group-item" ng-if="!ingredient.units">
-                <span>{{ingredient.getKind()}}</span>
+        <ul id="ingredients" class="list-group list-unstyled" ng-repeat="(groupName, ingredients) in cocktailCtrl.cocktail.ingredients">
+            <li ng-repeat="ingredient in ingredients">
+                <div class="list-group-item" ng-if="ingredient.units">
+                    <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
+                    {{ingredient.getKind()}}<span class="badge">{{ingredient.volume}} {{ingredient.units}}</span>
+                    </input>
+                </div>
+                <span class="list-group-item" ng-if="!ingredient.units">{{ingredient.getKind()}}</span>
             </li>
         </ul>
     </div>
