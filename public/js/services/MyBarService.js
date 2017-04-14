@@ -61,7 +61,7 @@ function MyBarService($http, GENERAL_CONFIG) {
         },
 
         createBottle: function (data) {
-            return $http.post(BASE_URL + '/shelf/bottles', data);
+            return $http.post(BASE_URL + '/shelf/bottles', data, 'headers');
         },
 
         updateBottle: function (data) {

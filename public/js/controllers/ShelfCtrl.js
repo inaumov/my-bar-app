@@ -32,7 +32,6 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
 
     vm.newBottle = function () {
         vm.bottle = {
-            id: null,
             ingredient: {},
             brandName: '',
             volume: '',
@@ -57,10 +56,21 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
             }).indexOf(vm.bottle.id);
             vm.itemsInShelf.splice(idx, 1);
         } else {
-            MyBarService.createBottle(vm.bottle);
+            MyBarService.createBottle(vm.bottle)
+                .success(onSuccess)
+                .error(onError);
         }
         vm.itemsInShelf.push(vm.bottle);
         vm.formPanel = false;
+
+        function onSuccess() {
+            console.log('The item was saved!'); // TODO: use angular ui notification instead
+            $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', vm.bottle.id));
+        }
+
+        function onError(error) {
+            console.log('Unable to save the bottle data: ' + error); // TODO: use angular ui notification instead
+        }
     };
 
     vm.edit = function (item) {
