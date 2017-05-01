@@ -2,9 +2,9 @@
     <div class="row margin-bottom-30">
         <div class="col-lg-12" id="title">
             <span class="h2"
-                  ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']"><strong>{{item.name}}</strong>
+                  ng-class="{true: 'text-muted'}[item.available == 'NO']"><strong>{{item.name}}</strong>
             </span>
-            <span class="text-warning text-muted" ng-if="item.state == 'NOT_AVAILABLE'">
+            <span class="text-warning text-muted" ng-if="item.available == 'NO'">
                 <i> ..not available since not all ingredients are present</i>
             </span>
             <a class="btn btn-link pull-right" ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" title="Edit cocktail details">
@@ -13,23 +13,23 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 margin-bottom-30" id="cover" ng-class="{true: 'img-muted'}[item.state == 'NOT_AVAILABLE']">
+        <div class="col-lg-4 margin-bottom-30" id="cover" ng-class="{true: 'img-muted'}[item.available == 'NO']">
             <img class="img-responsive" ng-src="{{item.imageUrl || 'img/blank.gif'}}"
                  ng-class="{true: '', false: 'not-available'}[!!item.imageUrl]"/>
         </div>
 
         <div class="col-lg-7 col-lg-offset-1" id="details">
-            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Ingredients:</h2>
+            <h2 ng-class="{true: 'text-muted'}[item.available == 'NO']">Ingredients:</h2>
             <ul class="list-unstyled" ng-repeat="(groupName, ingredients) in item.ingredients">
                 <!--{{groupName}}-->
                 <li ng-repeat="ingredient in ingredients" ng-class="{true: 'bg-warning'}[ingredient.missing]">
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
+                    <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
                         {{ingredient.volume}}
                     </span>
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
+                    <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
                         {{ingredient.units}}
                     </span>
-                    <span ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
+                    <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
                         <strong>{{cocktailsCtrl.getIngredientKind(groupName, ingredient.ingredientId)}}</strong>
                     </span>
                     <span class="text-warning pull-right" ng-if="ingredient.missing">
@@ -37,9 +37,9 @@
                     </span>
                 </li>
             </ul>
-            <h2 ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">Description:</h2>
+            <h2 ng-class="{true: 'text-muted'}[item.available == 'NO']">Description:</h2>
 
-            <p class="text-justify" ng-class="{true: 'text-muted'}[item.state == 'NOT_AVAILABLE']">
+            <p class="text-justify" ng-class="{true: 'text-muted'}[item.available == 'NO']">
                 {{item.description}}
             </p>
             <div class="margin-top-30" ng-if="!item.isCustom">

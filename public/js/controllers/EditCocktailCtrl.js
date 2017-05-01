@@ -29,9 +29,9 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
                     for (var j = 0; j < data[key].length; j++) {
-                        var ingredient = data[key][j];
-                        if (ingredient.id === this.id) {
-                            return ingredient.kind;
+                        var el = data[key][j];
+                        if (ingredient.ingredientId === el.id) {
+                            return el.kind;
                         }
                     }
                 }
@@ -75,20 +75,20 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                             return true;
                         }
                     });
-                    // is currently selected
+                    // is already selected
                     if (idx > -1) {
                         vm.cocktail.ingredients[groupName].splice(idx, 1);
                     }
                     // is newly selected
                     else {
-                        var ingredient = {
-                            id: id,
+                        var newItem = {
+                            ingredientId: id,
                             volume: 0,
                             // TODO check other types if needed
-                            units: groupName !== 'additives' ? 'ML' : undefined
+                            unitsValue: groupName !== 'additives' ? 'ML' : undefined
                         };
-                        wrapIngredient(ingredient);
-                        vm.cocktail.ingredients[groupName].push(ingredient);
+                        wrapIngredient(newItem);
+                        vm.cocktail.ingredients[groupName].push(newItem);
                     }
                 };
                 this.isChecked = function (groupName, id) {
@@ -96,7 +96,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                         vm.cocktail.ingredients[groupName] = [];
                     }
                     return vm.cocktail.ingredients[groupName].some(function (entry) {
-                        if (entry.id == id) {
+                        if (entry.ingredientId == id) {
                             return true;
                         }
                     });
