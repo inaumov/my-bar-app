@@ -68,20 +68,20 @@
     </div>
     <!--action buttons-->
     <div class="form-group">
-        <button class="btn btn-link" ng-click="cocktailCtrl.showIngredients()">
+        <button type="button" class="btn btn-link" ng-click="cocktailCtrl.showIngredients()">
             <span class="glyphicon" ng-class="cocktailCtrl.cocktail.ingredients.length == 0 ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
             <span>{{cocktailCtrl.cocktail.ingredients.length == 0 ? 'Add' : 'Update'}} ingredients</span>
         </button>
     </div>
     <div class="form-group pull-right">
         <!--only custom cocktails can be edited-->
-        <button class="btn btn-default" ng-href="my/cocktails">
+        <button type="button" class="btn btn-default" ng-href="my/cocktails">
             <span>Back</span>
         </button>
-        <button class="btn btn-danger" ng-if="cocktailCtrl.cocktail.id" ng-click="cocktailCtrl.delete()">
+        <button type="button" class="btn btn-danger" ng-if="cocktailCtrl.cocktail.id" ng-click="cocktailCtrl.delete()">
             <span>Delete</span>
         </button>
-        <button type="button" class="btn btn-warning" ng-disabled="CocktailForm.$pristine"
+        <button type="reset" class="btn btn-warning" ng-disabled="CocktailForm.$pristine"
                 ng-click="cocktailCtrl.newCocktail(); CocktailForm.$setPristine()">
             <span>Reset</span>
         </button>
