@@ -65,11 +65,26 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
 
         function onSuccess() {
             console.log('The item was saved!'); // TODO: use angular ui notification instead
-            $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', vm.bottle.id));
+            // $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', vm.bottle.id));
         }
 
         function onError(error) {
             console.log('Unable to save the bottle data: ' + error); // TODO: use angular ui notification instead
+        }
+    };
+
+    vm.updateAvailability = function (item) {
+        MyBarService.updateBottle(item)
+            .success(onSuccess)
+            .error(onError);
+
+        function onSuccess() {
+            console.log('The item was activated!'); // TODO: use angular ui notification instead
+            // $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', item.id));
+        }
+
+        function onError(error) {
+            console.log('Unable to update the bottle data: ' + error); // TODO: use angular ui notification instead
         }
     };
 

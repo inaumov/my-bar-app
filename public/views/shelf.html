@@ -48,7 +48,8 @@
             <td>{{item.volume}}</td>
             <td>
                 <input type="checkbox" class="checkbox-inline" ng-checked="item.inShelf == 'YES'"
-                       ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'">
+                       ng-model="item.inShelf" ng-true-value="'YES'" ng-false-value="'NO'"
+                       ng-change="shelfCtrl.updateAvailability(item)">
             </td>
             <td>
                 <button class="btn btn-link" type="button" ng-click="shelfCtrl.scrollTo('new-bottle'); shelfCtrl.edit(item);">
