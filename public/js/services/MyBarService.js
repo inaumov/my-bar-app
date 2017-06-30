@@ -7,87 +7,95 @@ function MyBarService($http, GENERAL_CONFIG) {
     var service = {
 
         getMenuItems: function () {
-            return $http.get(BASE_URL + '/cocktails/menu', {
+            var apiCall = $http.get(BASE_URL + '/cocktails/menu', {
                 cache: true
-            })
-                .then(getRequestCallComplete)
-                .catch(getRequestCallFailed);
+            });
+            return handleResponse(apiCall);
         },
 
         getCocktails: function (menuNameParam) {
-            return $http.get(BASE_URL + '/cocktails',
+            var apiCall = $http.get(BASE_URL + '/cocktails',
                 {
                     params: {
                         filter: menuNameParam
                     }
-                })
-                .then(getRequestCallComplete)
-                .catch(getRequestCallFailed);
+                });
+            return handleResponse(apiCall);
         },
 
         getCocktailById: function (id) {
-            return $http.get(BASE_URL + '/cocktails/' + id)
-                .then(getRequestCallComplete)
-                .catch(getRequestCallFailed);
+            var apiCall = $http.get(BASE_URL + '/cocktails/' + id);
+            return handleResponse(apiCall);
         },
 
         createCocktail: function (data) {
-            return $http.post(BASE_URL + '/cocktails', data);
+            var apiCall = $http.post(BASE_URL + '/cocktails', data);
+            return handleResponse(apiCall);
         },
 
         updateCocktail: function (data) {
-            return $http.put(BASE_URL + '/cocktails', data);
+            var apiCall = $http.put(BASE_URL + '/cocktails', data);
+            return handleResponse(apiCall);
         },
 
         deleteCocktail: function (id) {
-            return $http.delete(BASE_URL + '/cocktails/' + id);
+            var apiCall = $http.delete(BASE_URL + '/cocktails/' + id);
+            return handleResponse(apiCall);
         },
 
         getIngredients: function (groupNameParam) {
-            return $http.get(BASE_URL + '/ingredients', {
+            var apiCall = $http.get(BASE_URL + '/ingredients', {
                 params: {
                     filter: groupNameParam
                 },
                 cache: true
-            })
-                .then(getRequestCallComplete)
-                .catch(getRequestCallFailed);
+            });
+            return handleResponse(apiCall);
         },
 
         getBottleList: function () {
-            return $http.get(BASE_URL + '/shelf/bottles')
-                .then(getRequestCallComplete)
-                .catch(getRequestCallFailed);
+            var apiCall = $http.get(BASE_URL + '/shelf/bottles');
+            return handleResponse(apiCall);
         },
 
         createBottle: function (data) {
-            return $http.post(BASE_URL + '/shelf/bottles', data, 'headers');
+            var apiCall = $http.post(BASE_URL + '/shelf/bottles', data, 'headers');
+            return handleResponse(apiCall);
         },
 
         updateBottle: function (data) {
-            return $http.put(BASE_URL + '/shelf/bottles', data);
+            var apiCall = $http.put(BASE_URL + '/shelf/bottles', data);
+            return handleResponse(apiCall);
         },
 
         deleteBottle: function (id) {
-            return $http.delete(BASE_URL + '/shelf/bottles/' + id);
+            var apiCall = $http.delete(BASE_URL + '/shelf/bottles/' + id);
+            return handleResponse(apiCall);
         }
 
     };
 
     return service;
 
-    function getRequestCallComplete(response) {
-        if (typeof response.data === 'object') {
-            return response.data;
-        } else {
-            // invalid response
-            console.log('XHR Failed for [].' + response.data);
-        }
-    }
+    function handleResponse(apiCall) {
 
-    function getRequestCallFailed(error) {
-        // something went wrong
-        console.log('XHR Failed for [].' + error.data);
+        return apiCall
+            .then(getRequestCallComplete)
+            .catch(getRequestCallFailed);
+
+        function getRequestCallComplete(response) {
+            if (typeof response.data === 'object') {
+                return response.data;
+            } else {
+                // invalid response
+                console.log('XHR Failed for [].' + response.data);
+            }
+        }
+
+        function getRequestCallFailed(error) {
+            // something went wrong
+            console.log('XHR Failed for [].' + error.data);
+        }
     }
 
 }
