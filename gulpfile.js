@@ -102,6 +102,7 @@ gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
     var injectScripts = [
         './build/assets/vendor/angular.min.js',
         './build/assets/vendor/angular-route.min.js',
+        './build/assets/vendor/angular-ui-notification.min.js', // TODO
         './build/assets/vendor/ngDialog.min.js',
         '!./public/**/*.spec.js',
         '!./public/**/*.mock.js'

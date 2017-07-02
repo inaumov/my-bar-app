@@ -20,10 +20,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.7",
+    "angular": "1.6.4",
     "angular-route": "~1.4.7",
     "bootstrap": "~3.3.5",
-    "ng-dialog": "~0.5.5"
+    "ng-dialog": "~0.5.5",
+    "angular-ui-notification": "~0.3.6"
   },
   "overrides": {
     "bootstrap": {

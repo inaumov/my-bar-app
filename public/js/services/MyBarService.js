@@ -88,13 +88,14 @@ function MyBarService($http, GENERAL_CONFIG) {
                 return response.data;
             } else {
                 // invalid response
-                console.log('XHR Failed for [].' + response.data);
+                console.error('XHR Failed for [].' + response.data);
             }
         }
 
         function getRequestCallFailed(error) {
             // something went wrong
-            console.log('XHR Failed for [].' + error.data);
+            console.error('XHR Failed for [].' + error.data);
+            throw error;
         }
     }
 

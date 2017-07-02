@@ -1,5 +1,5 @@
-angular.module('ShelfCtrl', []).controller('ShelfController', ['beverages', 'MyBarService', '$timeout', '$location', '$anchorScroll', ShelfController]);
-function ShelfController(beverages, MyBarService, $timeout, $location, $anchorScroll) {
+angular.module('ShelfCtrl', []).controller('ShelfController', ['beverages', 'MyBarService', 'Notification', '$timeout', '$location', '$anchorScroll', ShelfController]);
+function ShelfController(beverages, MyBarService, Notification, $timeout, $location, $anchorScroll) {
 
     var vm = this;
     vm.formPanel = false;
@@ -47,9 +47,12 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
                 vm.bottle.ingredient.id = vm.beverages[i].id;
             }
         }
-        // TODO consider resolving promise and handle errors
+
         if (vm.editMode) {
-            MyBarService.updateBottle(vm.bottle);
+            MyBarService.updateBottle(vm.bottle)
+                .then(onSuccess)
+                .catch(onError);
+
             vm.editMode = false;
             var idx = vm.itemsInShelf.map(function (x) {
                 return x.id;
@@ -57,34 +60,32 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
             vm.itemsInShelf.splice(idx, 1);
         } else {
             MyBarService.createBottle(vm.bottle)
-                .success(onSuccess)
-                .error(onError);
+                .then(onSuccess)
+                .catch(onError);
         }
         vm.itemsInShelf.push(vm.bottle);
         vm.formPanel = false;
 
         function onSuccess() {
-            console.log('The item was saved!'); // TODO: use angular ui notification instead
-            // $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', vm.bottle.id));
+            Notification.success('Success notification');
         }
 
         function onError(error) {
-            console.log('Unable to save the bottle data: ' + error); // TODO: use angular ui notification instead
+            Notification.error('Error notification');
         }
     };
 
     vm.updateAvailability = function (item) {
         MyBarService.updateBottle(item)
-            .success(onSuccess)
-            .error(onError);
+            .then(onSuccess)
+            .catch(onError);
 
         function onSuccess() {
-            console.log('The item was activated!'); // TODO: use angular ui notification instead
-            // $location.path('/shelf/bottles/$bottleId'.replace('$bottleId', item.id));
+            Notification.success('Success notification');
         }
 
         function onError(error) {
-            console.log('Unable to update the bottle data: ' + error); // TODO: use angular ui notification instead
+            Notification.error('Error notification');
         }
     };
 
@@ -100,7 +101,10 @@ function ShelfController(beverages, MyBarService, $timeout, $location, $anchorSc
     };
 
     vm.delete = function (item) {
-        MyBarService.deleteBottle(item.id);
+        MyBarService.deleteBottle(item.id)
+            // TODO
+            .then()
+            .catch();
         var index = vm.itemsInShelf.indexOf(item);
         if (index > -1) {
             vm.itemsInShelf.splice(index, 1);

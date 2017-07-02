@@ -1,7 +1,7 @@
 angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController',
-    ['$routeParams', '$location', 'ingredients', 'MyBarService', 'ngDialog', EditCocktailController]);
+    ['$routeParams', '$location', 'ingredients', 'MyBarService', 'ngDialog', 'Notification', EditCocktailController]);
 
-function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog) {
+function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog, Notification) {
 
     var vm = this;
     vm.drinkTypes = [];
@@ -114,26 +114,28 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     vm.save = function () {
         if (vm.isNew) {
             MyBarService.createCocktail(vm.cocktail)
-                .success(onSuccess)
-                .error(onError);
+                .then(onSuccess)
+                .catch(onError);
         } else {
             MyBarService.updateCocktail(vm.cocktail)
-                .success(onSuccess)
-                .error(onError);
+                .then(onSuccess)
+                .catch(onError);
         }
 
         function onSuccess() {
-            console.log('The item was saved!'); // TODO: use angular ui notification instead
-            $location.path('/cocktails/$cocktailId'.replace('$cocktailId', vm.cocktail.id));
+            Notification.success('Success notification');
         }
 
         function onError(error) {
-            console.log('Unable to save the cocktail data: ' + error); // TODO: use angular ui notification instead
+            Notification.error('Error notification');
         }
     };
 
     vm.delete = function () {
-        MyBarService.deleteCocktail(vm.cocktail.id);
+        MyBarService.deleteCocktail(vm.cocktail.id)
+            // TODO
+            .then()
+            .catch();
     };
 
 }
