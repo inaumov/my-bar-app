@@ -86,15 +86,15 @@ function MyBarService($http, GENERAL_CONFIG) {
         function getRequestCallComplete(response) {
             if (typeof response.data === 'object') {
                 return response.data;
-            } else {
+            } else if (response.status != 204) {
                 // invalid response
-                console.error('XHR Failed for [].' + response.data);
+                console.error('XHR Failed for [', response.data, '].');
             }
         }
 
         function getRequestCallFailed(error) {
             // something went wrong
-            console.error('XHR Failed for [].' + error.data);
+            console.error('XHR Failed for [', error.data, '].');
             throw error;
         }
     }

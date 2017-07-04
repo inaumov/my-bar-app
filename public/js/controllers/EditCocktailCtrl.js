@@ -114,28 +114,35 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     vm.save = function () {
         if (vm.isNew) {
             MyBarService.createCocktail(vm.cocktail)
-                .then(onSuccess)
+                .then(onSaveSuccess)
                 .catch(onError);
         } else {
             MyBarService.updateCocktail(vm.cocktail)
-                .then(onSuccess)
+                .then(onUpdateSuccess)
                 .catch(onError);
-        }
-
-        function onSuccess() {
-            Notification.success('Success notification');
-        }
-
-        function onError(error) {
-            Notification.error('Error notification');
         }
     };
 
     vm.delete = function () {
         MyBarService.deleteCocktail(vm.cocktail.id)
-            // TODO
-            .then()
-            .catch();
+            .then(onRemoveSuccess)
+            .catch(onError);
     };
+
+    function onUpdateSuccess() {
+        Notification.success('Successfully updated.');
+    }
+
+    function onSaveSuccess() {
+        Notification.success('Successfully added to cocktail list.');
+    }
+
+    function onRemoveSuccess() {
+        Notification.success('Successfully removed from cocktail list.');
+    }
+
+    function onError(error) {
+        Notification.error('Error: cocktail could not be removed or updated.');
+    }
 
 }

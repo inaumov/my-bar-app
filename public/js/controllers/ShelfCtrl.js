@@ -50,7 +50,7 @@ function ShelfController(beverages, MyBarService, Notification, $timeout, $locat
 
         if (vm.editMode) {
             MyBarService.updateBottle(vm.bottle)
-                .then(onSuccess)
+                .then(onUpdateSuccess)
                 .catch(onError);
 
             vm.editMode = false;
@@ -60,33 +60,17 @@ function ShelfController(beverages, MyBarService, Notification, $timeout, $locat
             vm.itemsInShelf.splice(idx, 1);
         } else {
             MyBarService.createBottle(vm.bottle)
-                .then(onSuccess)
+                .then(onSaveSuccess)
                 .catch(onError);
         }
         vm.itemsInShelf.push(vm.bottle);
         vm.formPanel = false;
-
-        function onSuccess() {
-            Notification.success('Success notification');
-        }
-
-        function onError(error) {
-            Notification.error('Error notification');
-        }
     };
 
     vm.updateAvailability = function (item) {
         MyBarService.updateBottle(item)
-            .then(onSuccess)
+            .then(onUpdateSuccess)
             .catch(onError);
-
-        function onSuccess() {
-            Notification.success('Success notification');
-        }
-
-        function onError(error) {
-            Notification.error('Error notification');
-        }
     };
 
     vm.edit = function (item) {
@@ -102,9 +86,8 @@ function ShelfController(beverages, MyBarService, Notification, $timeout, $locat
 
     vm.delete = function (item) {
         MyBarService.deleteBottle(item.id)
-            // TODO
-            .then()
-            .catch();
+            .then(onRemoveSuccess)
+            .catch(onError);
         var index = vm.itemsInShelf.indexOf(item);
         if (index > -1) {
             vm.itemsInShelf.splice(index, 1);
@@ -118,6 +101,22 @@ function ShelfController(beverages, MyBarService, Notification, $timeout, $locat
             // clear anchor
             $location.hash(null);
         }, 100);
+    };
+
+    function onUpdateSuccess() {
+        Notification.success('Successfully updated.');
+    }
+
+    function onSaveSuccess() {
+        Notification.success('Successfully added to the shelf.');
+    }
+
+    function onRemoveSuccess() {
+        Notification.success('Successfully removed from the shelf.');
+    }
+
+    function onError(error) {
+        Notification.error('Error: bottle could not be removed or updated.');
     }
 
 }
