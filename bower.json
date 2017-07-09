@@ -45,6 +45,12 @@
     },
     "jquery": {
       "main": []
+    },
+    "angular-ui-notification": {
+      "main": [
+        "dist/angular-ui-notification.min.css",
+        "dist/angular-ui-notification.min.js"
+      ]
     }
   }
 }
