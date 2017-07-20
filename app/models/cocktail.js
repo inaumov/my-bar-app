@@ -6,7 +6,7 @@ var modelExtend = require('./ext/crudExt');
 // create a schema
 var cocktailSchema = new Schema({
     id: Number,
-    menuId: Number,
+    relatedToMenu: String,
     name: String,
     ingredients: [
         {
@@ -27,18 +27,33 @@ var Cocktail = mongoose.model('Cocktail', cocktailSchema);
 // make this available in Node applications
 modelExtend(module.exports, Cocktail);
 
-module.exports.readAllByMenuId = function (req, res) {
+// override
+exports.read = function (req, res) {
 
-    // use mongoose to get all cocktails for specific menu in the database
-    var id = req.params.menuId;
-    Cocktail.find({menuId: id}, function (err, cocktails) {
+    var filterParam = req.query['filter'];
 
-        // if there is an error retrieving, send the error.
-        // nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
+    if (!filterParam) {
+        Cocktail.find(function (err, objects) {
 
-        res.json(cocktails); // return cocktails in JSON format
-    });
+            // if there is an error retrieving, send the error.
+            // nothing after res.send(err) will execute
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(objects); // return all objects in JSON format
+            // TODO group by relatedToMenu
+        });
+    } else {
+        Cocktail.find({relatedToMenu: filterParam}, function (err, objects) {
+
+            // if there is an error retrieving, send the error.
+            // nothing after res.send(err) will execute
+            if (err) {
+                res.send(err);
+            }
+
+            res.json(objects); // return cocktails in JSON format
+        });
+    }
 };

@@ -10,15 +10,14 @@ module.exports = function (app) {
     // authentication routes
 
     app.route('/mocks/cocktails/menu').get(Menu.read);
-    app.route('/mocks/menu/:menuId/cocktails').get(Cocktail.readAllByMenuId);
 
-    app.route('/mocks/cocktails').post(Cocktail.create).get(Cocktail.read);
-    app.route('/mocks/cocktails/:model_id').get(Cocktail.findOneByID).put(Cocktail.update).delete(Cocktail.delete);
+    app.route('/mocks/cocktails').post(Cocktail.create).get(Cocktail.read).put(Cocktail.update);
+    app.route('/mocks/cocktails/:model_id').get(Cocktail.findOneByID).delete(Cocktail.delete);
 
     app.route('/mocks/ingredients').get(Ingredient.read);
 
-    app.route('/mocks/shelf/bottles').post(Bottle.create).get(Bottle.read);
-    app.route('/mocks/shelf/bottles/:model_id').put(Bottle.update).delete(Bottle.delete);
+    app.route('/mocks/shelf/bottles').post(Bottle.create).get(Bottle.read).put(Bottle.update);
+    app.route('/mocks/shelf/bottles/:model_id').get(Bottle.findOneByID).delete(Bottle.delete);
 
     // frontend routes =========================================================
     // route to handle all angular requests

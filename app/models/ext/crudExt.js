@@ -45,14 +45,13 @@ function addCrudOperations(exports, model) {
     };
 
     exports.update = function (req, res) {
-        var id = req.params.model_id;
         var data = req.body;
-        model.update({"id": id}, data, function (err, obj) {
+        model.update({id: data.id}, data, function (err, obj) {
             if (err) {
                 res.send(err);
             }
             else {
-                res.json(obj);
+                res.json(data);
             }
         });
     };
