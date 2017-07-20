@@ -1,0 +1,106 @@
+[
+  {
+    "id": 10,
+    "groupName": "beverages",
+    "kind": "Banana liqueur",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 5,
+    "groupName": "beverages",
+    "kind": "Bourbon",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 7,
+    "groupName": "beverages",
+    "kind": "Brandy",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 16,
+    "groupName": "beverages",
+    "kind": "Coffee liqueur",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 2,
+    "groupName": "beverages",
+    "kind": "Gin",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 11,
+    "groupName": "beverages",
+    "kind": "Irish cream",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 9,
+    "groupName": "beverages",
+    "kind": "Maraschino liqueur",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 3,
+    "groupName": "beverages",
+    "kind": "Rum",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 4,
+    "groupName": "beverages",
+    "kind": "Tequila",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 8,
+    "groupName": "beverages",
+    "kind": "Triple Sec",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 1,
+    "groupName": "beverages",
+    "kind": "Vodka",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 6,
+    "groupName": "beverages",
+    "kind": "Whisky",
+    "beverageType": "DISTILLED"
+  },
+  {
+    "id": 17,
+    "groupName": "drinks",
+    "kind": "Coca Cola",
+    "drinkType": "SODA"
+  },
+  {
+    "id": 13,
+    "groupName": "drinks",
+    "kind": "Orange Juice",
+    "drinkType": "JUICE"
+  },
+  {
+    "id": 12,
+    "groupName": "additives",
+    "kind": "Grenadine"
+  },
+  {
+    "id": 14,
+    "groupName": "additives",
+    "kind": "Ice"
+  },
+  {
+    "id": 18,
+    "groupName": "additives",
+    "kind": "Lime"
+  },
+  {
+    "id": 15,
+    "groupName": "additives",
+    "kind": "Sugar"
+  }
+]

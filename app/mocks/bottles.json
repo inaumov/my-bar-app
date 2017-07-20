@@ -1,0 +1,178 @@
+[
+  {
+    "id": 2,
+    "brandName": "",
+    "volume": 0.75,
+    "price": 140.0,
+    "inShelf": true,
+    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "ingredient": {
+      "id": 2
+    }
+  },
+  {
+    "id": 3,
+    "brandName": "Bacardi",
+    "volume": 1.0,
+    "price": 198.5,
+    "inShelf": true,
+    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 4,
+    "brandName": "",
+    "volume": 1.0,
+    "price": 178.0,
+    "inShelf": true,
+    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "ingredient": {
+      "id": 4
+    }
+  },
+  {
+    "id": 5,
+    "brandName": "",
+    "volume": 0.5,
+    "price": 172.35,
+    "inShelf": true,
+    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "ingredient": {
+      "id": 8
+    }
+  },
+  {
+    "id": 6,
+    "brandName": "",
+    "volume": 1.0,
+    "price": 254.0,
+    "inShelf": true,
+    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "ingredient": {
+      "id": 6
+    }
+  },
+  {
+    "id": 8,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 9,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 10,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 11,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 12,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 13,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 14,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 15,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 16,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 17,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  },
+  {
+    "id": 18,
+    "brandName": "Olmeca",
+    "volume": 0.63,
+    "price": 987.0,
+    "inShelf": true,
+    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "ingredient": {
+      "id": 3
+    }
+  }
+]

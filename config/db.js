@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost/my-bar-client-dev'
+    url: 'mongodb://localhost/dev_my_bar'
 };

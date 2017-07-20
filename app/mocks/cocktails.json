@@ -1,0 +1,264 @@
+[
+  {
+    "id": 12,
+    "relatedToMenu": "smoothie",
+    "name": "Banana Blast II",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 14,
+    "relatedToMenu": "smoothie",
+    "name": "NEWWWW",
+    "state": "NOT_AVAILABLE",
+    "imageUrl": null,
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 1,
+          "volume": 444.0,
+          "unitsValue": "ML",
+          "missing": false
+        },
+        {
+          "ingredientId": 4,
+          "volume": 111.0,
+          "unitsValue": "ML",
+          "missing": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "relatedToMenu": "long",
+    "name": "Long Island Iced Tea",
+    "state": "NOT_AVAILABLE",
+    "imageUrl": "http://liquor.s3.amazonaws.com/wp-content/uploads/2013/07/Long-Island-Iced-Tea.jpg",
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 1,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": false
+        },
+        {
+          "ingredientId": 2,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": true
+        },
+        {
+          "ingredientId": 3,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": false
+        },
+        {
+          "ingredientId": 4,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": true
+        },
+        {
+          "ingredientId": 6,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": true
+        }
+      ],
+      "additives": [
+        {
+          "ingredientId": 14,
+          "volume": 5.0,
+          "unitsValue": "PCS",
+          "missing": true
+        },
+        {
+          "ingredientId": 18,
+          "volume": 5.0,
+          "unitsValue": "PCS",
+          "missing": true
+        }
+      ],
+      "drinks": [
+        {
+          "ingredientId": 17,
+          "volume": 150.0,
+          "unitsValue": "ML",
+          "missing": false
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "relatedToMenu": "long",
+    "name": "Tequila Sunrise",
+    "state": "NOT_AVAILABLE",
+    "imageUrl": null,
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 4,
+          "volume": 50.0,
+          "unitsValue": "ML",
+          "missing": true
+        }
+      ],
+      "additives": [
+        {
+          "ingredientId": 14,
+          "volume": 5.0,
+          "unitsValue": "PCS",
+          "missing": true
+        }
+      ],
+      "drinks": [
+        {
+          "ingredientId": 13,
+          "volume": 150.0,
+          "unitsValue": "ML",
+          "missing": false
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "relatedToMenu": "long",
+    "name": "Black Russian",
+    "state": "NOT_AVAILABLE",
+    "imageUrl": null,
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 16,
+          "volume": 50.0,
+          "unitsValue": "ML",
+          "missing": true
+        }
+      ],
+      "additives": [
+        {
+          "ingredientId": 14,
+          "volume": 5.0,
+          "unitsValue": "PCS",
+          "missing": true
+        }
+      ],
+      "drinks": [
+        {
+          "ingredientId": 17,
+          "volume": 150.0,
+          "unitsValue": "ML",
+          "missing": false
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "relatedToMenu": "long",
+    "name": "Hurricane",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 9,
+    "relatedToMenu": "long",
+    "name": "Mai Tai",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 10,
+    "relatedToMenu": "long",
+    "name": "Margarita",
+    "state": "UNDEFINED",
+    "imageUrl": "http://liquor.s3.amazonaws.com/wp-content/uploads/2013/02/Margarita-new.jpg",
+    "ingredients": {}
+  },
+  {
+    "id": 11,
+    "relatedToMenu": "long",
+    "name": "Sex on the beach",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 15,
+    "relatedToMenu": "long",
+    "name": "Good cocktail",
+    "state": "AVAILABLE",
+    "imageUrl": null,
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 1,
+          "volume": 199.0,
+          "unitsValue": "ML",
+          "missing": false
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "relatedToMenu": "shot",
+    "name": "B52",
+    "state": "NOT_AVAILABLE",
+    "imageUrl": "http://www.allcocktails.net/gallery/b-52-cocktail/b52-cocktail.png",
+    "ingredients": {
+      "beverages": [
+        {
+          "ingredientId": 8,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": true
+        },
+        {
+          "ingredientId": 11,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": false
+        },
+        {
+          "ingredientId": 16,
+          "volume": 20.0,
+          "unitsValue": "ML",
+          "missing": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "relatedToMenu": "shot",
+    "name": "B53",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 3,
+    "relatedToMenu": "shot",
+    "name": "Green Mexican",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  },
+  {
+    "id": 4,
+    "relatedToMenu": "shot",
+    "name": "Blow Job",
+    "state": "UNDEFINED",
+    "imageUrl": null,
+    "ingredients": {}
+  }
+]
