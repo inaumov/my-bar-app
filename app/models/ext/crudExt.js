@@ -16,7 +16,7 @@ function addCrudOperations(exports, model) {
 
     exports.read = function (req, res) {
         // use mongoose to get all objects in the database
-        model.find(function (err, objects) {
+        model.find({}, {'_id': 0}, function (err, objects) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute
@@ -32,7 +32,7 @@ function addCrudOperations(exports, model) {
 
         // use mongoose to get object model by id in the database
         var id = req.params.model_id;
-        model.findOne({id: id}, function (err, obj) {
+        model.findOne({id: id}, {'_id': 0}, function (err, obj) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute
