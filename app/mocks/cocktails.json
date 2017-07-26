@@ -3,7 +3,7 @@
     "id": 12,
     "relatedToMenu": "smoothie",
     "name": "Banana Blast II",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -11,7 +11,7 @@
     "id": 14,
     "relatedToMenu": "smoothie",
     "name": "NEWWWW",
-    "state": "NOT_AVAILABLE",
+    "available": "NO",
     "imageUrl": null,
     "ingredients": {
       "beverages": [
@@ -34,7 +34,7 @@
     "id": 5,
     "relatedToMenu": "long",
     "name": "Long Island Iced Tea",
-    "state": "NOT_AVAILABLE",
+    "available": "NO",
     "imageUrl": "http://liquor.s3.amazonaws.com/wp-content/uploads/2013/07/Long-Island-Iced-Tea.jpg",
     "ingredients": {
       "beverages": [
@@ -97,7 +97,7 @@
     "id": 6,
     "relatedToMenu": "long",
     "name": "Tequila Sunrise",
-    "state": "NOT_AVAILABLE",
+    "available": "NO",
     "imageUrl": null,
     "ingredients": {
       "beverages": [
@@ -130,7 +130,7 @@
     "id": 7,
     "relatedToMenu": "long",
     "name": "Black Russian",
-    "state": "NOT_AVAILABLE",
+    "available": "NO",
     "imageUrl": null,
     "ingredients": {
       "beverages": [
@@ -163,7 +163,7 @@
     "id": 8,
     "relatedToMenu": "long",
     "name": "Hurricane",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -171,7 +171,7 @@
     "id": 9,
     "relatedToMenu": "long",
     "name": "Mai Tai",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -179,7 +179,7 @@
     "id": 10,
     "relatedToMenu": "long",
     "name": "Margarita",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": "http://liquor.s3.amazonaws.com/wp-content/uploads/2013/02/Margarita-new.jpg",
     "ingredients": {}
   },
@@ -187,7 +187,7 @@
     "id": 11,
     "relatedToMenu": "long",
     "name": "Sex on the beach",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -195,7 +195,7 @@
     "id": 15,
     "relatedToMenu": "long",
     "name": "Good cocktail",
-    "state": "AVAILABLE",
+    "available": "YES",
     "imageUrl": null,
     "ingredients": {
       "beverages": [
@@ -212,7 +212,7 @@
     "id": 1,
     "relatedToMenu": "shot",
     "name": "B52",
-    "state": "NOT_AVAILABLE",
+    "available": "NO",
     "imageUrl": "http://www.allcocktails.net/gallery/b-52-cocktail/b52-cocktail.png",
     "ingredients": {
       "beverages": [
@@ -241,7 +241,7 @@
     "id": 2,
     "relatedToMenu": "shot",
     "name": "B53",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -249,7 +249,7 @@
     "id": 3,
     "relatedToMenu": "shot",
     "name": "Green Mexican",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   },
@@ -257,7 +257,7 @@
     "id": 4,
     "relatedToMenu": "shot",
     "name": "Blow Job",
-    "state": "UNDEFINED",
+    "available": "UNDEFINED",
     "imageUrl": null,
     "ingredients": {}
   }
