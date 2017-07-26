@@ -5,7 +5,9 @@ var modelExtend = require('./ext/crudExt');
 
 // create a schema
 var ingredientSchema = new Schema({
-    id: Number,
+    id: {
+        type: Number, unique: true
+    },
     groupName: String,
     kind: String,
     type: String
@@ -23,19 +25,30 @@ exports.read = function (req, res) {
     var filterParam = req.query['filter'];
 
     if (!filterParam) {
-        Ingredient.find(function (err, objects) {
-
-            // if there is an error retrieving, send the error.
-            // nothing after res.send(err) will execute
-            if (err) {
-                res.send(err);
-            }
-
-            res.json(objects); // return all objects in JSON format
-            // TODO group by groupName
-        });
+        Ingredient.find().distinct('groupName').exec()
+            .then(function (groupNames) {
+                var result = {};
+                var cnt = 0;
+                groupNames.forEach(function (groupName) {
+                    Ingredient.find({groupName: groupName}, {'_id': 0, 'groupName': 0}).exec()
+                        .then(function (ingredients) {
+                            cnt++;
+                            console.log('Found ', ingredients.length, ' records for: ', groupName);
+                            var tempArr = [];
+                            ingredients.forEach(function (ingredient) {
+                                console.log(JSON.stringify(ingredient));
+                                tempArr.push(ingredient);
+                            });
+                            result[groupName] = tempArr;
+                            if (groupNames.length == cnt) {
+                                res.send(result);
+                            }
+                        });
+                });
+                return result;
+            });
     } else {
-        Ingredient.find({groupName: filterParam}, function (err, objects) {
+        Ingredient.find({groupName: filterParam}, {'_id': 0}, function (err, objects) {
 
             // if there is an error retrieving, send the error.
             // nothing after res.send(err) will execute

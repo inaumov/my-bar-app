@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/inaumov/MyBar-client#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mongodb": "latest",
+    "bluebird": "latest"
   },
   "devDependencies": {
     "body-parser": "^1.14.1",

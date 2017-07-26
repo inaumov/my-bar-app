@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var mongodb = require('mongodb');
 var fs = require('fs');
 
@@ -32,7 +33,7 @@ mongodb.MongoClient.connect(db.url, function (err, db) {
             if (err) {
                 throw err;
             }
-            console.log(data);
+            // console.log(data);
             var obj = JSON.parse(data);
             db.collection(collectionName).insert(obj);
         });

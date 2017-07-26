@@ -5,7 +5,9 @@ var modelExtend = require('./ext/crudExt');
 
 // create a schema
 var menuSchema = new Schema({
-    name: String,
+    name: {
+        type: String, unique: true
+    },
     translation: String
 });
 
