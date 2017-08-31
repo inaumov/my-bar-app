@@ -72,11 +72,6 @@ gulp.task('copy:fonts', function () {
         .pipe(gulp.dest('./build/assets/fonts'));
 });
 
-gulp.task('copy:mocks', function () {
-    gulp.src('./mocks/**/*')
-        .pipe(gulp.dest('./build/mocks'));
-});
-
 // finalize index.html to include all modified dependencies
 gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
 
@@ -119,18 +114,26 @@ gulp.task('index', ['copy:assets', 'copy:fonts'], function () {
         .pipe(gulp.dest('./build'));
 });
 
-gulp.task('config:demo', function () {
+gulp.task('config:dev', function () {
     return gulp.src('./config.json')
         .pipe(gulpNgConfig('myBar.config', {
-            environment: 'demo'
+            environment: 'dev'
         }))
         .pipe(gulp.dest('./public/js'));
 });
 
-gulp.task('config:build', function () {
+gulp.task('config:integration', function () {
     return gulp.src('./config.json')
         .pipe(gulpNgConfig('myBar.config', {
-            environment: 'production'
+            environment: 'integration'
+        }))
+        .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('config:release', function () {
+    return gulp.src('./config.json')
+        .pipe(gulpNgConfig('myBar.config', {
+            environment: 'release'
         }))
         .pipe(gulp.dest('./public/js'));
 });
@@ -146,12 +149,17 @@ gulp.task('zip', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-// demo gulp task
+// dev gulp task
+gulp.task('dist:dev', ['clean'], function () {
+    runSequence('config:dev', 'views', 'scripts', 'styles', 'index', 'copy:files', 'zip');
+});
+
+// integration gulp task
 gulp.task('dist:e2e', ['clean'], function () {
-    runSequence('config:build', 'copy:files', 'views', 'scripts', 'styles', 'index', 'zip');
+    runSequence('config:integration', 'copy:files', 'views', 'scripts', 'styles', 'index', 'zip');
 });
 
 // release gulp task
-gulp.task('dist:demo', ['clean'], function () {
-    runSequence('config:demo', 'copy:mocks', 'views', 'scripts', 'styles', 'index', 'copy:files', 'zip');
+gulp.task('dist:release', ['clean'], function () {
+    runSequence('config:release', 'views', 'scripts', 'styles', 'index', 'copy:files', 'zip');
 });
