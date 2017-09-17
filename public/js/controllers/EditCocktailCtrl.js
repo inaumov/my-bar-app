@@ -4,42 +4,31 @@ angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailControl
 function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog, Notification) {
 
     var vm = this;
-    vm.drinkTypes = [];
-    vm.ingredients = ingredients;
+    vm.menuItems = [];
+    vm.allKnownIngredients = ingredients;
     vm.isNew = $routeParams.id === 'new';
+
+    vm.create = create;
+    vm.reset = create;
 
     activate();
 
     function activate() {
         loadMenuItems();
-        loadCocktail();
+        loadOrCreateCocktail();
         console.log('Activated EditCocktailCtrl');
     }
 
     function loadMenuItems() {
         return MyBarService.getMenuItems().then(function (data) {
-            vm.drinkTypes = data;
-            return vm.drinkTypes;
+            vm.menuItems = data;
+            return vm.menuItems;
         });
     }
 
-    function wrapIngredient(ingredient) {
-        ingredient.getKind = function () {
-            var data = vm.ingredients;
-            for (var key in data) {
-                if (data.hasOwnProperty(key)) {
-                    for (var j = 0; j < data[key].length; j++) {
-                        var el = data[key][j];
-                        if (ingredient.ingredientId === el.id) {
-                            return el.kind;
-                        }
-                    }
-                }
-            }
-        }
+    function loadOrCreateCocktail() {
+        vm.isNew ? create() : get();
     }
-
-    vm.newCocktail = create;
 
     function create() {
         vm.cocktail = {
@@ -47,25 +36,43 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
         }
     }
 
-    function loadCocktail() {
-
-        vm.isNew ? create() : get();
-
-        function get() {
-            MyBarService.getCocktailById($routeParams.id).then(function (data) {
-                vm.cocktail = data;
-                for (var i = 0; i < vm.cocktail.ingredients.length; i++) {
-                    wrapIngredient(vm.cocktail.ingredients[i]);
+    function get() {
+        MyBarService.getCocktailById($routeParams.id).then(function (data) {
+            vm.cocktail = data;
+            for (var groupName in vm.cocktail.ingredients) {
+                if (vm.cocktail.ingredients.hasOwnProperty(groupName)) {
+                    var arr = vm.cocktail.ingredients[groupName];
+                    for (var i = 0; i < arr.length; i++) {
+                        arr[i].getKind = function (groupName) {
+                            return function () {
+                                return findIngredientKind(groupName, this.ingredientId);
+                            }
+                        }(groupName);
+                        arr[i].isLiquid = function (groupName) {
+                            return function () {
+                                return isLiquid(groupName, this.ingredientId);
+                            }
+                        }(groupName);
+                    }
                 }
-            })
-        }
+            }
+        })
     }
+
+    vm.getUomValues = function (groupName) {
+        try {
+            return vm.allKnownIngredients[groupName].uomValues;
+        } catch (err) {
+            console.log(err.message + '.', 'Set default values.');
+            return ['ML', 'PCS', 'G']; // default, mainly for dev purpose
+        }
+    };
 
     vm.showIngredients = function () {
         ngDialog.open({
             templateUrl: 'views/templates/select-ingredients.html',
-            controller: ['ingredients', function (ingredients) {
-                this.data = ingredients;
+            controller: ['ingredients', function (allKnownItems) {
+                this.data = allKnownItems;
                 // toggle selection for a given kind
                 this.toggleSelection = function toggleSelection(groupName, id) {
                     var idx;
@@ -81,14 +88,22 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                     }
                     // is newly selected
                     else {
-                        var newItem = {
+                        var selectedIngredient = {
                             ingredientId: id,
                             volume: 0,
-                            // TODO check other types if needed
-                            unitsValue: groupName !== 'additives' ? 'ML' : undefined
+                            uom: null,
+                            getOriginalItem: function () {
+                                return findOriginalItem(groupName, this.ingredientId);
+                            },
+                            isLiquid: function () {
+                                return isLiquid(groupName, this.ingredientId);
+                            },
+                            getKind: function () {
+                                return findIngredientKind(groupName, this.ingredientId);
+                            }
                         };
-                        wrapIngredient(newItem);
-                        vm.cocktail.ingredients[groupName].push(newItem);
+
+                        vm.cocktail.ingredients[groupName].push(selectedIngredient);
                     }
                 };
                 this.isChecked = function (groupName, id) {
@@ -101,11 +116,12 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                         }
                     });
                 }
-            }],
+            }
+            ],
             controllerAs: 'selectIngredientsCtrl',
             resolve: {
                 ingredients: function () {
-                    return vm.ingredients;
+                    return vm.allKnownIngredients;
                 }
             }
         });
@@ -143,6 +159,29 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
 
     function onError(error) {
         Notification.error('Error: cocktail could not be removed or updated.');
+    }
+
+    function isLiquid(groupName, ingredientId) {
+        var originalItem = findOriginalItem(groupName, ingredientId);
+        return originalItem.hasOwnProperty('beverageType') || originalItem.hasOwnProperty('drinkType');
+    }
+
+    function findOriginalItem(groupName, ingredientId) {
+        for (var i = 0; i < vm.allKnownIngredients[groupName].length; i++) {
+            var ingredient = vm.allKnownIngredients[groupName][i];
+            if (ingredientId == ingredient.id) {
+                return ingredient;
+            }
+        }
+    }
+
+    function findIngredientKind(groupName, ingredientId) {
+        for (var i = 0; i < vm.allKnownIngredients[groupName].length; i++) {
+            var ingredient = vm.allKnownIngredients[groupName][i];
+            if (ingredientId == ingredient.id) {
+                return ingredient.kind;
+            }
+        }
     }
 
 }

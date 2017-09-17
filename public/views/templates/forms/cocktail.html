@@ -29,18 +29,18 @@
             </div>
         </div>
     </div>
-    <!--drinkType-->
+    <!--MenuItems-->
     <div class="form-group required">
-        <label class="control-label" for="drinkType">Drink type</label>
+        <label class="control-label" for="menuItem">Related to menu</label>
 
-        <div ng-class="{ 'has-error': CocktailForm.drinkType.$touched && CocktailForm.drinkType.$invalid }">
-            <select class="form-control" id="drinkType" name="drinkType"
-                    ng-options="type.name as type.translation for type in cocktailCtrl.drinkTypes"
+        <div ng-class="{ 'has-error': CocktailForm.menuItem.$touched && CocktailForm.menuItem.$invalid }">
+            <select class="form-control" id="menuItem" name="menuItem"
+                    ng-options="menu.name as menu.translation for menu in cocktailCtrl.menuItems"
                     ng-model="cocktailCtrl.cocktail.relatedToMenu" required>
             </select>
 
-            <div class="help-block" ng-messages="CocktailForm.drinkType.$error" ng-if="CocktailForm.drinkType.$touched">
-                <p ng-message="required">Cocktail's type selection is required.</p>
+            <div class="help-block" ng-messages="CocktailForm.menuItem.$error" ng-if="CocktailForm.menuItem.$touched">
+                <p ng-message="required">Menu selection is required.</p>
             </div>
         </div>
     </div>
@@ -54,22 +54,37 @@
     </div>
     <!--ingredients selection-->
     <div class="form-group" ng-if="cocktailCtrl.cocktail.ingredients.length != 0">
-        <label class="control-label" for="ingredients">Selected Ingredients</label>
-        <ul id="ingredients" class="list-group list-unstyled" ng-repeat="(groupName, ingredients) in cocktailCtrl.cocktail.ingredients">
+        <label class="control-label" for="ingredients">Ingredients</label>
+        <ul id="ingredients" class="list-group list-unstyled"
+            ng-repeat="(groupName, ingredients) in cocktailCtrl.cocktail.ingredients">
             <li ng-repeat="ingredient in ingredients">
-                <div class="list-group-item" ng-if="ingredient.unitsValue">
-                    <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5">
-                    {{ingredient.getKind()}}<span class="badge">{{ingredient.volume}} {{ingredient.unitsValue}}</span>
-                    </input>
+                <div class="list-group-item" ng-if="ingredient.isLiquid()">
+                    <div class="clearfix">
+                        <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5"/>
+                    </div>
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <span class="text-left">{{ingredient.volume}} {{ingredient.uom}} of {{ingredient.getKind()}}</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="text-right">
+                                <span ng-repeat="uom in cocktailCtrl.getUomValues(groupName)">
+                                    <input type="radio" ng-model="ingredient.uom" value="{{uom}}"/> {{uom}}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <span class="list-group-item" ng-if="!ingredient.unitsValue">{{ingredient.getKind()}}</span>
+                <!--when is not liquid-->
+                <span class="list-group-item" ng-if="!ingredient.isLiquid()">{{ingredient.getKind()}}</span>
             </li>
         </ul>
     </div>
     <!--action buttons-->
     <div class="form-group">
         <button type="button" class="btn btn-link" ng-click="cocktailCtrl.showIngredients()">
-            <span class="glyphicon" ng-class="cocktailCtrl.cocktail.ingredients.length == 0 ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
+            <span class="glyphicon"
+                  ng-class="cocktailCtrl.cocktail.ingredients.length == 0 ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
             <span>{{cocktailCtrl.cocktail.ingredients.length == 0 ? 'Add' : 'Update'}} ingredients</span>
         </button>
     </div>
@@ -82,7 +97,7 @@
             <span>Delete</span>
         </button>
         <button type="reset" class="btn btn-warning" ng-disabled="CocktailForm.$pristine"
-                ng-click="cocktailCtrl.newCocktail(); CocktailForm.$setPristine()">
+                ng-click="cocktailCtrl.reset(); CocktailForm.$setPristine()">
             <span>Reset</span>
         </button>
         <input type="submit" class="btn btn-primary"
