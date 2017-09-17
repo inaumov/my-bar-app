@@ -1,7 +1,7 @@
 <div class="ngdialog-content">
     <div ng-repeat="(groupName, ingredients) in selectIngredientsCtrl.data">
         {{groupName | uppercase}}
-        <div ng-repeat="item in ingredients">
+        <div ng-repeat="item in ingredients.items">
         <div class="action-checkbox">
             <input id="{{item.kind}}" type="checkbox" value="{{item.id}}"
                    ng-checked="selectIngredientsCtrl.isChecked(groupName, item.id)"

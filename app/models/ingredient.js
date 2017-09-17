@@ -34,12 +34,15 @@ exports.read = function (req, res) {
                         .then(function (ingredients) {
                             cnt++;
                             console.log('Found ', ingredients.length, ' records for: ', groupName);
-                            var tempArr = [];
+                            var items = [];
                             ingredients.forEach(function (ingredient) {
                                 console.log(JSON.stringify(ingredient));
-                                tempArr.push(ingredient);
+                                items.push(ingredient);
                             });
-                            result[groupName] = tempArr;
+                            result[groupName] = {
+                                "uomValues": ['ML', 'PCS', 'G'],
+                                "items": items
+                            };
                             if (groupNames.length == cnt) {
                                 res.send(result);
                             }

@@ -167,8 +167,9 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     }
 
     function findOriginalItem(groupName, ingredientId) {
-        for (var i = 0; i < vm.allKnownIngredients[groupName].length; i++) {
-            var ingredient = vm.allKnownIngredients[groupName][i];
+        var items = getItemsFromGroup(groupName);
+        for (var i = 0; i < items.length; i++) {
+            var ingredient = items[i];
             if (ingredientId == ingredient.id) {
                 return ingredient;
             }
@@ -176,12 +177,17 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     }
 
     function findIngredientKind(groupName, ingredientId) {
-        for (var i = 0; i < vm.allKnownIngredients[groupName].length; i++) {
-            var ingredient = vm.allKnownIngredients[groupName][i];
+        var items = getItemsFromGroup(groupName);
+        for (var i = 0; i < items.length; i++) {
+            var ingredient = items[i];
             if (ingredientId == ingredient.id) {
                 return ingredient.kind;
             }
         }
+    }
+
+    function getItemsFromGroup(groupName) {
+        return vm.allKnownIngredients[groupName].items;
     }
 
 }
