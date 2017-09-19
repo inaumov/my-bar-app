@@ -77,7 +77,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                 this.toggleSelection = function toggleSelection(groupName, id) {
                     var idx;
                     vm.cocktail.ingredients[groupName].some(function (entry, i) {
-                        if (entry.id == id) {
+                        if (entry.ingredientId == id) {
                             idx = i;
                             return true;
                         }
@@ -125,6 +125,10 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                 }
             }
         });
+    };
+
+    vm.hasIngredients = function (cocktail) {
+        return Object.keys(cocktail.ingredients).length > 0;
     };
 
     vm.save = function () {

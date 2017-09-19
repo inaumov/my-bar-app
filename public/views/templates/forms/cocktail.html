@@ -53,7 +53,7 @@
         </textarea>
     </div>
     <!--ingredients selection-->
-    <div class="form-group" ng-if="cocktailCtrl.cocktail.ingredients.length != 0">
+    <div class="form-group" ng-if="cocktailCtrl.hasIngredients(cocktailCtrl.cocktail)">
         <label class="control-label" for="ingredients">Ingredients</label>
         <ul id="ingredients" class="list-group list-unstyled"
             ng-repeat="(groupName, ingredients) in cocktailCtrl.cocktail.ingredients">
@@ -82,10 +82,10 @@
     </div>
     <!--action buttons-->
     <div class="form-group">
-        <button type="button" class="btn btn-link" ng-click="cocktailCtrl.showIngredients()">
+        <button type="button" class="btn" ng-click="cocktailCtrl.showIngredients()">
             <span class="glyphicon"
-                  ng-class="cocktailCtrl.cocktail.ingredients.length == 0 ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
-            <span>{{cocktailCtrl.cocktail.ingredients.length == 0 ? 'Add' : 'Update'}} ingredients</span>
+                  ng-class="!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
+            <span>{{!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'Add' : 'Update'}} ingredients</span>
         </button>
     </div>
     <div class="form-group pull-right">
@@ -101,7 +101,7 @@
             <span>Reset</span>
         </button>
         <input type="submit" class="btn btn-primary"
-               ng-disabled="CocktailForm.$invalid || CocktailForm.$pristine || cocktailCtrl.cocktail.ingredients.length == 0"
+               ng-disabled="CocktailForm.$invalid || CocktailForm.$pristine || cocktailCtrl.hasIngredients(cocktailCtrl.cocktail)"
                value="{{!cocktailCtrl.cocktail.id ? 'Add' : 'Update'}}"/>
     </div>
 </form>
