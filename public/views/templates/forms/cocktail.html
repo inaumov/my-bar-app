@@ -55,28 +55,38 @@
     <!--ingredients selection-->
     <div class="form-group" ng-if="cocktailCtrl.hasIngredients(cocktailCtrl.cocktail)">
         <label class="control-label" for="ingredients">Ingredients</label>
-        <ul id="ingredients" class="list-group list-unstyled"
+        <ul class="list-unstyled" id="ingredients"
             ng-repeat="(groupName, ingredients) in cocktailCtrl.cocktail.ingredients">
-            <li ng-repeat="ingredient in ingredients">
-                <div class="list-group-item" ng-if="ingredient.isLiquid()">
-                    <div class="clearfix">
-                        <input type="range" ng-model="ingredient.volume" min="5" max="250" step="5"/>
-                    </div>
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <span class="text-left">{{ingredient.volume}} {{ingredient.uom}} of {{ingredient.getKind()}}</span>
-                        </div>
-                        <div class="pull-right">
-                            <span class="text-right">
-                                <span ng-repeat="uom in cocktailCtrl.getUomValues(groupName)">
-                                    <input type="radio" ng-model="ingredient.uom" value="{{uom}}"/> {{uom}}
-                                </span>
-                            </span>
-                        </div>
-                    </div>
+            <li>
+                <div>
+                    <span ng-if="cocktailCtrl.cocktail.ingredients[groupName].length > 0">{{groupName | uppercase}}</span>
                 </div>
-                <!--when is not liquid-->
-                <span class="list-group-item" ng-if="!ingredient.isLiquid()">{{ingredient.getKind()}}</span>
+                <ul class="list-group list-unstyled">
+                    <li class="list-group-item" ng-repeat="ingredient in ingredients">
+                        <div ng-if="ingredient.isLiquid()">
+                            <div class="clearfix">
+                                <input title="volume.range" type="range" ng-model="ingredient.volume" min="5" max="250" step="5"/>
+                            </div>
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <span class="text-left">{{ingredient.volume}} {{ingredient.uom}} of {{ingredient.getKind()}}</span>
+                                </div>
+                                <div class="pull-right">
+                                    <!--TODO inline does not work :(-->
+                                    <ul class="list-inline" ng-repeat="uom in cocktailCtrl.getUomValues(groupName)">
+                                        <li>
+                                            <input title="{{uom}}" type="radio" ng-model="ingredient.uom" value="{{uom}}"/>
+                                            {{uom}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--when is not liquid-->
+                        <span class="list-group-item" ng-if="!ingredient.isLiquid()">{{ingredient.getKind()}}</span>
+                    </li>
+
+                </ul>
             </li>
         </ul>
     </div>
@@ -84,8 +94,8 @@
     <div class="form-group">
         <button type="button" class="btn" ng-click="cocktailCtrl.showIngredients()">
             <span class="glyphicon"
-                  ng-class="!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'glyphicon-plus' : 'glyphicon-pencil'"></span>
-            <span>{{!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'Add' : 'Update'}} ingredients</span>
+                  ng-class="!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'glyphicon-plus' : 'glyphicon-list'"></span>
+            <span>{{!cocktailCtrl.hasIngredients(cocktailCtrl.cocktail) ? 'Add' : 'Choose'}} ingredients</span>
         </button>
     </div>
     <div class="form-group pull-right">
