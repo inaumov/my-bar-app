@@ -4,12 +4,6 @@
             <span class="h2"
                   ng-class="{true: 'text-muted'}[item.available == 'NO']"><strong>{{item.name}}</strong>
             </span>
-            <span class="text-warning text-muted" ng-if="item.available == 'NO'">
-                <i> ..not available since not all ingredients are present</i>
-            </span>
-            <a class="btn btn-link pull-right" ng-if="item.isCustom" href="my/cocktails/{{item.id}}/edit" title="Edit cocktail details">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </a>
         </div>
     </div>
     <div class="row">
@@ -42,12 +36,9 @@
             <p class="text-justify" ng-class="{true: 'text-muted'}[item.available == 'NO']">
                 {{item.description}}
             </p>
-            <div class="margin-top-30" ng-if="!item.isCustom">
-                <button class="btn btn-default" ng-click="item.liked = !item.liked">
-                    <span class="glyphicon" ng-class="!item.liked ? 'glyphicon-heart-empty' : 'glyphicon-heart'"></span>
-                    {{!item.liked ? 'Add' : 'Added'}} to My Likes
-                </button>
-            </div>
+            <a role="button" class="margin-top-30 btn btn-warning pull-right" href="my/cocktails/{{item.id}}/edit"
+               title="Edit cocktail">Edit <u ng-bind="item.name"></u>
+            </a>
         </div>
     </div>
     <hr class="cocktails-divider">
