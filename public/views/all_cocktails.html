@@ -1,5 +1,5 @@
 <div class="row" ng-include="'views/templates/nav/cocktails_menu.html'"></div>
-<h2 class="row">Classic: {{cocktailsCtrl.selectedMenuName | lowercase}}</h2>
+<h2 class="row">Category: {{cocktailsCtrl.selectedMenuName | uppercase}}</h2>
 <div class="row margin-top-30">
     <div ng-include="'views/templates/cocktails_list.html'"></div>
     <div ng-hide="cocktailsCtrl.cocktails.length" class="text-center">
