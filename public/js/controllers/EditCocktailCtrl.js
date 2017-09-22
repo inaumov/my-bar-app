@@ -128,7 +128,10 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     };
 
     vm.hasIngredients = function (cocktail) {
-        return Object.keys(cocktail.ingredients).length > 0;
+        if (cocktail.ingredients) {
+            return Object.keys(cocktail.ingredients).length > 0;
+        }
+        return false;
     };
 
     vm.save = function () {
