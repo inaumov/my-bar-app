@@ -63,9 +63,12 @@
                 </div>
                 <ul class="list-group list-unstyled">
                     <li class="list-group-item" ng-repeat="ingredient in ingredients">
-                        <div ng-if="ingredient.isLiquid()">
+                        <div>
                             <div class="clearfix">
-                                <input title="volume.range" type="range" ng-model="ingredient.volume" min="5" max="250" step="5"/>
+                                <input ng-if="ingredient.isLiquid()" title="volume.range" type="range" ng-model="ingredient.volume"
+                                       min="5" max="250" step="5"/>
+                                <input ng-if="!ingredient.isLiquid()" title="volume.range" type="range" ng-model="ingredient.volume"
+                                       min="1" max="50" step="50"/>
                             </div>
                             <div class="clearfix">
                                 <div class="pull-left">
@@ -82,8 +85,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--when is not liquid-->
-                        <span class="list-group-item" ng-if="!ingredient.isLiquid()">{{ingredient.getKind()}}</span>
                     </li>
 
                 </ul>

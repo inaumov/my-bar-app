@@ -40,10 +40,10 @@ exports.read = function (req, res) {
                                 items.push(ingredient);
                             });
                             result[groupName] = {
-                                "uomValues": ['ML', 'PCS', 'G'],
+                                "uomValues": groupName === 'additives' ? ['PCS', 'G'] : ['ML', 'DROP', 'DASH', 'TSP'],
                                 "items": items
                             };
-                            if (groupNames.length == cnt) {
+                            if (groupNames.length === cnt) {
                                 res.send(result);
                             }
                         });
