@@ -28,6 +28,7 @@ function ShelfController(beverages, MyBarService, Notification, $timeout, $locat
                 return ingredient.kind;
             }
         }
+        return "n/a"
     };
 
     vm.newBottle = function () {

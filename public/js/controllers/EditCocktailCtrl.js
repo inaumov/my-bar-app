@@ -1,7 +1,7 @@
 angular.module('EditCocktailCtrl', ['ngDialog']).controller('EditCocktailController',
-    ['$routeParams', '$location', 'ingredients', 'MyBarService', 'ngDialog', 'Notification', EditCocktailController]);
+    ['$routeParams', '$filter', 'ingredients', 'MyBarService', 'ngDialog', 'Notification', EditCocktailController]);
 
-function EditCocktailController($routeParams, $location, ingredients, MyBarService, ngDialog, Notification) {
+function EditCocktailController($routeParams, $filter, ingredients, MyBarService, ngDialog, Notification) {
 
     var vm = this;
     vm.menuItems = [];
@@ -45,7 +45,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                     for (var i = 0; i < arr.length; i++) {
                         arr[i].getKind = function (groupName) {
                             return function () {
-                                return findIngredientKind(groupName, this.ingredientId);
+                                return $filter('kind')(this.ingredientId, ingredients, groupName);
                             }
                         }(groupName);
                         arr[i].isLiquid = function (groupName) {
@@ -71,13 +71,13 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     vm.showIngredients = function () {
         ngDialog.open({
             templateUrl: 'views/templates/select-ingredients.html',
-            controller: ['ingredients', function (allKnownItems) {
+            controller: ['ingredients', '$filter', function (allKnownItems, $filter) {
                 this.data = allKnownItems;
                 // toggle selection for a given kind
                 this.toggleSelection = function toggleSelection(groupName, id) {
                     var idx;
                     vm.cocktail.ingredients[groupName].some(function (entry, i) {
-                        if (entry.ingredientId == id) {
+                        if (entry.ingredientId === id) {
                             idx = i;
                             return true;
                         }
@@ -99,7 +99,7 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                                 return isLiquid(groupName, this.ingredientId);
                             },
                             getKind: function () {
-                                return findIngredientKind(groupName, this.ingredientId);
+                                return $filter('kind')(this.ingredientId, ingredients, groupName);
                             }
                         };
 
@@ -107,11 +107,11 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
                     }
                 };
                 this.isChecked = function (groupName, id) {
-                    if (vm.cocktail.ingredients[groupName] == undefined) {
+                    if (vm.cocktail.ingredients[groupName] === undefined) {
                         vm.cocktail.ingredients[groupName] = [];
                     }
                     return vm.cocktail.ingredients[groupName].some(function (entry) {
-                        if (entry.ingredientId == id) {
+                        if (entry.ingredientId === id) {
                             return true;
                         }
                     });
@@ -174,27 +174,11 @@ function EditCocktailController($routeParams, $location, ingredients, MyBarServi
     }
 
     function findOriginalItem(groupName, ingredientId) {
-        var items = getItemsFromGroup(groupName);
-        for (var i = 0; i < items.length; i++) {
-            var ingredient = items[i];
-            if (ingredientId == ingredient.id) {
-                return ingredient;
-            }
-        }
-    }
-
-    function findIngredientKind(groupName, ingredientId) {
-        var items = getItemsFromGroup(groupName);
-        for (var i = 0; i < items.length; i++) {
-            var ingredient = items[i];
-            if (ingredientId == ingredient.id) {
-                return ingredient.kind;
-            }
-        }
-    }
-
-    function getItemsFromGroup(groupName) {
-        return vm.allKnownIngredients[groupName].items;
+        var items = vm.allKnownIngredients[groupName].items;
+        var found = items.find(function (item) {
+            return item.id === ingredientId;
+        });
+        return !!found ? found : {};
     }
 
 }
