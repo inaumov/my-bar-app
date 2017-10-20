@@ -17,7 +17,8 @@
         "GENERAL_CONFIG": {
             "APP_NAME": "My Bar",
             "APP_VERSION": "0.1.20170831",
-            "BASE_URL": "http://mybar/api"
+            "BASE_URL": "http://mybar/api",
+            "debugInfoEnabled": false
         }
     }
 }

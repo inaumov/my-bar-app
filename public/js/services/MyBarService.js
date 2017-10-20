@@ -86,7 +86,7 @@ function MyBarService($http, GENERAL_CONFIG) {
         function getRequestCallComplete(response) {
             if (typeof response.data === 'object') {
                 return response.data;
-            } else if (response.status == 500) {
+            } else if (response.status === 500) {
                 // invalid response
                 console.error('XHR Failed for [', response.data, '].');
             }
