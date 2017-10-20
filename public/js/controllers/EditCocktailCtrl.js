@@ -59,9 +59,11 @@ function EditCocktailController($routeParams, $filter, ingredients, MyBarService
         })
     }
 
-    vm.getUomValues = function (groupName) {
+    vm.getMeasurements = function (groupName) {
         try {
-            return vm.allKnownIngredients[groupName].uomValues;
+            return vm.allKnownIngredients[groupName].measurements.map(function (item) {
+                return item.value;
+            });
         } catch (err) {
             console.log(err.message + '.', 'Set default values.');
             return ['ML', 'PCS', 'G']; // default, mainly for dev purpose
@@ -91,7 +93,7 @@ function EditCocktailController($routeParams, $filter, ingredients, MyBarService
                         var selectedIngredient = {
                             ingredientId: id,
                             volume: 0,
-                            uom: null,
+                            measurement: null,
                             getOriginalItem: function () {
                                 return findOriginalItem(groupName, this.ingredientId);
                             },

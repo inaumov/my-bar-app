@@ -21,7 +21,7 @@
                         {{ingredient.volume}}
                     </span>
                     <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
-                        {{ingredient.units}}
+                        {{ingredient.measurement}}
                     </span>
                     <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
                         <strong>{{ingredient.ingredientId | kind: cocktailsCtrl.ingredients: groupName}}</strong>

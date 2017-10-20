@@ -10,7 +10,7 @@
   {
     "id": 14,
     "relatedToMenu": "smoothie",
-    "name": "NEWWWW",
+    "name": "TEST",
     "available": "NO",
     "imageUrl": null,
     "ingredients": {
@@ -18,13 +18,13 @@
         {
           "ingredientId": 1,
           "volume": 444.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         },
         {
           "ingredientId": 4,
           "volume": 111.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         }
       ]
@@ -41,31 +41,31 @@
         {
           "ingredientId": 1,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         },
         {
           "ingredientId": 2,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         },
         {
           "ingredientId": 3,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         },
         {
           "ingredientId": 4,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         },
         {
           "ingredientId": 6,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         }
       ],
@@ -73,13 +73,13 @@
         {
           "ingredientId": 14,
           "volume": 5.0,
-          "uom": "PCS",
+          "measurement": "PCS",
           "missing": true
         },
         {
           "ingredientId": 18,
           "volume": 5.0,
-          "uom": "PCS",
+          "measurement": "PCS",
           "missing": true
         }
       ],
@@ -87,7 +87,7 @@
         {
           "ingredientId": 17,
           "volume": 150.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         }
       ]
@@ -104,7 +104,7 @@
         {
           "ingredientId": 4,
           "volume": 50.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         }
       ],
@@ -112,7 +112,7 @@
         {
           "ingredientId": 14,
           "volume": 5.0,
-          "uom": "PCS",
+          "measurement": "PCS",
           "missing": true
         }
       ],
@@ -120,7 +120,7 @@
         {
           "ingredientId": 13,
           "volume": 150.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         }
       ]
@@ -137,7 +137,7 @@
         {
           "ingredientId": 16,
           "volume": 50.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         }
       ],
@@ -145,7 +145,7 @@
         {
           "ingredientId": 14,
           "volume": 5.0,
-          "uom": "PCS",
+          "measurement": "PCS",
           "missing": true
         }
       ],
@@ -153,7 +153,7 @@
         {
           "ingredientId": 17,
           "volume": 150.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         }
       ]
@@ -202,7 +202,7 @@
         {
           "ingredientId": 1,
           "volume": 199.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         }
       ]
@@ -219,19 +219,19 @@
         {
           "ingredientId": 8,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         },
         {
           "ingredientId": 11,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": false
         },
         {
           "ingredientId": 16,
           "volume": 20.0,
-          "uom": "ML",
+          "measurement": "ML",
           "missing": true
         }
       ]

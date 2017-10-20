@@ -65,28 +65,25 @@
                     <li class="list-group-item" ng-repeat="ingredient in ingredients">
                         <div>
                             <div class="clearfix">
-                                <input ng-if="ingredient.isLiquid()" title="volume.range" type="range" ng-model="ingredient.volume"
-                                       min="5" max="250" step="5"/>
-                                <input ng-if="!ingredient.isLiquid()" title="volume.range" type="range" ng-model="ingredient.volume"
-                                       min="1" max="50" step="50"/>
+                                <input title="volume.range" type="range" ng-model="ingredient.volume"
+                                       min="0" max="{{ingredient.isLiquid() ? 250 : 50}}" step="{{ingredient.isLiquid() ? 5 : 1}}"/>
                             </div>
                             <div class="clearfix">
                                 <div class="pull-left">
-                                    <span class="text-left">{{ingredient.volume}} {{ingredient.uom}} of {{ingredient.getKind()}}</span>
+                                    <span class="text-left">{{ingredient.volume}} {{ingredient.measurement}} of {{ingredient.getKind()}}</span>
                                 </div>
                                 <div class="pull-right">
                                     <!--TODO inline does not work :(-->
-                                    <ul class="list-inline" ng-repeat="uom in cocktailCtrl.getUomValues(groupName)">
+                                    <ul class="list-inline" ng-repeat="measurement in cocktailCtrl.getMeasurements(groupName)">
                                         <li>
-                                            <input title="{{uom}}" type="radio" ng-model="ingredient.uom" value="{{uom}}"/>
-                                            {{uom}}
+                                            <input title="{{measurement}}" type="radio" ng-model="ingredient.measurement" value="{{measurement}}"/>
+                                            {{measurement}}
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </li>
-
                 </ul>
             </li>
         </ul>

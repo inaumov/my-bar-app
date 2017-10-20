@@ -40,7 +40,28 @@ exports.read = function (req, res) {
                                 items.push(ingredient);
                             });
                             result[groupName] = {
-                                "uomValues": groupName === 'additives' ? ['PCS', 'G'] : ['ML', 'DROP', 'DASH', 'TSP'],
+                                "measurements": groupName === 'additives' ? [
+                                    {
+                                        value: 'PCS'
+                                    },
+                                    {
+                                        value: 'G'
+                                    }
+                                ] : [
+                                    {
+                                        value: 'ML'
+                                    },
+                                    {
+                                        value: 'DROP'
+                                    },
+                                    {
+                                        value: 'DASH'
+                                    },
+                                    {
+                                        value: 'TSP'
+                                    }
+                                ],
+                                "isLiquid": groupName !== 'additives',
                                 "items": items
                             };
                             if (groupNames.length === cnt) {
