@@ -70,8 +70,15 @@ footer {
     border: 5px solid dimgrey;
 }
 
-#shelf .table > tbody > tr > td {
+#shelf table > tbody > tr > td {
     vertical-align: middle;
+}
+
+#shelf table .img-responsive {
+    display: block;
+    width: auto;
+    max-height: 128px;
+    margin: 0 auto;
 }
 
 #cocktails #title > .h2 {
