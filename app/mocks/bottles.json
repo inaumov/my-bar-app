@@ -1,178 +1,123 @@
 [
   {
-    "id": 2,
-    "brandName": "",
-    "volume": 0.75,
-    "price": 140.0,
-    "inShelf": "NO",
-    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "id": "bottle-000001",
+    "brandName": "De Kuyper",
+    "volume": 0.7,
+    "price": 120,
+    "imageUrl": "http://groceries.morrisons.com/productImages/119/119568011_0_640x640.jpg",
+    "ingredient": {
+      "id": 1
+    },
+    "inShelf": "YES"
+  },
+  {
+    "id": "bottle-000002",
+    "brandName": "Ron Barchelo Anejo",
+    "volume": 0.7,
+    "price": 140,
+    "imageUrl": "http://yourspanishcorner.com/4282-thickbox_default/anejo-rum-barcelo.jpg",
     "ingredient": {
       "id": 2
-    }
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 3,
-    "brandName": "Bacardi",
-    "volume": 1.0,
-    "price": 198.5,
-    "inShelf": "YES",
-    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "id": "bottle-000003",
+    "brandName": "De Kuyper",
+    "volume": 0.7,
+    "price": 178,
+    "imageUrl": "http://bigbarrel.co.nz/content/images/thumbs/0006701.jpeg",
     "ingredient": {
       "id": 3
-    }
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 4,
-    "brandName": "",
-    "volume": 1.0,
-    "price": 178.0,
-    "inShelf": "NO",
-    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "id": "bottle-000004",
+    "brandName": "De Kuyper",
+    "volume": 1,
+    "price": 178,
+    "imageUrl": "http://cdn.liquor.com/wp-content/uploads/2014/08/Dekuyper-Blue-Curacao.jpg",
     "ingredient": {
       "id": 4
-    }
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 5,
-    "brandName": "",
-    "volume": 0.5,
-    "price": 172.35,
-    "inShelf": "NO",
-    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "id": "bottle-000005",
+    "brandName": "Bacardi Oakheart Spiced Rum",
+    "volume": 1,
+    "price": 198.5,
+    "imageUrl": "http://www.ocado.com/productImages/709/70950011_0_640x640.jpg",
     "ingredient": {
-      "id": 8
-    }
+      "id": 2
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 6,
-    "brandName": "",
-    "volume": 1.0,
-    "price": 254.0,
-    "inShelf": "NO",
-    "imageUrl": "https://static.vinepair.com/wp-content/uploads/2017/05/dr-pp.jpg",
+    "id": "bottle-000006",
+    "brandName": "Olmeca Silver Tequila",
+    "volume": 0.75,
+    "price": 254,
+    "imageUrl": "http://druiwetros.co.za/online/190-thickbox_default/olmeca-silver.jpg",
+    "ingredient": {
+      "id": 5
+    },
+    "inShelf": "YES"
+  },
+  {
+    "id": "bottle-000007",
+    "brandName": "Absolut Vodka",
+    "volume": 1,
+    "price": 172.35,
+    "imageUrl": "http://groceries.morrisons.com/productImages/343/343582011_0_640x640.jpg",
     "ingredient": {
       "id": 6
-    }
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 8,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "id": "bottle-000008",
+    "brandName": "Cointreau Liqueur",
+    "volume": 0.7,
+    "price": 172.35,
+    "imageUrl": "http://img.tesco.com/Groceries/pi/365/3035542011365/IDShot_540x540.jpg",
     "ingredient": {
-      "id": 3
-    }
+      "id": 7
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 9,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "id": "bottle-000009",
+    "brandName": "De Kuyper Pisang",
+    "volume": 0.7,
+    "price": 172.35,
+    "imageUrl": "http://winetime.com.ua/modules/pages/pictures/1346058844_2072.jpg",
     "ingredient": {
-      "id": 3
-    }
+      "id": 8
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 10,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "id": "bottle-000010",
+    "brandName": "Black & White",
+    "volume": 1,
+    "price": 172.35,
+    "imageUrl": "http://www.licorea.com/images/black-white.jpg",
     "ingredient": {
-      "id": 3
-    }
+      "id": 11
+    },
+    "inShelf": "YES"
   },
   {
-    "id": 11,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
+    "id": "bottle-000011",
+    "brandName": "Finsbury 47 Platinum London Dry Gin",
+    "volume": 1,
+    "price": 172.35,
+    "imageUrl": "http://www.drink-shop.ch/4821-thickbox_default/finsbury-47-platinum-london-dry-gin-70-cl-47-uk.jpg",
     "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 12,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 13,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 14,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 15,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 16,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 17,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
-  },
-  {
-    "id": 18,
-    "brandName": "Olmeca",
-    "volume": 0.63,
-    "price": 987.0,
-    "inShelf": "YES",
-    "imageUrl": "http://www.ararat.kiev.ua/get-img/260/400/catalog35.jpg",
-    "ingredient": {
-      "id": 3
-    }
+      "id": 9
+    },
+    "inShelf": "YES"
   }
 ]

@@ -35,19 +35,6 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
         });
     }
 
-    vm.getIngredientKind = function (groupName, id) {
-        for (var property in vm.ingredients) {
-            if (vm.ingredients.hasOwnProperty(groupName)) {
-                for (var i = 0; i < vm.ingredients[groupName].length; i++) {
-                    var ingredient = vm.ingredients[groupName][i];
-                    if (ingredient.id === id) {
-                        return ingredient.kind;
-                    }
-                }
-            }
-        }
-    };
-
     function findCurrentMenuName() {
         for (var item in vm.menuItems) {
             var el = vm.menuItems[item];

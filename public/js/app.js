@@ -6,6 +6,7 @@ angular.module('myBarApp', [
     'application.runner',
     'appRoutes',
     'MyBarService',
+    'IngredientKindFilter',
     'MainCtrl',
     'CocktailsCtrl',
     'EditCocktailCtrl',

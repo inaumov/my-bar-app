@@ -34,13 +34,37 @@ exports.read = function (req, res) {
                         .then(function (ingredients) {
                             cnt++;
                             console.log('Found ', ingredients.length, ' records for: ', groupName);
-                            var tempArr = [];
+                            var items = [];
                             ingredients.forEach(function (ingredient) {
                                 console.log(JSON.stringify(ingredient));
-                                tempArr.push(ingredient);
+                                items.push(ingredient);
                             });
-                            result[groupName] = tempArr;
-                            if (groupNames.length == cnt) {
+                            result[groupName] = {
+                                "measurements": groupName === 'additives' ? [
+                                    {
+                                        value: 'PCS'
+                                    },
+                                    {
+                                        value: 'G'
+                                    }
+                                ] : [
+                                    {
+                                        value: 'ML'
+                                    },
+                                    {
+                                        value: 'DROP'
+                                    },
+                                    {
+                                        value: 'DASH'
+                                    },
+                                    {
+                                        value: 'TSP'
+                                    }
+                                ],
+                                "isLiquid": groupName !== 'additives',
+                                "items": items
+                            };
+                            if (groupNames.length === cnt) {
                                 res.send(result);
                             }
                         });

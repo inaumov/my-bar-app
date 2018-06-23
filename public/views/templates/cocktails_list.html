@@ -21,10 +21,10 @@
                         {{ingredient.volume}}
                     </span>
                     <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
-                        {{ingredient.units}}
+                        {{ingredient.measurement}}
                     </span>
                     <span ng-class="{true: 'text-muted'}[item.available == 'NO']">
-                        <strong>{{cocktailsCtrl.getIngredientKind(groupName, ingredient.ingredientId)}}</strong>
+                        <strong>{{ingredient.ingredientId | kind: cocktailsCtrl.ingredients: groupName}}</strong>
                     </span>
                     <span class="text-warning pull-right" ng-if="ingredient.missing">
                         <i>missing</i>
