@@ -1,7 +1,7 @@
 {
-  "name": "my-bar-web-client",
-  "version": "0.1-develop",
-  "description": "Amazing REST client for 'MyBar' application",
+  "name": "my-bar-web-app",
+  "version": "0.1.0",
+  "description": "Web client for 'MyBar' application",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,16 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inaumov/MyBar-client.git"
+    "url": "git+https://github.com/inaumov/my-bar-app.git"
   },
-  "author": "Igor Naumov",
-  "license": "ISC",
+  "author": "Igor Naumov <naumov@live.com>",
+  "private": true,
+  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/inaumov/MyBar-client/issues"
+    "url": "https://github.com/inaumov/my-bar-app/issues"
   },
-  "homepage": "https://github.com/inaumov/MyBar-client#readme",
+  "homepage": "https://github.com/inaumov/my-bar-app#readme",
   "dependencies": {
-    "express": "^4.13.3",
+    "express": "^4.16.4",
     "mongodb": "latest",
     "bluebird": "latest"
   },
