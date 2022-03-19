@@ -1,13 +1,13 @@
-angular.module('MyBarService', ['myBar.config']).factory('MyBarService', ['$http', 'GENERAL_CONFIG', MyBarService]);
+angular.module('MyBarService', ['myBar.config']).factory('MyBarService', ['$rootScope', '$http', 'GENERAL_CONFIG', MyBarService]);
 
-function MyBarService($http, GENERAL_CONFIG) {
+function MyBarService($rootScope, $http, GENERAL_CONFIG) {
 
-    var BASE_URL = GENERAL_CONFIG.BASE_URL;
+    const BASE_URL = GENERAL_CONFIG.BASE_URL;
 
-    var service = {
+    return {
 
         getMenuItems: function () {
-            var apiCall = $http.get(BASE_URL + '/cocktails/menu', {
+            var apiCall = $http.get(BASE_URL + '/menu', {
                 cache: true
             });
             return handleResponse(apiCall);
@@ -16,6 +16,10 @@ function MyBarService($http, GENERAL_CONFIG) {
         getCocktails: function (menuNameParam) {
             var apiCall = $http.get(BASE_URL + '/cocktails',
                 {
+                    headers: {
+                        Authorization: "Bearer "
+                            + $rootScope.access_token
+                    },
                     params: {
                         filter: menuNameParam
                     }
@@ -24,27 +28,51 @@ function MyBarService($http, GENERAL_CONFIG) {
         },
 
         getCocktailById: function (id) {
-            var apiCall = $http.get(BASE_URL + '/cocktails/' + id);
+            var apiCall = $http.get(BASE_URL + '/cocktails/' + id, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         createCocktail: function (data) {
-            var apiCall = $http.post(BASE_URL + '/cocktails', data);
+            var apiCall = $http.post(BASE_URL + '/cocktails', data, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         updateCocktail: function (data) {
-            var apiCall = $http.put(BASE_URL + '/cocktails', data);
+            var apiCall = $http.put(BASE_URL + '/cocktails', data, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         deleteCocktail: function (id) {
-            var apiCall = $http.delete(BASE_URL + '/cocktails/' + id);
+            var apiCall = $http.delete(BASE_URL + '/cocktails/' + id, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         getIngredients: function (groupNameParam) {
             var apiCall = $http.get(BASE_URL + '/ingredients', {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                },
                 params: {
                     filter: groupNameParam
                 },
@@ -54,28 +82,46 @@ function MyBarService($http, GENERAL_CONFIG) {
         },
 
         getBottleList: function () {
-            var apiCall = $http.get(BASE_URL + '/shelf/bottles');
+            var apiCall = $http.get(BASE_URL + '/shelf/bottles', {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         createBottle: function (data) {
-            var apiCall = $http.post(BASE_URL + '/shelf/bottles', data, 'headers');
+            var apiCall = $http.post(BASE_URL + '/shelf/bottles', data, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         updateBottle: function (data) {
-            var apiCall = $http.put(BASE_URL + '/shelf/bottles', data);
+            var apiCall = $http.put(BASE_URL + '/shelf/bottles', data, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         },
 
         deleteBottle: function (id) {
-            var apiCall = $http.delete(BASE_URL + '/shelf/bottles/' + id);
+            var apiCall = $http.delete(BASE_URL + '/shelf/bottles/' + id, {
+                headers: {
+                    Authorization: "Bearer "
+                        + $rootScope.access_token
+                }
+            });
             return handleResponse(apiCall);
         }
 
     };
-
-    return service;
 
     function handleResponse(apiCall) {
 

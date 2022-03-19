@@ -22,7 +22,7 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
         var menuName = $routeParams.menuName;
 
         return menuName != null ? MyBarService.getCocktails(menuName).then(function (data) {
-            vm.cocktails = data;
+            vm.cocktails = data[menuName];
             return vm.cocktails;
         }) : [];
     }
@@ -36,9 +36,8 @@ function CocktailsController($routeParams, ingredients, MyBarService) {
     }
 
     function findCurrentMenuName() {
-        for (var item in vm.menuItems) {
-            var el = vm.menuItems[item];
-            if (el.name == $routeParams.menuName) {
+        for (var [index, el] of vm.menuItems.entries()) {
+            if (el.name === $routeParams.menuName) {
                 return el.translation;
             }
         }

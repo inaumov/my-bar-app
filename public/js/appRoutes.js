@@ -6,6 +6,12 @@ function Config($routeProvider, $locationProvider) {
             templateUrl: 'views/main.html'
         })
 
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController',
+            controllerAs: 'loginCtrl',
+        })
+
         // route for the menu list page
         .when('/menu', {
             template: "<div class='row' ng-include=\"'views/templates/nav/cocktails_menu.html'\"></div>"
