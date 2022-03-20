@@ -3,7 +3,7 @@
 <div class="row margin-top-30" id="new_cocktail">
     <div class="row" ng-if="cocktailCtrl.isNew || !!cocktailCtrl.cocktail">
         <div class="col-lg-4" id="cover">
-            <img class="img-responsive" ng-src="{{cocktailCtrl.cocktail.imageUrl || 'img/blank.gif'}}"
+            <img class="img-responsive" ng-src="{{cocktailCtrl.cocktail.imageUrl || 'img/image-coming-soon.jpg'}}"
                  ng-class="{true: '', false: 'no-available'}[!!cocktailCtrl.cocktail.imageUrl]"/>
         </div>
         <div class="col-lg-7 col-lg-offset-1" ng-include="'views/templates/forms/cocktail.html'"></div>
